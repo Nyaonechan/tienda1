@@ -29,8 +29,6 @@ public class ProductosController {
 
 		modelo.addAttribute("productos", productos);
 		
-
-		
 		return "shop";
 	}
 	
@@ -60,6 +58,20 @@ public class ProductosController {
 		modelo.addAttribute("productoDetalle", productoDetalle);
 		
 		return "detail";
+	}
+	
+	@GetMapping ("/añadirCarrito/{prodId}")
+	public String añadirCarrito (Model modelo, @PathVariable("idProd") int id) {
+		
+		System.out.println("llamando a controlador añadirCarrito");
+		
+		Productos productoCesta = productoDao.getProductoById(id);
+		
+		System.out.println(productoCesta);
+		
+		
+		
+		return "shop";
 	}
 
 }
