@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<style type="text/css">
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+.container{
+  padding-top:50px;
+  margin: auto;
+}
+</style>
+
+</head>
+<body>
+
+<div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                    
+  <script type="text/javascript">
+    
+    $(".toggle-password").click(function() {
+
+    	  $(this).toggleClass("fa-eye fa-eye-slash");
+    	  var input = $($(this).attr("toggle"));
+    	  if (input.attr("type") == "password") {
+    	    input.attr("type", "text");
+    	  } else {
+    	    input.attr("type", "password");
+    	  }
+    	});
+    
+    </script>                
+ 
+                    
+        <!-- Mensajes -->
+
+        <div th:if="${error !=null}">
+            Invalid username and password.
+        </div>
+
+        <div th:if="${logout !=null}">
+            You have been logged out.
+        </div>
+
+        <div th:if="${registered !=null }">
+            Your new user has been registered.
+        </div>
+        
+                        <form th:action="@{/login}" th:object="${usuario}"  id="login-form" class="form"  method="post">
+                            <h3 class="text-center text-info">Login</h3>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Email:</label><br>
+                                <input type="text" th:field="*{email}" class="form-control" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="password" th:field="*{clave}" class="form-control" required/>
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a th:href="@{/register}" class="text-info">Register here</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
