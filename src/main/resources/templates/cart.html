@@ -70,9 +70,9 @@
                     
                     <!-- BUCLE CON PRODUCTOS DEL CARRO -->
                     
-                        <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
+                        <tr th:if="user==null" th:each="producto : ${carrito}">
+                            <td class="align-middle"><img th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"> Colorful Stylish Shirt</td>
+                            <td class="align-middle" th:text=${producto.precio}></td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -88,10 +88,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle" th:text=${producto.precio}></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                         </tr>
-                        
+                       
                         
                     </tbody>
                 </table>

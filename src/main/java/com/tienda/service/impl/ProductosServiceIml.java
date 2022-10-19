@@ -36,6 +36,30 @@ public class ProductosServiceIml implements ProductosService {
 		modelo.addAttribute("categorias", categorias);
 		
 	}
+	
+	@Override
+	public void cargarProductos(Model modelo) {
+		ArrayList<Productos> productos=productoDao.getProductos();
+		modelo.addAttribute("productos", productos);	
+	}
+	
+	@Override
+	public void cargarProductosByIdCat(Model modelo, int id_categoria) {
+		ArrayList<Productos> productos=productoDao.getProductosByCat(id_categoria);
+        
+        modelo.addAttribute("productos", productos);
+        
+        productos.forEach(System.out::println);
+	}
+	
+	@Override
+	public void cargarProductoById(Model modelo, int id) {
+		Productos productoDetalle = productoDao.getProductoById(id);
+		
+		System.out.println(productoDetalle);
+
+		modelo.addAttribute("productoDetalle", productoDetalle);
+	}
 
 	@Override
 	public void insertOrUpdateProdCarrito(Productos producto, Usuarios user) {
@@ -46,5 +70,20 @@ public class ProductosServiceIml implements ProductosService {
 		}
 		
 	}
+	
+	@Override
+	public void carritoUserNull(Model modelo, Productos productoCesta) {
+		if (modelo.getAttribute("carrito")==null) {
+			ArrayList<Productos> carrito = new ArrayList<Productos>();
+			carrito.add(productoCesta);
+			modelo.addAttribute("carrito", carrito);
+		} else {
+			ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+			carrito.add(productoCesta);
+			modelo.addAttribute("carrito", carrito);
+		}
+	}
+
+
 
 }

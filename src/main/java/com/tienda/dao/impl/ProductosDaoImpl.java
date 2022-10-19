@@ -84,14 +84,14 @@ public class ProductosDaoImpl implements ProductosDao {
 		query.setParameter("id_usuario", user.getId());
 		
 		ArrayList<Object> registros =  (ArrayList<Object>) query.getResultList();
+		System.out.println(registros);
 		
-		if (registros!=null||registros.isEmpty()) {
-			bandera=true;
-		}
+		bandera = !registros.isEmpty();
 		
 		return bandera;
 	}
 	
+	@Transactional
 	@Override
 	public void insertProdCarrito (Productos producto, Usuarios user) {
 		

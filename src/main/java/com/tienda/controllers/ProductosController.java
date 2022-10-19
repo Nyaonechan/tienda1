@@ -32,9 +32,7 @@ public class ProductosController {
 		
 		productoService.cargarCategorias(modelo);
 	
-		ArrayList<Productos> productos=productoDao.getProductos();
-
-		modelo.addAttribute("productos", productos);
+		productoService.cargarProductos(modelo);
 		
 		return "shop";
 	}
@@ -46,11 +44,7 @@ public class ProductosController {
 		
 		productoService.cargarCategorias(modelo);
 		
-		ArrayList<Productos> productos=productoDao.getProductosByCat(id_categoria);
-        
-        modelo.addAttribute("productos", productos);
-        
-        productos.forEach(System.out::println);
+		productoService.cargarProductosByIdCat(modelo, id_categoria);
 
         return "shop";
     }
@@ -62,11 +56,7 @@ public class ProductosController {
 		
 		productoService.cargarCategorias(modelo);
 		
-		Productos productoDetalle = productoDao.getProductoById(id);
-		
-		System.out.println(productoDetalle);
-
-		modelo.addAttribute("productoDetalle", productoDetalle);
+		productoService.cargarProductoById(modelo, id);
 		
 		return "detail";
 	}
@@ -85,23 +75,22 @@ public class ProductosController {
 		Usuarios u = (Usuarios) modelo.getAttribute("user");
 		
 		if (modelo.getAttribute("user")==null) {
-			if (modelo.getAttribute("carrito")==null) {
-				ArrayList<Productos> carrito = new ArrayList<Productos>();
-				carrito.add(productoCesta);
-				modelo.addAttribute("carrito", carrito);
-			} else {
-				ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
-				carrito.add(productoCesta);
-				modelo.addAttribute("carrito", carrito);
-			}
+
+			productoService.carritoUserNull(modelo, productoCesta);
 
 		} else {
 			productoService.insertOrUpdateProdCarrito(productoCesta, u);
 		}
 		
+		return todosProductos(modelo);
+	}
+	
+	@GetMapping ("/cart")
+	public String cart(Model modelo) {
 		
+		productoService.cargarCategorias(modelo);
 		
-		return "shop";
+		return "cart";
 	}
 
 }
