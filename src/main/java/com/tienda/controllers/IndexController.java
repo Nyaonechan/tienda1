@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tienda.dao.ProductosDao;
 import com.tienda.entities.Categorias;
+import com.tienda.service.ProductosService;
 
 @SessionAttributes({"categorias", "user"})
 @Controller
@@ -19,6 +20,9 @@ public class IndexController {
 	
 	@Autowired
 	private ProductosDao productoDao;
+	
+	@Autowired
+	private ProductosService productoService;
 	
 	@GetMapping("")
 	public String muestraIndex(Model modelo) {
@@ -29,9 +33,7 @@ public class IndexController {
 		// CARGAR PRODUCTOS MAS NUEVOS
 		
 		//CARGAR CATEGORIAS
-		ArrayList<Categorias> categorias = productoDao.getCategorias();
-		modelo.addAttribute("categorias", categorias);
-		
+		productoService.cargarCategorias(modelo);
 
 		return "index.html";
 	}

@@ -12,18 +12,25 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tienda.dao.ProductosDao;
 import com.tienda.entities.Productos;
+import com.tienda.entities.Usuarios;
+import com.tienda.service.ProductosService;
 
 
-@SessionAttributes({"categorias", "user"})
+@SessionAttributes({"categorias", "user", "carrito"})
 @Controller
 public class ProductosController {
 	
 	@Autowired
 	private ProductosDao productoDao;
 	
+	@Autowired
+	private ProductosService productoService;
+	
 	@GetMapping("/shop")
-	public String listaProductos(Model modelo) {
+	public String todosProductos(Model modelo) {
 		System.out.println("llamando a controlador shop");
+		
+		productoService.cargarCategorias(modelo);
 	
 		ArrayList<Productos> productos=productoDao.getProductos();
 
@@ -33,9 +40,11 @@ public class ProductosController {
 	}
 	
 	@GetMapping("/shop/{id}")
-    public String shop(@PathVariable("id") int id_categoria, Model modelo) {
+    public String categoriaProductos(@PathVariable("id") int id_categoria, Model modelo) {
 		
 		System.out.println("llamando a controlador shop/id");
+		
+		productoService.cargarCategorias(modelo);
 		
 		ArrayList<Productos> productos=productoDao.getProductosByCat(id_categoria);
         
@@ -51,6 +60,8 @@ public class ProductosController {
 		
 		System.out.println("llamando a controlador detail");
 		
+		productoService.cargarCategorias(modelo);
+		
 		Productos productoDetalle = productoDao.getProductoById(id);
 		
 		System.out.println(productoDetalle);
@@ -60,14 +71,33 @@ public class ProductosController {
 		return "detail";
 	}
 	
-	@GetMapping ("/añadirCarrito/{prodId}")
+	@GetMapping ("/añadirCarrito/{idProd}")
 	public String añadirCarrito (Model modelo, @PathVariable("idProd") int id) {
 		
 		System.out.println("llamando a controlador añadirCarrito");
 		
+		productoService.cargarCategorias(modelo);
+		
 		Productos productoCesta = productoDao.getProductoById(id);
 		
 		System.out.println(productoCesta);
+		
+		Usuarios u = (Usuarios) modelo.getAttribute("user");
+		
+		if (modelo.getAttribute("user")==null) {
+			if (modelo.getAttribute("carrito")==null) {
+				ArrayList<Productos> carrito = new ArrayList<Productos>();
+				carrito.add(productoCesta);
+				modelo.addAttribute("carrito", carrito);
+			} else {
+				ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+				carrito.add(productoCesta);
+				modelo.addAttribute("carrito", carrito);
+			}
+
+		} else {
+			productoService.insertOrUpdateProdCarrito(productoCesta, u);
+		}
 		
 		
 		

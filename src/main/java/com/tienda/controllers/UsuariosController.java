@@ -26,7 +26,7 @@ public class UsuariosController {
 		Usuarios u = (Usuarios) modelo.getAttribute("user");
 		if(u!=null) {
 			System.out.println("!Estas ya logeado!");
-			return productosController.listaProductos(modelo);
+			return productosController.todosProductos(modelo);
 		}
 		System.out.println("llamando a controlador Login GET"); 
 		modelo.addAttribute("usuario",new Usuarios());
@@ -46,7 +46,7 @@ public class UsuariosController {
 			return "formularioLogin"; 
 		}
 		modelo.addAttribute("user",u);
-		return  productosController.listaProductos(modelo);
+		return  productosController.todosProductos(modelo);
 
 		
 	}
@@ -55,7 +55,7 @@ public class UsuariosController {
 	public String logout (Model modelo) {
 		System.out.println("llamando a controlador logout");
 		modelo.addAttribute("user", null);
-		return productosController.listaProductos(modelo); // mirar como redirigir a la misma pagina de donde vengas
+		return productosController.todosProductos(modelo); // mirar como redirigir a la misma pagina de donde vengas
 	}
 		
 	
