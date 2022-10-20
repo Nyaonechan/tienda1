@@ -49,8 +49,8 @@ public class ProductosController {
         return "shop";
     }
 	
-	@GetMapping ("/detail/{idProd}")
-	public String detail (Model modelo, @PathVariable("idProd") int id) {
+	@GetMapping ("/detail")
+	public String detail (Model modelo, @RequestParam("idProd") int id) {
 		
 		System.out.println("llamando a controlador detail");
 		
@@ -61,8 +61,8 @@ public class ProductosController {
 		return "detail";
 	}
 	
-	@GetMapping ("/añadirCarrito/{idProd}")
-	public String añadirCarrito (Model modelo, @PathVariable("idProd") int id) {
+	@GetMapping ("/añadirCarrito")
+	public String añadirCarrito (Model modelo, @RequestParam("idProd") int id) {
 		
 		System.out.println("llamando a controlador añadirCarrito");
 		
@@ -77,6 +77,8 @@ public class ProductosController {
 		if (modelo.getAttribute("user")==null) {
 
 			productoService.carritoUserNull(modelo, productoCesta);
+			
+			System.out.println(productoCesta.getNombre() + " añadido a la cesta");
 
 		} else {
 			productoService.insertOrUpdateProdCarrito(productoCesta, u);
@@ -85,12 +87,51 @@ public class ProductosController {
 		return todosProductos(modelo);
 	}
 	
+	
 	@GetMapping ("/cart")
 	public String cart(Model modelo) {
 		
+		System.out.println("llamando a controlador cart");
+		
 		productoService.cargarCategorias(modelo);
+		
+		modelo.getAttribute("carrito");
 		
 		return "cart";
 	}
+	
+	// ACCIONES EN EL CARRO--------------------
+	
+	@GetMapping ("/aumentarCantidad")
+	public String aumentarCantidad (Model modelo, @RequestParam("idProd") int id) {
+		
+		ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		
+		productoService.aumentarCantidadCarritoSession(carrito, id);
+		
+		return cart(modelo);
+	}
+	
+	@GetMapping ("/descenderCantidad")
+	public String descenderCantidad (Model modelo, @RequestParam("idProd") int id) {
+		
+		ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		
+		productoService.descenderCantidadCarritoSession(carrito, id);
+		
+		return cart(modelo);
+	}
+	
+	@GetMapping ("/eliminarProducto")
+	public String eliminarProducto (Model modelo, @RequestParam("idProd") int id) {
+		
+		ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		
+		productoService.eliminarProductoCarritoSession(carrito, id);
+		
+		return cart(modelo);
+	}
+	
+	//---------------------------------------------------
 
 }

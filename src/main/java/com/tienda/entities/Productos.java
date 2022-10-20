@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -45,6 +46,9 @@ public class Productos {
     
     private Date fecha_alta;
     
+    @Transient
+    private int cantidad;
+    
     
     public Productos() {
     	
@@ -63,6 +67,7 @@ public class Productos {
 		this.imagen = imagen;
 		this.baja = baja;
 		this.fecha_alta = fecha_alta;
+		cantidad = 1;
 	}
 
 
@@ -159,6 +164,28 @@ public class Productos {
 	public int getId() {
 		return id;
 	}
+
+
+	public Boolean getBaja() {
+		return baja;
+	}
+
+
+	public void setBaja(Boolean baja) {
+		this.baja = baja;
+	}
+
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	
+	
     
     
 

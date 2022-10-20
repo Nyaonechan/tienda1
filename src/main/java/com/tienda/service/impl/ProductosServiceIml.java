@@ -1,6 +1,7 @@
 package com.tienda.service.impl;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,13 +76,60 @@ public class ProductosServiceIml implements ProductosService {
 	public void carritoUserNull(Model modelo, Productos productoCesta) {
 		if (modelo.getAttribute("carrito")==null) {
 			ArrayList<Productos> carrito = new ArrayList<Productos>();
+			productoCesta.setCantidad(1);
 			carrito.add(productoCesta);
 			modelo.addAttribute("carrito", carrito);
 		} else {
 			ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
-			carrito.add(productoCesta);
-			modelo.addAttribute("carrito", carrito);
+			if (!comprobarProductoCarrito(carrito, productoCesta)) {
+				productoCesta.setCantidad(1);
+				carrito.add(productoCesta);
+				modelo.addAttribute("carrito", carrito);
+			}
 		}
+	}
+	
+	@Override
+	public boolean comprobarProductoCarrito(ArrayList <Productos> carrito, Productos productoCesta) {
+		boolean bandera = false;
+		
+		for (Productos e:carrito) {
+			if (e.getId()==productoCesta.getId()) {
+				e.setCantidad(e.getCantidad()+1);
+				bandera = true;
+			}
+		}
+		
+		return bandera;
+	}
+
+	@Override
+	public void aumentarCantidadCarritoSession(ArrayList <Productos> carrito, int id) {
+		
+		for (Productos e: carrito) {
+			if (e.getId()==id) e.setCantidad(e.getCantidad()+1);
+		}
+		
+	}
+
+	@Override
+	public void descenderCantidadCarritoSession(ArrayList <Productos> carrito, int id) {
+		
+		Optional<Productos> optional = carrito.stream().filter(n -> n.getId()==id).findFirst();
+		
+		Productos p = optional.get();
+		
+		p.setCantidad(p.getCantidad()-1);
+		
+		carrito.removeIf(n -> (n.getCantidad()==0));
+		
+	}
+
+	@Override
+	public void eliminarProductoCarritoSession(ArrayList<Productos> carrito, int id) {
+		
+		carrito.removeIf(n -> (n.getId()==id));
+		
 	}
 
 
