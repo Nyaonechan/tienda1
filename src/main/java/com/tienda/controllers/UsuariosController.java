@@ -63,7 +63,7 @@ public class UsuariosController {
 	public String formularioRegistro (Model modelo) {
 		
 		System.out.println("llamando a controlador formularioRegistro");
-		modelo.addAttribute("persona",new Usuarios());
+		modelo.addAttribute("usuario",new Usuarios());
 		return "formularioRegistro";
 	}
 	
