@@ -77,20 +77,21 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" th:onclick="window.location.href='@{/descenderCantidad(idProd=${producto.id})}';">
+                                        <button class="btn btn-sm btn-primary btn-minus" th:onclick="'window.location.href = \'' + @{/descenderCantidad?idProd={idProd}(idProd=${producto.id})} + '\''">
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
                                     <input type="text" class="form-control form-control-sm bg-secondary text-center" th:value=${producto.cantidad}>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus" th:onclick="window.location.href='@{/aumentarCantidad(idProd=${producto.id})}';">
+                                          <button class="btn btn-sm btn-primary btn-plus" th:onclick="'window.location.href = \'' + @{/aumentarCantidad?idProd={idProd}(idProd=${producto.id})} + '\''">
+                                       
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
                             </td>
                             <td class="align-middle" th:text=${producto.precio}*${producto.cantidad}></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="window.location.href='@{/eliminarProducto(idProd=${producto.id})}';"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/eliminarProducto?idProd={idProd}(idProd=${producto.id})} + '\''"><i class="fa fa-times"></i></button></td>
                         </tr>  
                         
                     </tbody>
@@ -157,3 +158,14 @@
 </body>
 
 </html>
+
+
+<script>
+
+	function comprobarURL(url) {
+		
+		console.log('La url de destino es => ', url);
+		
+	}
+
+</script>
