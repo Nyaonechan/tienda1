@@ -80,5 +80,11 @@ public class UsuariosController {
 	    return "/login";
 	}
 	
+	@GetMapping("/perfilResumen")
+	public String perfilResumen() {
+		
+		return "perfilResumen";
+	}
+	
 
 }
