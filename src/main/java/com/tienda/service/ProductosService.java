@@ -32,6 +32,10 @@ public interface ProductosService {
 	public void descenderCantidadCarritoSession(ArrayList <Productos> carrito, int id);
 	
 	public void eliminarProductoCarritoSession (ArrayList <Productos> carrito, int id);
+	
+	public void insertarProductosListaCarritoATabla(Usuarios user, Model modelo);
+	
+	public void meterListaEnCarrito (Model modelo, Usuarios user);
 
 
 }

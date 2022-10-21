@@ -95,6 +95,12 @@ public class ProductosController {
 		
 		productoService.cargarCategorias(modelo);
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (modelo.getAttribute("user")!=null) {
+			productoService.meterListaEnCarrito(modelo, user);
+		}
+		
 		modelo.getAttribute("carrito");
 		
 		return "cart";
@@ -133,5 +139,21 @@ public class ProductosController {
 	}
 	
 	//---------------------------------------------------
+	
+	@GetMapping ("/checkout")
+	public String checkout () {
+		
+		return "checkout";
+	}
+	
+	@GetMapping ("/confirmarCompra")
+	public String confirmarCompra () {
+		
+		//meter los productos en las tablas pedido y detalles pedido
+		// vaciar carro en sesion y borrar registros de la tabla articulos_carrito
+		
+		return "checkout"; // vista para compra con exito
+	}
+	
 
 }

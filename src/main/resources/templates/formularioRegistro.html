@@ -1,38 +1,139 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>SignUp</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- //Custom Theme files -->
 <!-- web font -->
 <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
 <!-- //web font -->
+<link th:href="@{/css/register.css}" rel="stylesheet"/>
+<style type="text/css">
+.login_oueter {
+    width: 600px;
+    max-width: 100%;
+}
+.logo_outer{
+    text-align: center;
+}
+.logo_outer img{
+    width:200px;
+    margin-bottom: 40px;
+}
+
+.ocultar {
+    display: none;
+}
+ 
+.mostrar {
+    display: block;
+}
+</style>
 </head>
 <body>
+
+<script type="text/javascript">
+
+function verificarPasswords() {
+	 
+    // Ontenemos los valores de los campos de contraseñas 
+    pass1 = document.getElementById('pass1');
+    pass2 = document.getElementById('pass2');
+ 
+    // Verificamos si las constraseñas no coinciden 
+    if (pass1.value != pass2.value) {
+ 
+        // Si las constraseñas no coinciden mostramos un mensaje 
+        document.getElementById("error").classList.add("mostrar");
+ 
+        return false;
+    } else {
+ 
+        // Si las contraseñas coinciden ocultamos el mensaje de error
+        document.getElementById("error").classList.remove("mostrar");
+ 
+        // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+        document.getElementById("ok").classList.remove("ocultar");
+ 
+        // Desabilitamos el botón de login 
+        document.getElementById("register").disabled = true;
+ 
+        // Refrescamos la página (Simulación de envío del formulario) 
+        setTimeout(function() {
+            location.reload();
+        }, 3000);
+ 
+        return true;
+    }
+    
+    function password_show_hide() {
+  	  var x = document.getElementById("pass1");
+  	  var y = document.getElementById("pass2");
+  	  var show_eye = document.getElementById("show_eye");
+  	  var hide_eye = document.getElementById("hide_eye");
+  	  hide_eye.classList.remove("d-none");
+  	  if (x.type === "pass1") {
+  	    x.type = "text";
+  	    show_eye.style.display = "none";
+  	    hide_eye.style.display = "block";
+  	  } else {
+  	    x.type = "password";
+  	    show_eye.style.display = "block";
+  	    hide_eye.style.display = "none";
+  	  }
+  	  
+  	  if (y.type === "pass2") {
+    	    y.type = "text";
+    	    show_eye.style.display = "none";
+    	    hide_eye.style.display = "block";
+    	  } else {
+    	    y.type = "password";
+    	    show_eye.style.display = "block";
+    	    hide_eye.style.display = "none";
+    	  }
+  	}
+ 
+}
+
+</script>
+
 	<!-- main -->
+	      <div class="col-md-12 logo_outer">
+        <img th:src="@{/img/logobefreak.png}" />
+      </div>
+	
 	<div class="main-w3layouts wrapper">
 		<h1>SignUp</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-				<form action="#" method="post">
-					<input class="text" type="text" name="Username" placeholder="Username" required>
-					<input class="text email" type="email" name="email" placeholder="Email" required>
-					<input class="text" type="password" name="password" placeholder="Password" required>
-					<input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required>
+
+				<form th:action="@{/register}" th:object="${usuario}" method="post" onsubmit="verificarPasswords(); return false">
+					<input class="text" type="text" name="Name" placeholder="Name" th:field="*{nombre}" required>
+					<input class="text" type="text" name="FirstSurname" placeholder="First Surname" th:field="*{apellido1}" required>
+					<input class="text" type="text" name="SecondSurname" placeholder="Second Surname" th:field="*{apellido2}" required>
+					<input class="text" type="text" name="NIF" placeholder="NIF" th:field="*{dni}" required>
+					<input class="text email" type="email" name="email" placeholder="Email" th:field="*{email}" required>
+					<input class="text" type="password" name="password" placeholder="Password" th:field="*{clave}" id="pass1" required aria-label="password" aria-describedby="basic-addon1">
+					<input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" id="pass2" required aria-label="password" aria-describedby="basic-addon1">
+					
+								<div id="msg"></div>
+			<!-- Mensajes de Verificación -->
+			<div id="error" class="alert alert-danger ocultar" role="alert" style="background-color:red; border-color:red">
+    		La contraseña debe coincidir en ambos campos
+			</div>
+			<div id="ok" class="alert alert-success ocultar" role="alert" style="background-color:green; border-color:green">
+    		Registro realizado correctamente
+			</div>
+			<!-- Fin Mensajes de Verificación -->
+					
 					<div class="wthree-text">
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span>I Agree To The Terms & Conditions</span>
-						</label>
 						<div class="clear"> </div>
 					</div>
-					<input type="submit" value="SIGNUP">
+					<input type="submit" value="SIGNUP" id="register">
 				</form>
-				<p>Have an Account? <a href="#"> Login Now!</a></p>
+				<p>Have an Account? <a th:href="@{/login}"> Login Now!</a></p>
 			</div>
 		</div>
 

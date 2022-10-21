@@ -1,7 +1,7 @@
 package com.tienda.dao.impl;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -72,6 +72,8 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 	}
 	
+	//COMPROBAR TABLA CARRITO
+	
 	@Override
 	public boolean comprobarProdCarritoById(Productos producto,  Usuarios user) {
 		
@@ -90,6 +92,27 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		return bandera;
 	}
+	
+	@Override
+	public boolean comprobarProdCarritoTablaVacia (Usuarios user) {
+		
+		boolean bandera = false;
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query query = session.createNativeQuery("select * from articulos_carrito where id_usuario=:id_usuario");
+		query.setParameter("id_usuario", user.getId());
+		
+		ArrayList<Object> registros =  (ArrayList<Object>) query.getResultList();
+		System.out.println(registros);
+		
+		bandera = !registros.isEmpty();
+		
+		return bandera;
+
+	}
+	
+	// CRUD TABLA CARRITO
 	
 	@Transactional
 	@Override
@@ -155,11 +178,25 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query consulta = session.createNativeQuery("delete from articulos_carritowhere cantidad=:cantidad");
+		Query consulta = session.createNativeQuery("delete from articulos_carrito where cantidad=:cantidad");
 		consulta.setParameter("cantidad", 0);
 		
 		consulta.executeUpdate();
 		
+	}
+
+	@Override
+	public ArrayList<Productos> consultaCruzada(Usuarios user) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> consulta=session.createNativeQuery("select * from productos p,articulos_carrito a where a.id_usuario=:id and a.id_producto = p.id");
+
+		consulta.setParameter("id", user.getId());
+		ArrayList<Productos> productos = (ArrayList<Productos>) consulta.getResultList(); // recorrer resultSet y convertir a Productos
+
+		
+		return productos;
 	}
 
 

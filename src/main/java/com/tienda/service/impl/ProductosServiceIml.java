@@ -132,6 +132,37 @@ public class ProductosServiceIml implements ProductosService {
 		
 	}
 
+	@Override
+	public void insertarProductosListaCarritoATabla(Usuarios user, Model modelo) {
+		
+		if (!productoDao.comprobarProdCarritoTablaVacia(user)){
+			
+			ArrayList<Productos> carrito;
+			
+			if (modelo.getAttribute("carrito")==null) {
+				 carrito = new ArrayList<Productos>();
+				 modelo.addAttribute("carrito", carrito);
+			}
+			carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+			
+			for (Productos e: carrito) {
+				productoDao.insertProdCarrito(e, user);
+			}
+			
+			modelo.addAttribute("carrito", null);
+			
+		}
+		
+	}
+
+	@Override
+	public void meterListaEnCarrito(Model modelo, Usuarios user) {
+		
+		ArrayList <Productos> carrito= productoDao.consultaCruzada(user);
+		modelo.addAttribute("carrito", carrito);
+		
+	}
+
 
 
 }

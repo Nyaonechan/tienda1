@@ -1,5 +1,7 @@
 package com.tienda.controllers;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tienda.dao.UsuariosDao;
 import com.tienda.entities.Usuarios;
+import com.tienda.service.ProductosService;
 
 
 @SessionAttributes({"categorias", "user"})
@@ -21,15 +24,14 @@ public class UsuariosController {
 	@Autowired
 	private UsuariosDao usuarioDao;
 	
+	@Autowired
+	private ProductosService productoService;
+	
 	@GetMapping("/login") 
 	public String formularioLogin (Model modelo) {
-		Usuarios u = (Usuarios) modelo.getAttribute("user");
-		if(u!=null) {
-			System.out.println("!Estas ya logeado!");
-			return productosController.todosProductos(modelo);
-		}
 		System.out.println("llamando a controlador Login GET"); 
-		modelo.addAttribute("usuario",new Usuarios());
+
+		modelo.addAttribute("user",new Usuarios());
 		return "formularioLogin"; 
 	}
 	
@@ -46,9 +48,11 @@ public class UsuariosController {
 			return "formularioLogin"; 
 		}
 		modelo.addAttribute("user",u);
+		
+		productoService.insertarProductosListaCarritoATabla(u, modelo); // SI NO HAY REGISTROS DE ESE USUARIO EN LA TABLA
+				
 		return  productosController.todosProductos(modelo);
 
-		
 	}
 	
 	@GetMapping ("/logout")
@@ -62,7 +66,7 @@ public class UsuariosController {
 	@GetMapping("/register")
 	public String formularioRegistro (Model modelo) {
 		
-		System.out.println("llamando a controlador formularioRegistro");
+		System.out.println("llamando a controlador registerGET");
 		modelo.addAttribute("usuario",new Usuarios());
 		return "formularioRegistro";
 	}
@@ -70,14 +74,18 @@ public class UsuariosController {
 
 	
 	@PostMapping("/register")
-	public String processRegister(Usuarios usuario) {
+	public String processRegister(Model modelo, Usuarios usuario) {
 		
-		System.out.println("llamando a controlador processRegister");
-	    usuario.setBaja(false);
+		System.out.println("llamando a controlador registerPOST");
+		
+		usuario.setBaja(false);
+		usuario.setId_rol(1);
+		usuario.setFecha_alta(LocalDate.now());
+		
 	    System.out.println(usuario);
 	    usuarioDao.insertarUsuario(usuario);
 	     
-	    return "/login";
+	    return formularioLogin(modelo);
 	}
 	
 

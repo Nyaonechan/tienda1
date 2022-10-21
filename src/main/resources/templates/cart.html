@@ -40,13 +40,8 @@
 
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
-            <div class="d-inline-flex">
-                <p class="m-0"><a href="">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Shopping Cart</p>
-            </div>
         </div>
     </div>
     <!-- Page Header End -->
@@ -69,7 +64,7 @@
                     
                     <tbody  class="align-middle">
                     
-                    <!-- BUCLE CON PRODUCTOS DEL CARRO -->
+                    <!-- BUCLE CON PRODUCTOS DEL CARRO EN LISTA-->
 
                         <tr th:each="producto : ${carrito}">
                             <td class="align-middle"><img th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"> Colorful Stylish Shirt</td>
@@ -93,6 +88,7 @@
                             <td class="align-middle" th:text=${producto.precio}*${producto.cantidad}></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/eliminarProducto?idProd={idProd}(idProd=${producto.id})} + '\''"><i class="fa fa-times"></i></button></td>
                         </tr>  
+                        
                         
                     </tbody>
                 </table>
@@ -125,7 +121,7 @@
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">$160</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Proceed To Checkout</button>
                     </div>
                 </div>
             </div>
@@ -159,13 +155,3 @@
 
 </html>
 
-
-<script>
-
-	function comprobarURL(url) {
-		
-		console.log('La url de destino es => ', url);
-		
-	}
-
-</script>

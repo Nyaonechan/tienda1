@@ -1,6 +1,7 @@
 package com.tienda.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,7 +54,7 @@ public class Usuarios {
     
     private boolean baja;
     
-    private Date fecha_alta;
+    private LocalDate fecha_alta;
     
     public Usuarios() {
     	
@@ -61,7 +62,7 @@ public class Usuarios {
 
 	public Usuarios(int id, int id_rol, String email, String clave, String nombre, String apellido1, String apellido2,
 			String direccion, String provincia, String localidad, String telefono, String dni, String imagen,
-			boolean baja, Date fecha_alta) {
+			boolean baja, LocalDate fecha_alta) {
 		this.id = id;
 		this.id_rol = id_rol;
 		this.email = email;
@@ -183,11 +184,11 @@ public class Usuarios {
 		this.baja = baja;
 	}
 
-	public Date getFecha_alta() {
+	public LocalDate getFecha_alta() {
 		return fecha_alta;
 	}
 
-	public void setFecha_alta(Date fecha_alta) {
+	public void setFecha_alta(LocalDate fecha_alta) {
 		this.fecha_alta = fecha_alta;
 	}
 

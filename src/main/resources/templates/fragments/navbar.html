@@ -1,12 +1,14 @@
  <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
+
+
  <div th:fragment="navbar" >    
     <div class="container-fluid mb-5">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Categories</h6>
+                    <h6 class="m-0" th:text="#{categorias}"></h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
@@ -44,20 +46,20 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a th:href="@{/}" class="nav-item nav-link active">Home</a>
-                            <a th:href="@{/shop}" class="nav-item nav-link">Shop</a>
-                            <a th:href="@{/cart}" class="nav-item nav-link">Shoping Cart</a>
-                            <a th:href="@{/checkout}" class="nav-item nav-link">Checkout</a>
+                            <a th:href="@{/}" class="nav-item nav-link active" th:text="#{index}">Home</a>
+                            <a th:href="@{/shop}" class="nav-item nav-link" th:text="#{tienda}">Shop</a>
+                            <a th:href="@{/cart}" class="nav-item nav-link" th:text="#{cesta}">Shoping Cart</a>
+                            <a th:href="@{/checkout}" class="nav-item nav-link" th:text="#{checkout}">Checkout</a>
                             
-                            <a th:href="@{/contact}" class="nav-item nav-link">Contact</a>
+                            <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{contacto}">Contact</a>
                         </div>
                         <div th:if="${user==null}" class="navbar-nav ml-auto py-0">
-                            <a th:href="@{/login}" class="nav-item nav-link">Login</a>
-                            <a th:href="@{/register}" class="nav-item nav-link">Register</a>
+                            <a th:href="@{/login}" class="nav-item nav-link" th:text="#{login}">Login</a>
+                            <a th:href="@{/register}" class="nav-item nav-link" th:text="#{register}">Register</a>
                         </div>
                  		<div th:if="${user}" class="navbar-nav ml-auto py-0">
-                 			<a th:href="@{/perfil}"class="nav-item nav-link" th:text="'Bienvenido/a: ' + ${user.nombre} + '. Ir a tu perfil.'" ></a>
-                            <a th:href="@{/logout}" class="nav-item nav-link">Logout</a>
+                 			<a th:href="@{/perfil}"class="nav-item nav-link" th:text="#{welcome} + ' ' + ${user.nombre} +  ' ' + #{perfil}" ></a>
+                            <a th:href="@{/logout}" class="nav-item nav-link" th:text="#{logout}">Logout</a>
                         </div>
                     </div>
                 </nav>

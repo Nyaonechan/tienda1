@@ -19,6 +19,8 @@ public interface ProductosDao {
 	
 	public boolean comprobarProdCarritoById (Productos producto,  Usuarios user);
 	
+	public boolean comprobarProdCarritoTablaVacia (Usuarios user);
+	
 	public void insertProdCarrito (Productos producto, Usuarios user);
 	
 	public void aumentarProdCarrito (Productos producto,Usuarios user);
@@ -28,5 +30,7 @@ public interface ProductosDao {
 	public void eliminarProdCarrito (Productos producto, Usuarios user);
 	
 	public void eliminarProdCarritoCantidadCero ();
+	
+	public ArrayList<Productos> consultaCruzada (Usuarios user);
 
 }
