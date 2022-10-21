@@ -86,5 +86,23 @@ public class UsuariosController {
 		return "perfilResumen";
 	}
 	
+	@GetMapping ("/modificarDatos")
+	public String modificarDatos() {
+		
+		return "perfilCambios";
+	}
+	
+	@GetMapping ("/perfilPedidos")
+	public String  perfilPedidos () {
+		
+		return "perfilPedidos";
+	}
+	
+	@GetMapping ("/perfilDetallesPedido")
+	public String  perfilDetallesPedido () {
+		
+		return "perfilDetallesPedido";
+	}
+	
 
 }

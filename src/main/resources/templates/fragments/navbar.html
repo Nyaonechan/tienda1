@@ -51,12 +51,17 @@
                             
                             <a th:href="@{/contact}" class="nav-item nav-link">Contact</a>
                         </div>
+                        <div th:if="${user!=null}">
+                        <div th:if="${user.id_rol==2} or ${user.id_rol==3}" class="navbar-nav ml-auto py-0">
+                            <a th:href="@{/dashboard}" class="nav-item nav-link">Admin Dashboard</a>
+                        </div>
+                        </div>
                         <div th:if="${user==null}" class="navbar-nav ml-auto py-0">
                             <a th:href="@{/login}" class="nav-item nav-link">Login</a>
                             <a th:href="@{/register}" class="nav-item nav-link">Register</a>
                         </div>
                  		<div th:if="${user}" class="navbar-nav ml-auto py-0">
-                 			<a th:href="@{/perfil}"class="nav-item nav-link" th:text="'Bienvenido/a: ' + ${user.nombre} + '. Ir a tu perfil.'" ></a>
+                 			<a th:href="@{/perfilResumen}"class="nav-item nav-link" th:text="'Bienvenido/a: ' + ${user.nombre} + '. Ir a tu perfil.'" ></a>
                             <a th:href="@{/logout}" class="nav-item nav-link">Logout</a>
                         </div>
                     </div>
