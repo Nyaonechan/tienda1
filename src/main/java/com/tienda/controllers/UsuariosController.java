@@ -71,6 +71,9 @@ public class UsuariosController {
 =======
 		System.out.println("llamando a controlador formularioRegistro");
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
+=======
 >>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
 =======
 >>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
