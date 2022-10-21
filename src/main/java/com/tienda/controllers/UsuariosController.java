@@ -73,6 +73,7 @@ public class UsuariosController {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
 =======
 >>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
@@ -80,6 +81,8 @@ public class UsuariosController {
 >>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
 =======
 >>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
+=======
+>>>>>>> 9f91e6426a5e717713430ce194b16d7d6bc17008
 		modelo.addAttribute("usuario",new Usuarios());
 		return "formularioRegistro";
 	}
@@ -99,6 +102,30 @@ public class UsuariosController {
 	    usuarioDao.insertarUsuario(usuario);
 	     
 	    return formularioLogin(modelo);
+	}
+	
+	@GetMapping("/perfilResumen")
+	public String perfilResumen() {
+		
+		return "perfilResumen";
+	}
+	
+	@GetMapping ("/modificarDatos")
+	public String modificarDatos() {
+		
+		return "perfilCambios";
+	}
+	
+	@GetMapping ("/perfilPedidos")
+	public String  perfilPedidos () {
+		
+		return "perfilPedidos";
+	}
+	
+	@GetMapping ("/perfilDetallesPedido")
+	public String  perfilDetallesPedido () {
+		
+		return "perfilDetallesPedido";
 	}
 	
 
