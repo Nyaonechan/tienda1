@@ -66,23 +66,8 @@ public class UsuariosController {
 	@GetMapping("/register")
 	public String formularioRegistro (Model modelo) {
 		
-<<<<<<< HEAD
 		System.out.println("llamando a controlador registerGET");
-=======
-		System.out.println("llamando a controlador formularioRegistro");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
-=======
->>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
-=======
->>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
-=======
->>>>>>> f98ee11d036b823647517b441d4ebae59ff6e97d
-=======
->>>>>>> 9f91e6426a5e717713430ce194b16d7d6bc17008
+
 		modelo.addAttribute("usuario",new Usuarios());
 		return "formularioRegistro";
 	}
@@ -128,5 +113,6 @@ public class UsuariosController {
 		return "perfilDetallesPedido";
 	}
 	
+
 
 }
