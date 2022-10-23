@@ -32,7 +32,7 @@ public class UsuariosController {
 		System.out.println("llamando a controlador Login GET"); 
 
 		modelo.addAttribute("user",new Usuarios());
-		return "formularioLogin"; 
+		return "perfil/formularioLogin"; 
 	}
 	
 	
@@ -59,6 +59,7 @@ public class UsuariosController {
 	public String logout (Model modelo) {
 		System.out.println("llamando a controlador logout");
 		modelo.addAttribute("user", null);
+		//modelo.addAttribute("carrito", null);
 		return productosController.todosProductos(modelo); // mirar como redirigir a la misma pagina de donde vengas
 	}
 		
@@ -69,7 +70,7 @@ public class UsuariosController {
 		System.out.println("llamando a controlador registerGET");
 
 		modelo.addAttribute("usuario",new Usuarios());
-		return "formularioRegistro";
+		return "perfil/formularioRegistro";
 	}
 	
 
@@ -92,25 +93,25 @@ public class UsuariosController {
 	@GetMapping("/perfilResumen")
 	public String perfilResumen() {
 		
-		return "perfilResumen";
+		return "perfil/perfilResumen";
 	}
 	
 	@GetMapping ("/modificarDatos")
 	public String modificarDatos() {
 		
-		return "perfilCambios";
+		return "perfil/perfilCambios";
 	}
 	
 	@GetMapping ("/perfilPedidos")
 	public String  perfilPedidos () {
 		
-		return "perfilPedidos";
+		return "perfil/perfilPedidos";
 	}
 	
 	@GetMapping ("/perfilDetallesPedido")
 	public String  perfilDetallesPedido () {
 		
-		return "perfilDetallesPedido";
+		return "perfil/perfilDetallesPedido";
 	}
 	
 

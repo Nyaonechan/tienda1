@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org" lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Profile</title>
-<link href="https://cdn.usebootstrap.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link th:href="@{/css/perfil.css}" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <title>EShopper - Checkout</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
@@ -24,16 +27,18 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
-<body>
 
-<div class="container">
+<body>
+    
+    <div class="container">
     <div class="main-body">
     
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="@{/perfilResumen}">Home</a></li>
-              <li class="breadcrumb-item"><a th:href="@{/perfilPedidos}">Ver pedidos</a></li>
+              <li class="breadcrumb-item"><a href="@{/perfilResumen}">Pedidos</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/perfilPedidos}">Productos</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
               
             </ol>
           </nav>
@@ -53,8 +58,10 @@
                 </div>
               </div>
             </div>
-            
-                <div class="container-fluid pt-5">
+           </div> 
+       	</div>
+       </div>
+       <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-bordered text-center mb-0">
@@ -66,14 +73,14 @@
                             <th>Estado</th>
                             <th>Número Factura</th>
                             <th>Total</th>
-                            <th>Descargar Factura</th>
+                            <th>Modificar Estado</th>
                             
                         </tr>
                     </thead>
                     
                     <tbody  class="align-middle">
                     
-                    <!-- BUCLE CON PEDIDOS DEL CLIENTE -->
+                    <!-- BUCLE CON TODOS LOS PEDIDOS -->
 
                         <tr th:each="producto : ${carrito}">
                             <td class="align-middle"><img th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"> Colorful Stylish Shirt</td>
@@ -100,6 +107,23 @@
                         
                     </tbody>
                 </table>
+               </div>
+              </div>
+			</div>
 
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/lib/easing/easing.min.js}"></script>
+    <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+    <!-- Contact Javascript File -->
+    <script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>
+    <script th:src="@{/mail/contact.js}"></script>
+
+    <!-- Template Javascript -->
+    <script th:src="@{/js/main.js}"></script>
 </body>
+
 </html>

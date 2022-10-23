@@ -16,7 +16,7 @@ import com.tienda.entities.Usuarios;
 import com.tienda.service.ProductosService;
 
 
-@SessionAttributes({"categorias", "user", "carrito"})
+@SessionAttributes({"categorias", "user", "carrito, cantidad"})
 @Controller
 public class ProductosController {
 	
@@ -33,6 +33,10 @@ public class ProductosController {
 		productoService.cargarCategorias(modelo);
 	
 		productoService.cargarProductos(modelo);
+		
+		productoService.cantidadCarro(modelo);
+		
+		productoService.precioTotalCarro(modelo);
 		
 		return "shop";
 	}
@@ -81,7 +85,8 @@ public class ProductosController {
 			System.out.println(productoCesta.getNombre() + " añadido a la cesta");
 
 		} else {
-			productoService.insertOrUpdateProdCarrito(productoCesta, u);
+			
+			productoService.insertOrUpdateProdCarrito(productoCesta.getId(), u);
 		}
 		
 		return todosProductos(modelo);
@@ -97,11 +102,10 @@ public class ProductosController {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
-		if (modelo.getAttribute("user")!=null) {
-			productoService.meterListaEnCarrito(modelo, user);
+		if (user!=null) {
+			ArrayList <Productos> carroTabla=productoService.getProductosCarritoTabla(user);
+			modelo.addAttribute("carrito", carroTabla);
 		}
-		
-		modelo.getAttribute("carrito");
 		
 		return "cart";
 	}
@@ -112,8 +116,10 @@ public class ProductosController {
 	public String aumentarCantidad (Model modelo, @RequestParam("idProd") int id) {
 		
 		ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
-		productoService.aumentarCantidadCarritoSession(carrito, id);
+		if (user==null) productoService.aumentarCantidadCarritoSession(carrito, id);
+		else productoService.aumentarCantidadCarritoTabla(id, user);
 		
 		return cart(modelo);
 	}
@@ -122,8 +128,10 @@ public class ProductosController {
 	public String descenderCantidad (Model modelo, @RequestParam("idProd") int id) {
 		
 		ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
-		productoService.descenderCantidadCarritoSession(carrito, id);
+		if (user==null) productoService.descenderCantidadCarritoSession(carrito, id);
+		else productoService.descenderCantidadCarritoTabla(id, user);
 		
 		return cart(modelo);
 	}
@@ -132,28 +140,17 @@ public class ProductosController {
 	public String eliminarProducto (Model modelo, @RequestParam("idProd") int id) {
 		
 		ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
-		productoService.eliminarProductoCarritoSession(carrito, id);
+		if (user==null) productoService.eliminarProductoCarritoSession(carrito, id);
+		else productoService.eliminarProductoCarritoTabla(id, user);
 		
 		return cart(modelo);
 	}
 	
 	//---------------------------------------------------
 	
-	@GetMapping ("/checkout")
-	public String checkout () {
-		
-		return "checkout";
-	}
-	
-	@GetMapping ("/confirmarCompra")
-	public String confirmarCompra () {
-		
-		//meter los productos en las tablas pedido y detalles pedido
-		// vaciar carro en sesion y borrar registros de la tabla articulos_carrito
-		
-		return "checkout"; // vista para compra con exito
-	}
+
 	
 
 }

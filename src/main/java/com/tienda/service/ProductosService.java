@@ -21,11 +21,13 @@ public interface ProductosService {
 	
 	public void cargarProductoById(Model modelo, int id);
 	
-	public void insertOrUpdateProdCarrito(Productos producto, Usuarios user);
+	public void insertOrUpdateProdCarrito(int id, Usuarios user);
 	
 	public void carritoUserNull(Model modelo, Productos productoCesta);
 	
-	public boolean comprobarProductoCarrito(ArrayList <Productos> carrito, Productos productoCesta);
+	public boolean comprobarProductoCarrito(ArrayList <Productos> carrito, int id);
+	
+	// CARRITO LISTA
 	
 	public void aumentarCantidadCarritoSession(ArrayList <Productos> carrito, int id);
 	
@@ -33,9 +35,24 @@ public interface ProductosService {
 	
 	public void eliminarProductoCarritoSession (ArrayList <Productos> carrito, int id);
 	
+	// CARRITO TABLA
+	
+	public void aumentarCantidadCarritoTabla(int id, Usuarios user);
+	
+	public void descenderCantidadCarritoTabla(int id, Usuarios user);
+	
+	public void eliminarProductoCarritoTabla (int id, Usuarios user);
+	
+	//---------------------------------------------------------
+	
 	public void insertarProductosListaCarritoATabla(Usuarios user, Model modelo);
 	
-	public void meterListaEnCarrito (Model modelo, Usuarios user);
+	public ArrayList<Productos> getProductosCarritoTabla(Usuarios user);
+	
+	public void cantidadCarro (Model modelo);
+	
+	public void precioTotalCarro (Model modelo);
+
 
 
 }

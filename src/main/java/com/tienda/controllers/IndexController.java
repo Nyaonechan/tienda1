@@ -27,7 +27,7 @@ public class IndexController {
 		//CARGAR CATEGORIAS
 		productoService.cargarCategorias(modelo);
 
-		return "index.html";
+		return "index";
 	}
 
 }

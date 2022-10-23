@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org" lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>EShopper - Bootstrap Shop Template</title>
+    <title>EShopper - Checkout</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -29,45 +29,65 @@
 </head>
 
 <body>
- 	<div th:insert="fragments/topbar :: topbar"></div>
-    <!-- Topbar End -->
+    
+    <div class="container">
+    <div class="main-body">
+    
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="@{/perfilResumen}">Pedidos</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/perfilPedidos}">Productos</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
+              
+            </ol>
+          </nav>
+          <!-- /Breadcrumb -->
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img th:src="@{/img/user.jpg}" alt="" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4 th:text="${user.nombre} + ' ' + ${user.apellido1} + ' ' + ${user.apellido2}"> </h4>
 
-
-    <!-- Navbar Start -->
-	<div th:insert="fragments/navbar :: navbar"></div>
-    <!-- Navbar End -->
-
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
-        </div>
-    </div>
-    <!-- Page Header End -->
-
-
-    <!-- Cart Start -->
-    <div class="container-fluid pt-5">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           </div> 
+       	</div>
+       </div>
+       <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
+                            <th>Id Producto</th>
+                            <th>Categoría</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Impuesto</th>
+                            <th>Imagen</th>
+                            <th>Fecha Alta</th>
+                            <th>Modificar producto</th>
+                            <th>Dar de baja</th>
+                            
                         </tr>
                     </thead>
                     
                     <tbody  class="align-middle">
                     
-                    <!-- BUCLE CON PRODUCTOS DEL CARRO -->
+                    <!-- BUCLE CON TODOS LOS PEDIDOS -->
 
                         <tr th:each="producto : ${carrito}">
-                            <td class="align-middle" ><img  th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"> <div th:text="${producto.nombre}"></div></td>
+                            <td class="align-middle"><img th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"> Colorful Stylish Shirt</td>
                             <td class="align-middle" th:text=${producto.precio}></td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -88,65 +108,12 @@
                             <td class="align-middle" th:text=${producto.precio}*${producto.cantidad}></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/eliminarProducto?idProd={idProd}(idProd=${producto.id})} + '\''"><i class="fa fa-times"></i></button></td>
                         </tr>  
-                     
-                        
                         
                     </tbody>
                 </table>
-            </div>
-            <div class="col-lg-4">
-                <form class="mb-5" action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
-                        </div>
-                    </div>
-                </form>
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium" th:text="${precioTotal}"></h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
-                        </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
-                        </div>
-                        
-                        <div th:if="${user==null}">
-                        <div>Debes estar loggeado para proceder a la compra</div>
-                        <button disabled class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Proceed To Checkout</button>
-                    	</div>
-                    	
-                    	<div th:if="${user!=null}">
-                        <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Proceed To Checkout</button>
-                    	</div>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Cart End -->
-
-
-    <!-- Footer Start -->
-	<div th:insert="fragments/footer :: footer"></div>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+               </div>
+              </div>
+			</div>
 
 
     <!-- JavaScript Libraries -->
@@ -164,4 +131,3 @@
 </body>
 
 </html>
-

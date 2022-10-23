@@ -53,28 +53,24 @@
                             
                             <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{contacto}">Contact</a>
                         </div>
-                        <div th:if="${user!=null}">
+                    </div>
+                    <div th:if="${user!=null}">
                         <div th:if="${user.id_rol==2} or ${user.id_rol==3}" class="navbar-nav ml-auto py-0">
                             <a th:href="@{/dashboard}" class="nav-item nav-link">Admin Dashboard</a>
                         </div>
-                        </div>
-                        <div th:if="${user!=null}">
-                        <div th:if="${user.id_rol==2} or ${user.id_rol==3}" class="navbar-nav ml-auto py-0">
-                            <a th:href="@{/dashboard}" class="nav-item nav-link">Admin Dashboard</a>
-                        </div>
-                        </div>
+                    </div>
                         <div th:if="${user==null}" class="navbar-nav ml-auto py-0">
                             <a th:href="@{/login}" class="nav-item nav-link" th:text="#{login}">Login</a>
                             <a th:href="@{/register}" class="nav-item nav-link" th:text="#{register}">Register</a>
                         </div>
                  		<div th:if="${user}" class="navbar-nav ml-auto py-0">
-<
                  			<a th:href="@{/perfilResumen}"class="nav-item nav-link" th:text="#{welcome} + ' ' + ${user.nombre} +  ' ' + #{perfil}" ></a>
                             <a th:href="@{/logout}" class="nav-item nav-link" th:text="#{logout}">Logout</a>
 
                         </div>
+                        </nav>
                     </div>
-                </nav>
+                
                 <!--   CARROUSEL
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
@@ -113,6 +109,6 @@
             </div>
         </div>
     </div>
-  </div>
+ 
  </body>
 </html> 

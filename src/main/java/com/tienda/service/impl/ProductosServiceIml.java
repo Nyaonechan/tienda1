@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.tienda.dao.ProductosDao;
+import com.tienda.entities.Articulos_carrito;
 import com.tienda.entities.Categorias;
 import com.tienda.entities.Productos;
 import com.tienda.entities.Usuarios;
@@ -21,13 +22,13 @@ public class ProductosServiceIml implements ProductosService {
 
 	@Override
 	public ArrayList<Productos> ordenarProductosByPrecio() {
-		
+		// TODO Auto-generated method stub -------------------------------------------------
 		return null;
 	}
 
 	@Override
 	public ArrayList<Productos> ordenarProductosByFecha() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub --------------------------------------------------------
 		return null;
 	}
 
@@ -61,13 +62,15 @@ public class ProductosServiceIml implements ProductosService {
 
 		modelo.addAttribute("productoDetalle", productoDetalle);
 	}
+	
+	
 
 	@Override
-	public void insertOrUpdateProdCarrito(Productos producto, Usuarios user) {
-		if(productoDao.comprobarProdCarritoById(producto, user)) {
-			productoDao.aumentarProdCarrito(producto, user);
+	public void insertOrUpdateProdCarrito(int id, Usuarios user) {
+		if(productoDao.comprobarProdCarritoById(id, user)) {
+			productoDao.aumentarProdCarrito(id, user);
 		}else {
-			productoDao.insertProdCarrito(producto, user);
+			productoDao.insertProdCarrito(id, user.getId());
 		}
 		
 	}
@@ -81,7 +84,7 @@ public class ProductosServiceIml implements ProductosService {
 			modelo.addAttribute("carrito", carrito);
 		} else {
 			ArrayList<Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
-			if (!comprobarProductoCarrito(carrito, productoCesta)) {
+			if (!comprobarProductoCarrito(carrito, productoCesta.getId())) {
 				productoCesta.setCantidad(1);
 				carrito.add(productoCesta);
 				modelo.addAttribute("carrito", carrito);
@@ -90,11 +93,11 @@ public class ProductosServiceIml implements ProductosService {
 	}
 	
 	@Override
-	public boolean comprobarProductoCarrito(ArrayList <Productos> carrito, Productos productoCesta) {
+	public boolean comprobarProductoCarrito(ArrayList <Productos> carrito, int id) {
 		boolean bandera = false;
 		
 		for (Productos e:carrito) {
-			if (e.getId()==productoCesta.getId()) {
+			if (e.getId()==id) {
 				e.setCantidad(e.getCantidad()+1);
 				bandera = true;
 			}
@@ -102,6 +105,8 @@ public class ProductosServiceIml implements ProductosService {
 		
 		return bandera;
 	}
+	
+	// CARRITO LISTA
 
 	@Override
 	public void aumentarCantidadCarritoSession(ArrayList <Productos> carrito, int id) {
@@ -131,6 +136,30 @@ public class ProductosServiceIml implements ProductosService {
 		carrito.removeIf(n -> (n.getId()==id));
 		
 	}
+	
+	// CARRITO TABLA
+	
+	@Override
+	public void aumentarCantidadCarritoTabla(int id, Usuarios user) {
+		
+		productoDao.aumentarProdCarrito(id, user);
+		
+	}
+	
+	@Override
+	public void descenderCantidadCarritoTabla(int id, Usuarios user) {
+		
+		productoDao.descenderProdCarrito(id, user);
+		productoDao.eliminarProdCarritoCantidadCero();
+		
+	}
+	
+	@Override
+	public void eliminarProductoCarritoTabla (int id, Usuarios user) {
+		
+		productoDao.eliminarProdCarrito(id, user);
+		
+	}
 
 	@Override
 	public void insertarProductosListaCarritoATabla(Usuarios user, Model modelo) {
@@ -146,23 +175,94 @@ public class ProductosServiceIml implements ProductosService {
 			carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
 			
 			for (Productos e: carrito) {
-				productoDao.insertProdCarrito(e, user);
+				productoDao.insertProdCarrito(e.getId(), user.getId());
 			}
 			
-			modelo.addAttribute("carrito", null);
+			//modelo.addAttribute("carrito", null);
 			
 		}
 		
 	}
-
+	
 	@Override
-	public void meterListaEnCarrito(Model modelo, Usuarios user) {
+	public ArrayList<Productos> getProductosCarritoTabla(Usuarios user){
 		
-		ArrayList <Productos> carrito= productoDao.consultaCruzada(user);
-		modelo.addAttribute("carrito", carrito);
+		ArrayList<Productos> carritoOficial = productoDao.getProductosCarritoTablaCruzada(user);
+		ArrayList<Articulos_carrito> carritoTabla = productoDao.getProductosCarritoTabla(user);
+		
+		for  (int i=0; i<carritoOficial.size();i++) {
+			
+			carritoOficial.get(i).setCantidad(carritoTabla.get(i).getCantidad());
+			
+		}
+		
+		return carritoOficial;
 		
 	}
+	
+	@Override
+	public void cantidadCarro (Model modelo) {
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		int cantidad = 0;
+		
+		if (user ==null) {
+			ArrayList<Productos> carrito;
+			
+			if (modelo.getAttribute("carrito")==null) {
+				 carrito = new ArrayList<Productos>();
+				 modelo.addAttribute("carrito", carrito);
+			}
+			
+			carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
 
+			for (Productos e: carrito) {
+				cantidad+=e.getCantidad();
+			}
+		}else {
+			
+			ArrayList<Productos> productos =productoDao.getProductosCarritoTablaCruzada(user);
+			
+			for (Productos e: productos) {
+				cantidad+=e.getCantidad();
+			}
+		}
+		
+		modelo.addAttribute("cantidad", cantidad);
+		
+	}
+	
+	@Override
+	public void precioTotalCarro (Model modelo) {
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		float precioTotal=0;
+		
+		if (user ==null) {
+			ArrayList<Productos> carrito;
+			
+			if (modelo.getAttribute("carrito")==null) {
+				 carrito = new ArrayList<Productos>();
+				 modelo.addAttribute("carrito", carrito);
+			}
+			
+			carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+
+			for (Productos e: carrito) {
+				precioTotal+=e.getCantidad()*e.getPrecio();
+			}
+		}else {
+			ArrayList<Productos> productos =productoDao.getProductosCarritoTablaCruzada(user);
+			for (Productos e: productos) {
+				precioTotal+=e.getCantidad()*e.getPrecio();
+			}
+		}
+		
+		
+		modelo.addAttribute("precioTotal", precioTotal);
+		
+		
+	}
 
 
 }

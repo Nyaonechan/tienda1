@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tienda.dao.ProductosDao;
+import com.tienda.entities.Articulos_carrito;
 import com.tienda.entities.Categorias;
 import com.tienda.entities.Productos;
 import com.tienda.entities.Usuarios;
@@ -75,17 +76,17 @@ public class ProductosDaoImpl implements ProductosDao {
 	//COMPROBAR TABLA CARRITO
 	
 	@Override
-	public boolean comprobarProdCarritoById(Productos producto,  Usuarios user) {
+	public boolean comprobarProdCarritoById(int id,  Usuarios user) {
 		
 		boolean bandera = false;
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query query = session.createNativeQuery("select * from articulos_carrito a where id_producto=:id_producto and id_usuario=:id_usuario");
-		query.setParameter("id_producto", producto.getId());
+		Query<Articulos_carrito> query = session.createQuery("from Articulos_carrito a where id_producto=:id_producto and id_usuario=:id_usuario", Articulos_carrito.class);
+		query.setParameter("id_producto", id);
 		query.setParameter("id_usuario", user.getId());
 		
-		ArrayList<Object> registros =  (ArrayList<Object>) query.getResultList();
+		ArrayList<Articulos_carrito> registros =  (ArrayList<Articulos_carrito>) query.getResultList();
 		System.out.println(registros);
 		
 		bandera = !registros.isEmpty();
@@ -100,10 +101,10 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query query = session.createNativeQuery("select * from articulos_carrito where id_usuario=:id_usuario");
+		Query<Articulos_carrito> query = session.createQuery("from Articulos_carrito where id_usuario=:id_usuario", Articulos_carrito.class);
 		query.setParameter("id_usuario", user.getId());
 		
-		ArrayList<Object> registros =  (ArrayList<Object>) query.getResultList();
+		ArrayList<Articulos_carrito> registros =  (ArrayList<Articulos_carrito>) query.getResultList();
 		System.out.println(registros);
 		
 		bandera = !registros.isEmpty();
@@ -116,28 +117,37 @@ public class ProductosDaoImpl implements ProductosDao {
 	
 	@Transactional
 	@Override
-	public void insertProdCarrito (Productos producto, Usuarios user) {
+	public void insertProdCarrito (int id_producto, int id_usuario) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query query = session.createNativeQuery("INSERT INTO articulos_carrito (id_producto, id_usuario, cantidad) VALUES(?,?,?)");
+		Articulos_carrito articulo = new Articulos_carrito (id_producto, id_usuario, 1);
 		
-		query.setParameter(1, producto.getId());
-		query.setParameter(2, user.getId());
-		query.setParameter(3, 1);
-		
-		query.executeUpdate();
+		session.saveOrUpdate(articulo);
 		
 	}
 	
 	@Transactional
 	@Override
-	public void aumentarProdCarrito(Productos producto, Usuarios user) {
+	public void aumentarProdCarrito(int id, Usuarios user) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query query = session.createNativeQuery("update articulos_carrito set cantidad=cantidad+1 where id_producto=:id_producto and id_usuario=:id_usuario");
-		query.setParameter("id_producto", producto.getId());
+		Query<Articulos_carrito> query = session.createQuery("update Articulos_carrito set cantidad=cantidad+1 where id_producto=:id_producto and id_usuario=:id_usuario");
+		query.setParameter("id_producto", id);
+		query.setParameter("id_usuario", user.getId());
+		
+		query.executeUpdate();
+	}
+	
+	@Transactional
+	@Override
+	public void descenderProdCarrito(int id, Usuarios user) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Articulos_carrito> query = session.createQuery("update Articulos_carrito set cantidad=cantidad-1 where id_producto=:id_producto and id_usuario=:id_usuario");
+		query.setParameter("id_producto", id);
 		query.setParameter("id_usuario", user.getId());
 		
 		query.executeUpdate();
@@ -146,29 +156,15 @@ public class ProductosDaoImpl implements ProductosDao {
 	
 	@Transactional
 	@Override
-	public void descenderProdCarrito(Productos producto, Usuarios user) {
+	public void eliminarProdCarrito(int id, Usuarios user) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query consulta = session.createNativeQuery("update from articulos_carrito set cantidad=cantidad-1 where id_producto=:id_producto and id_usuario=:id_usuario");
-		consulta.setParameter("id_producto", producto.getId());
-		consulta.setParameter("id_usuario", user.getId());
+		Query<Articulos_carrito> query = session.createQuery("delete from Articulos_carrito where id_producto=:id_producto and id_usuario=:id_usuario");
+		query.setParameter("id_producto", id);
+		query.setParameter("id_usuario", user.getId());
 		
-		consulta.executeUpdate();
-		
-	}
-	
-	@Transactional
-	@Override
-	public void eliminarProdCarrito(Productos producto, Usuarios user) {
-		
-		Session session = entityManager.unwrap(Session.class);
-		
-		Query consulta = session.createNativeQuery("delete from articulos_carrito where id_producto=:id_producto and id_usuario=:id_usuario");
-		consulta.setParameter("id_producto", producto.getId());
-		consulta.setParameter("id_usuario", user.getId());
-		
-		consulta.executeUpdate();
+		query.executeUpdate();
 		
 	}
 	
@@ -178,25 +174,39 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query consulta = session.createNativeQuery("delete from articulos_carrito where cantidad=:cantidad");
-		consulta.setParameter("cantidad", 0);
+		Query<Articulos_carrito> query = session.createNativeQuery("delete from articulos_carrito where cantidad=:cantidad", Articulos_carrito.class);
+		query.setParameter("cantidad", 0);
 		
-		consulta.executeUpdate();
+		query.executeUpdate();
 		
 	}
 
 	@Override
-	public ArrayList<Productos> consultaCruzada(Usuarios user) {
+	public ArrayList<Productos> getProductosCarritoTablaCruzada(Usuarios user) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> consulta=session.createNativeQuery("select * from productos p,articulos_carrito a where a.id_usuario=:id and a.id_producto = p.id");
-
-		consulta.setParameter("id", user.getId());
-		ArrayList<Productos> productos = (ArrayList<Productos>) consulta.getResultList(); // recorrer resultSet y convertir a Productos
-
+		Query<Productos> query=session.createQuery("select p from Productos p, Articulos_carrito a where a.id_usuario=:id and a.id_producto = p.id", Productos.class);
+		
+		query.setParameter("id", user.getId());
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList(); 
+		
 		
 		return productos;
+	}
+	
+	public ArrayList<Articulos_carrito> getProductosCarritoTabla (Usuarios user){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Articulos_carrito> query=session.createQuery("from Articulos_carrito  where id_usuario=:id", Articulos_carrito.class);
+		
+		query.setParameter("id", user.getId());
+		ArrayList<Articulos_carrito> productos =  (ArrayList<Articulos_carrito>) query.getResultList(); 
+		
+		
+		return productos;
+		
 	}
 
 
