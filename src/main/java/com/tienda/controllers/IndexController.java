@@ -18,7 +18,7 @@ public class IndexController {
 	private ProductosService productoService;
 	
 	@GetMapping("")
-	public String muestraIndex(Model modelo, @RequestParam(value="cat") int id) {
+	public String muestraIndex(Model modelo) {
 		System.out.println("Controlador index");
 		
 		// CARGAR LOS PRODUCTOS MAS COMPRADOS
@@ -30,7 +30,7 @@ public class IndexController {
 		productoService.cargarCategorias(modelo);
 		
 		//CARGAR CANTIDAD CATEGORIAS
-		productoService.cantidadProductosCat(id, modelo);
+		//productoService.cantidadProductosCat(id, modelo);
 
 		return "index";
 	}
