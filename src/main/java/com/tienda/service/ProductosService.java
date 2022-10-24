@@ -55,7 +55,7 @@ public interface ProductosService {
 	
 	public void cantidadCarro (Model modelo);
 	
-	public void precioTotalCarro (Model modelo);
+	public double precioTotalCarro (Model modelo);
 
 
 

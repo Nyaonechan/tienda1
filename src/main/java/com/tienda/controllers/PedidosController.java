@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tienda.entities.Usuarios;
@@ -33,12 +34,12 @@ public class PedidosController {
 	}
 	
 	@GetMapping ("/confirmarCompra")
-	public String confirmarCompra (Model modelo, HttpServletRequest request) {
+	public String confirmarCompra (Model modelo /*@RequestParam("payment") String payment*/) {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
-		pedidoService.insertPedido(user, request.getParameter("payment"), (double)modelo.getAttribute("precioTotal"));
-		pedidoService.insertDetallesPedido(modelo, (double)modelo.getAttribute("precioTotal"));
+		pedidoService.insertPedido(user, "Card" , productoService.precioTotalCarro(modelo));
+		pedidoService.insertDetallesPedido(modelo);
 		
 		modelo.addAttribute("carrito", null);
 		

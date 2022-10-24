@@ -1,6 +1,7 @@
 package com.tienda.dao.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -59,9 +60,13 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query <Pedidos> query = session.createQuery("FROM Pedidos WHERE id = (SELECT MAX(id) FROM pedidos)", Pedidos.class);
+		Query <Pedidos> query = session.createQuery("FROM Pedidos WHERE id = (SELECT MAX(id) FROM Pedidos)", Pedidos.class);
 		
-		Pedidos pedido = query.getSingleResult();
+		Pedidos pedido = null;
+		List<Pedidos> result = query.getResultList();
+		if (!result.isEmpty()) {
+			pedido=(Pedidos) result.get(0);
+		}
 		
 		return pedido;
 		

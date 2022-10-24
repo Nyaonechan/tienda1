@@ -32,7 +32,7 @@ public class PedidosServiceImpl implements PedidosService{
 	}
 
 	@Override
-	public void insertDetallesPedido(Model modelo, double total) {
+	public void insertDetallesPedido(Model modelo) {
 		
 		Pedidos pedido = pedidoDao.getLastPedido();
 		
@@ -42,7 +42,7 @@ public class PedidosServiceImpl implements PedidosService{
 		
 		for (Productos e: carrito) {
 			
-			detallePedido = new Detalles_pedido(pedido.getId(), e.getId(), e.getCantidad(), (float)e.getPrecio(), e.getImpuesto(), total);
+			detallePedido = new Detalles_pedido(pedido.getId(), e.getId(), e.getCantidad(), (float)e.getPrecio(), e.getImpuesto(), e.getPrecio()*e.getCantidad());
 			
 			pedidoDao.insertDetallePedido(detallePedido);
 			

@@ -78,7 +78,7 @@ public class ProductosController {
 		
 		Usuarios u = (Usuarios) modelo.getAttribute("user");
 		
-		if (modelo.getAttribute("user")==null) {
+		if (u==null) {
 
 			productoService.carritoUserNull(modelo, productoCesta);
 			

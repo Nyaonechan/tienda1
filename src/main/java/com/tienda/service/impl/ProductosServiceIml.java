@@ -121,6 +121,8 @@ public class ProductosServiceIml implements ProductosService {
 				productoCesta.setCantidad(1);
 				carrito.add(productoCesta);
 				modelo.addAttribute("carrito", carrito);
+			}else {
+				aumentarCantidadCarritoSession(carrito, productoCesta.getId());
 			}
 		}
 	}
@@ -266,7 +268,7 @@ public class ProductosServiceIml implements ProductosService {
 	}
 	
 	@Override
-	public void precioTotalCarro (Model modelo) {
+	public double precioTotalCarro (Model modelo) {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		float precioTotal=0;
@@ -293,7 +295,7 @@ public class ProductosServiceIml implements ProductosService {
 		
 		
 		modelo.addAttribute("precioTotal", precioTotal);
-		
+		return precioTotal;
 		
 	}
 
