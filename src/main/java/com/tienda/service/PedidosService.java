@@ -11,5 +11,7 @@ public interface PedidosService {
 	public void insertDetallesPedido(Model modelo);
 	
 	public void eliminarArticulosCarritoById ();
+	
+	public void modificarStock(Model modelo);
 
 }

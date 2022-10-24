@@ -16,7 +16,7 @@ import com.tienda.entities.Usuarios;
 import com.tienda.service.ProductosService;
 
 
-@SessionAttributes({"categorias", "user", "carrito, cantidad"})
+@SessionAttributes({"categorias", "user", "carrito", "cantidad"})
 @Controller
 public class ProductosController {
 	

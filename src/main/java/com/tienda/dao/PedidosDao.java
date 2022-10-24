@@ -24,5 +24,7 @@ public interface PedidosDao {
 	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id);
 	
 	public void eliminarArticulosCarritoByIdPedido(int id);
+	
+	public void modificarStock(int cantidad, int id_producto);
 
 }

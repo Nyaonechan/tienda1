@@ -113,6 +113,15 @@ public class UsuariosController {
 		return "perfil/perfilCambios";
 	}
 	
+	@PostMapping("/modificarDatosForm")
+	public String modificarDatosForm(Model modelo) {
+		
+		Usuarios user = (Usuarios) modelo.addAttribute("user");
+		
+		
+		return perfilResumen();
+	}
+	
 	@GetMapping ("/perfilPedidos")
 	public String  perfilPedidos () {
 		

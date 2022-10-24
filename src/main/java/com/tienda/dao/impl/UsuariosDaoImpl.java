@@ -43,4 +43,15 @@ public class UsuariosDaoImpl implements UsuariosDao{
 		
 	}
 
+	@Override
+	public void modificarUsuarioById(int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		
+		
+		// TODO Auto-generated method stub
+		
+	}
+
 }

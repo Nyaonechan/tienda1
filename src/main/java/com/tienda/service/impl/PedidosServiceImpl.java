@@ -59,4 +59,15 @@ public class PedidosServiceImpl implements PedidosService{
 		
 	}
 
+	@Override
+	public void modificarStock(Model modelo) {
+		
+		ArrayList<Productos> productos = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		
+		for (Productos e: productos) {
+			pedidoDao.modificarStock(e.getCantidad(), e.getId());
+		}
+		
+	}
+
 }

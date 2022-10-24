@@ -1,19 +1,16 @@
 package com.tienda.controllers;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tienda.entities.Usuarios;
 import com.tienda.service.PedidosService;
 import com.tienda.service.ProductosService;
 
-@SessionAttributes({"categorias", "user", "precioTotal"})
+@SessionAttributes({"categorias", "user", "precioTotal", "carrito"})
 @Controller
 public class PedidosController {
 	
@@ -40,6 +37,7 @@ public class PedidosController {
 		
 		pedidoService.insertPedido(user, "Card" , productoService.precioTotalCarro(modelo));
 		pedidoService.insertDetallesPedido(modelo);
+		pedidoService.modificarStock(modelo);
 		
 		modelo.addAttribute("carrito", null);
 		
