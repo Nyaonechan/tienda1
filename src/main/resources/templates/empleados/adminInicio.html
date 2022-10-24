@@ -52,7 +52,26 @@
        	</div>
        </div>
    
-   
+	<button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Gestionar Productos</button>
+	
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Gestionar Pedidos</button>
+    
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Crear categorías</button>
+    
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Gestionar Proveedores</button>
+
+    <div th:if="${user.id_rol==3}">
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Gestionar Clientes</button>
+
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Gestionar Empleados</button>
+
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Gestionar Administradores</button>
+    
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Gestionar descuentos</button>
+    
+    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Acceso a estadísticas</button>
+    </div>
+
    
    
 
