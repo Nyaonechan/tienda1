@@ -22,14 +22,35 @@ public class ProductosServiceIml implements ProductosService {
 
 	@Override
 	public ArrayList<Productos> ordenarProductosByPrecio() {
-		// TODO Auto-generated method stub -------------------------------------------------
-		return null;
+		
+		ArrayList<Productos> productos = productoDao.getProductos();
+		
+		productos.sort((p1,p2) -> Double.compare(p1.getPrecio(), p2.getPrecio()));
+		
+		return productos;
 	}
 
 	@Override
 	public ArrayList<Productos> ordenarProductosByFecha() {
-		// TODO Auto-generated method stub --------------------------------------------------------
-		return null;
+		
+		ArrayList<Productos> productos = productoDao.getProductos();
+		
+		productos.sort((p1,p2) -> p2.getFecha_alta().compareTo(p1.getFecha_alta()));
+
+		return productos;
+	}
+	
+	@Override
+	public void ochoProductosMasNuevos(Model modelo) {
+		ArrayList<Productos> productos = ordenarProductosByFecha();
+		ArrayList<Productos> masNuevos = new ArrayList<Productos>();
+		
+		for (int i=0; i<8;i++) {
+			masNuevos.add(productos.get(i));
+		}
+		
+		modelo.addAttribute("productos", masNuevos);
+		
 	}
 
 	@Override
@@ -37,6 +58,18 @@ public class ProductosServiceIml implements ProductosService {
 		ArrayList<Categorias> categorias = productoDao.getCategorias();
 		modelo.addAttribute("categorias", categorias);
 		
+	}
+	
+	@Override
+	public void cantidadProductosCat(int id, Model modelo) {
+		
+		ArrayList<Productos> productos = productoDao.getProductosByCat(id);
+		
+		int cantidad = productos.size();
+		
+		modelo.addAttribute("cantidadCat", cantidad);
+		
+
 	}
 	
 	@Override

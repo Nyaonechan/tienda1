@@ -2,6 +2,7 @@ package com.tienda.controllers;
 
 import java.time.LocalDate;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.tienda.DemoApplication;
 import com.tienda.dao.UsuariosDao;
 import com.tienda.entities.Usuarios;
 import com.tienda.service.ProductosService;
@@ -26,6 +28,8 @@ public class UsuariosController {
 	
 	@Autowired
 	private ProductosService productoService;
+	
+	static Logger logger = Logger.getLogger(DemoApplication.class);
 	
 	@GetMapping("/login") 
 	public String formularioLogin (Model modelo) {
@@ -49,6 +53,8 @@ public class UsuariosController {
 		}
 		modelo.addAttribute("user",u);
 		
+		logger.info("Loggeo correcto " + u.getId());
+		
 		productoService.insertarProductosListaCarritoATabla(u, modelo); // SI NO HAY REGISTROS DE ESE USUARIO EN LA TABLA
 				
 		return  productosController.todosProductos(modelo);
@@ -59,7 +65,10 @@ public class UsuariosController {
 	public String logout (Model modelo) {
 		System.out.println("llamando a controlador logout");
 		modelo.addAttribute("user", null);
-		//modelo.addAttribute("carrito", null);
+		modelo.addAttribute("carrito", null);
+		
+		logger.info("Desloggeo correcto ");
+		
 		return productosController.todosProductos(modelo); // mirar como redirigir a la misma pagina de donde vengas
 	}
 		
@@ -86,6 +95,8 @@ public class UsuariosController {
 		
 	    System.out.println(usuario);
 	    usuarioDao.insertarUsuario(usuario);
+	    
+	    logger.info("Registro correcto " + usuario.getId());
 	     
 	    return formularioLogin(modelo);
 	}

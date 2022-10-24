@@ -13,7 +13,11 @@ public interface ProductosService {
 	
 	public ArrayList<Productos> ordenarProductosByFecha();
 	
+	public void ochoProductosMasNuevos(Model modelo);
+	
 	public void cargarCategorias(Model modelo);
+	
+	public void cantidadProductosCat(int id, Model modelo);
 	
 	public void cargarProductos(Model modelo);
 	
