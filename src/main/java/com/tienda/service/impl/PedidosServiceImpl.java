@@ -55,7 +55,7 @@ public class PedidosServiceImpl implements PedidosService{
 		
 		Pedidos pedido = pedidoDao.getLastPedido();
 		
-		pedidoDao.eliminarArticulosCarritoByIdPedido(pedido.getId());
+		pedidoDao.eliminarArticulosCarritoByIdPedido(pedido.getId_usuario());
 		
 	}
 

@@ -107,6 +107,9 @@ public class ProductosController {
 			modelo.addAttribute("carrito", carroTabla);
 		}
 		
+		double precioTotal=productoService.precioTotalCarro(modelo);
+		productoService.desgloseIva(modelo, precioTotal);
+		
 		return "cart";
 	}
 	

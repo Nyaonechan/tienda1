@@ -256,9 +256,9 @@ public class ProductosServiceIml implements ProductosService {
 			}
 		}else {
 			
-			ArrayList<Productos> productos =productoDao.getProductosCarritoTablaCruzada(user);
+			ArrayList<Articulos_carrito> productos =productoDao.getProductosCarritoTabla(user);
 			
-			for (Productos e: productos) {
+			for (Articulos_carrito e: productos) {
 				cantidad+=e.getCantidad();
 			}
 		}
@@ -288,6 +288,12 @@ public class ProductosServiceIml implements ProductosService {
 			}
 		}else {
 			ArrayList<Productos> productos =productoDao.getProductosCarritoTablaCruzada(user);
+			ArrayList<Articulos_carrito> articulos=productoDao.getProductosCarritoTabla(user);
+			
+			for (int i=0; i<productos.size();i++) {
+				productos.get(i).setCantidad(articulos.get(i).getCantidad());
+			}
+			
 			for (Productos e: productos) {
 				precioTotal+=e.getCantidad()*e.getPrecio();
 			}
@@ -297,6 +303,13 @@ public class ProductosServiceIml implements ProductosService {
 		modelo.addAttribute("precioTotal", precioTotal);
 		return precioTotal;
 		
+	}
+	
+	@Override
+	public void desgloseIva(Model modelo, double precioTotal) {
+		
+		double precioSinIva = precioTotal / 1.21;
+		modelo.addAttribute("precioSinIva", precioSinIva);
 	}
 
 

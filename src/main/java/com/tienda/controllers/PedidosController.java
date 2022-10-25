@@ -10,7 +10,7 @@ import com.tienda.entities.Usuarios;
 import com.tienda.service.PedidosService;
 import com.tienda.service.ProductosService;
 
-@SessionAttributes({"categorias", "user", "precioTotal", "carrito"})
+@SessionAttributes({"categorias", "user", "carrito"})
 @Controller
 public class PedidosController {
 	
@@ -24,8 +24,8 @@ public class PedidosController {
 	public String checkout (Model modelo) {
 		
 		productoService.cargarCategorias(modelo);
-		
-		modelo.getAttribute("carrito");
+		double precioTotal=productoService.precioTotalCarro(modelo);
+		productoService.desgloseIva(modelo, precioTotal);
 		
 		return "checkout";
 	}
@@ -33,9 +33,12 @@ public class PedidosController {
 	@GetMapping ("/confirmarCompra")
 	public String confirmarCompra (Model modelo /*@RequestParam("payment") String payment*/) {
 		
-		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		System.out.println("Controlador confirmarCompra");
 		
-		pedidoService.insertPedido(user, "Card" , productoService.precioTotalCarro(modelo));
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		double precioTotal=productoService.precioTotalCarro(modelo);
+		productoService.desgloseIva(modelo, precioTotal);
+		pedidoService.insertPedido(user, "Card" , precioTotal);
 		pedidoService.insertDetallesPedido(modelo);
 		pedidoService.modificarStock(modelo);
 		
