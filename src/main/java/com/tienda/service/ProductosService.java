@@ -60,6 +60,8 @@ public interface ProductosService {
 	public void cantidadCarro (Model modelo);
 	
 	public double precioTotalCarro (Model modelo);
+	
+	public void desgloseIva(Model modelo, double precioTotal);
 
 
 

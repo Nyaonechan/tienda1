@@ -72,5 +72,11 @@ public class EmpleadoAdminController {
 		
 		return "empleados/adminPedidos";
 	}
+	
+	@GetMapping ("/adminProductos")
+	public String adminProductos() {
+		
+		return "adminProductos";
+	}
 
 }
