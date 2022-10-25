@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.tienda.DemoApplication;
 import com.tienda.dao.UsuariosDao;
 import com.tienda.entities.Usuarios;
+import com.tienda.service.PedidosService;
 import com.tienda.service.ProductosService;
 
 
@@ -28,6 +29,9 @@ public class UsuariosController {
 	
 	@Autowired
 	private ProductosService productoService;
+	
+	@Autowired
+	private PedidosService pedidoService;
 	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
 	
@@ -123,7 +127,11 @@ public class UsuariosController {
 	}
 	
 	@GetMapping ("/perfilPedidos")
-	public String  perfilPedidos () {
+	public String  perfilPedidos (Model modelo) {
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		pedidoService.getPedidosByIdUsuario(user.getId(), modelo);
 		
 		return "perfil/perfilPedidos";
 	}

@@ -24,9 +24,33 @@ public class ProductosDaoImpl implements ProductosDao {
 	
 	@Autowired
 	EntityManager entityManager;
+	
+	@Override
+	public void insertOrUpdateProducto(Productos producto) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		session.saveOrUpdate(producto);
+		
+	}
+	
+	@Transactional
+	@Override
+	public void darBajaProducto(int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("update Productos set baja='1' where id=:id_producto");
+		
+		query.setParameter("id_producto", id);
+		
+		query.executeUpdate();
+		
+	}
 
 	@Override
 	public ArrayList<Productos> getProductos() {
+		
 		Session session = entityManager.unwrap(Session.class);
 
 		Query<Productos> query = session.createQuery("from Productos",Productos.class);

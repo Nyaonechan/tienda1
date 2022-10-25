@@ -58,6 +58,21 @@ public class PedidosDaoImpl implements PedidosDao {
 	}
 	
 	@Override
+	public ArrayList<Pedidos> getPedidosByIdUsuario(int id_usuario){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query <Pedidos> query = session.createQuery("FROM Pedidos WHERE id_usuario=:id_usuario", Pedidos.class);
+		
+		query.setParameter("id_usuario", id_usuario);
+		
+		ArrayList<Pedidos> pedidos = (ArrayList<Pedidos>) query.getResultList();
+		
+		return pedidos;
+		
+	}
+	
+	@Override
 	public Pedidos getLastPedido() {
 		
 		Session session = entityManager.unwrap(Session.class);

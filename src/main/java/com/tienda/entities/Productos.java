@@ -1,6 +1,7 @@
 package com.tienda.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class Productos {
 
     private Boolean baja;
     
-    private Date fecha_alta;
+    private LocalDate fecha_alta;
     
     @Transient
     private int cantidad;
@@ -56,7 +57,7 @@ public class Productos {
 
 
 	public Productos(int id, int id_categoria, String nombre, String descripcion, double precio, int stock,
-			float impuesto, String imagen, boolean baja, Date fecha_alta) {
+			float impuesto, String imagen, boolean baja, LocalDate fecha_alta) {
 		this.id = id;
 		this.id_categoria = id_categoria;
 		this.nombre = nombre;
@@ -151,13 +152,13 @@ public class Productos {
 	}
 
 
-	public Date getFecha_alta() {
+	public LocalDate getFecha_alta() {
 		return fecha_alta;
 	}
 
 
-	public void setFecha_alta(Date fecha_alta) {
-		this.fecha_alta = fecha_alta;
+	public void setFecha_alta(LocalDate localDate) {
+		this.fecha_alta = localDate;
 	}
 
 

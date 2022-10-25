@@ -13,6 +13,8 @@ public interface PedidosDao {
 	
 	public Pedidos getPedidoById(int id);
 	
+	public ArrayList<Pedidos> getPedidosByIdUsuario(int id_usuario);
+	
 	public Pedidos getLastPedido();
 	
 	public void modificarEstado();

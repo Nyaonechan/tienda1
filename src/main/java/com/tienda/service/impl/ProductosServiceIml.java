@@ -1,5 +1,6 @@
 package com.tienda.service.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -19,6 +20,18 @@ public class ProductosServiceIml implements ProductosService {
 	
 	@Autowired
 	ProductosDao productoDao;
+	
+	@Override
+	public void insertOrUpdateProducto(Productos producto) {
+		producto.setBaja(false);
+		producto.setFecha_alta(LocalDate.now());
+		productoDao.insertOrUpdateProducto(producto);
+	}
+	
+	@Override
+	public void darBajaProducto(int id) {
+		productoDao.darBajaProducto(id);
+	}
 
 	@Override
 	public ArrayList<Productos> ordenarProductosByPrecio() {
