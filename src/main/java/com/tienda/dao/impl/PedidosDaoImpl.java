@@ -1,6 +1,7 @@
 package com.tienda.dao.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -8,11 +9,13 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tienda.dao.PedidosDao;
 import com.tienda.entities.Articulos_carrito;
 import com.tienda.entities.Detalles_pedido;
 import com.tienda.entities.Pedidos;
+import com.tienda.entities.Productos;
 
 
 
@@ -59,9 +62,13 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query <Pedidos> query = session.createQuery("FROM Pedidos WHERE id = (SELECT MAX(id) FROM pedidos)", Pedidos.class);
+		Query <Pedidos> query = session.createQuery("FROM Pedidos WHERE id = (SELECT MAX(id) FROM Pedidos)", Pedidos.class);
 		
-		Pedidos pedido = query.getSingleResult();
+		Pedidos pedido = null;
+		List<Pedidos> result = query.getResultList();
+		if (!result.isEmpty()) {
+			pedido=(Pedidos) result.get(0);
+		}
 		
 		return pedido;
 		
@@ -107,14 +114,28 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 	}
 	
+	@Transactional
 	@Override
 	public void eliminarArticulosCarritoByIdPedido(int id) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Articulos_carrito> query = session.createQuery("delete from Articulos_carrito where id_pedido=:id");
+		Query<Articulos_carrito> query = session.createQuery("delete from Articulos_carrito where id_usuario=:id");
 		
 		query.setParameter("id", id);
+		
+		query.executeUpdate();
+		
+	}
+	
+	@Transactional
+	@Override
+	public void modificarStock(int cantidad, int id_producto) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("update Productos set stock=stock-"+cantidad+" where id=:id_producto");
+		query.setParameter("id_producto", id_producto);
 		
 		query.executeUpdate();
 		

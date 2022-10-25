@@ -4,9 +4,11 @@ import com.tienda.entities.Usuarios;
 
 public interface UsuariosDao {
 
-	Usuarios getPersonaByEmailAndPass(String email, String clave);
+	public Usuarios getPersonaByEmailAndPass(String email, String clave);
 
-	void insertarUsuario(Usuarios usuario);
+	public void insertarUsuario(Usuarios usuario);
+	
+	public void modificarUsuarioById(int id);
 	
 	
 

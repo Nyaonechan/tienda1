@@ -61,7 +61,7 @@ public class ProductosServiceIml implements ProductosService {
 	}
 	
 	@Override
-	public void cantidadProductosCat(int id, Model modelo) {
+	public void cantidadProductosCat(int id, Model modelo) { // de la categoria
 		
 		ArrayList<Productos> productos = productoDao.getProductosByCat(id);
 		
@@ -109,7 +109,7 @@ public class ProductosServiceIml implements ProductosService {
 	}
 	
 	@Override
-	public void carritoUserNull(Model modelo, Productos productoCesta) {
+	public void carritoUserNull(Model modelo, Productos productoCesta) { //si se navega sin login
 		if (modelo.getAttribute("carrito")==null) {
 			ArrayList<Productos> carrito = new ArrayList<Productos>();
 			productoCesta.setCantidad(1);
@@ -121,6 +121,8 @@ public class ProductosServiceIml implements ProductosService {
 				productoCesta.setCantidad(1);
 				carrito.add(productoCesta);
 				modelo.addAttribute("carrito", carrito);
+			}else {
+				aumentarCantidadCarritoSession(carrito, productoCesta.getId());
 			}
 		}
 	}
@@ -131,7 +133,7 @@ public class ProductosServiceIml implements ProductosService {
 		
 		for (Productos e:carrito) {
 			if (e.getId()==id) {
-				e.setCantidad(e.getCantidad()+1);
+				//e.setCantidad(e.getCantidad()+1);
 				bandera = true;
 			}
 		}
@@ -266,7 +268,7 @@ public class ProductosServiceIml implements ProductosService {
 	}
 	
 	@Override
-	public void precioTotalCarro (Model modelo) {
+	public double precioTotalCarro (Model modelo) {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		float precioTotal=0;
@@ -293,7 +295,7 @@ public class ProductosServiceIml implements ProductosService {
 		
 		
 		modelo.addAttribute("precioTotal", precioTotal);
-		
+		return precioTotal;
 		
 	}
 

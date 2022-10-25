@@ -8,8 +8,10 @@ public interface PedidosService {
 	
 	public void insertPedido (Usuarios user, String metodoPago, double total);
 	
-	public void insertDetallesPedido(Model modelo, double total);
+	public void insertDetallesPedido(Model modelo);
 	
 	public void eliminarArticulosCarritoById ();
+	
+	public void modificarStock(Model modelo);
 
 }

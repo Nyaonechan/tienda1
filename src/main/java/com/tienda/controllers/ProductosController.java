@@ -16,7 +16,7 @@ import com.tienda.entities.Usuarios;
 import com.tienda.service.ProductosService;
 
 
-@SessionAttributes({"categorias", "user", "carrito, cantidad"})
+@SessionAttributes({"categorias", "user", "carrito", "cantidad"})
 @Controller
 public class ProductosController {
 	
@@ -78,7 +78,7 @@ public class ProductosController {
 		
 		Usuarios u = (Usuarios) modelo.getAttribute("user");
 		
-		if (modelo.getAttribute("user")==null) {
+		if (u==null) {
 
 			productoService.carritoUserNull(modelo, productoCesta);
 			
