@@ -13,5 +13,9 @@ public interface PedidosService {
 	public void eliminarArticulosCarritoById ();
 	
 	public void modificarStock(Model modelo);
+	
+	public void getPedidos(Model modelo);
+	
+	public void getPedidosByIdUsuario(int id_usuario, Model modelo);
 
 }

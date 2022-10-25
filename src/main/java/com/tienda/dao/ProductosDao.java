@@ -1,14 +1,16 @@
 package com.tienda.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.tienda.entities.Articulos_carrito;
 import com.tienda.entities.Categorias;
 import com.tienda.entities.Productos;
 import com.tienda.entities.Usuarios;
 
 public interface ProductosDao {
+	
+	public void insertOrUpdateProducto(Productos producto);
+	
+	public void darBajaProducto(int id);
 	
 	public ArrayList<Productos> getProductos();
 	

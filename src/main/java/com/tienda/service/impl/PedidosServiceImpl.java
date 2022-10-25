@@ -69,5 +69,20 @@ public class PedidosServiceImpl implements PedidosService{
 		}
 		
 	}
+	
+	@Override
+	public void getPedidos(Model modelo) {
+		ArrayList<Pedidos> pedidos=pedidoDao.getPedidos();
+		modelo.addAttribute("pedidos", pedidos);
+	}
+
+	@Override
+	public void getPedidosByIdUsuario(int id_usuario, Model modelo) {
+		
+		ArrayList<Pedidos> pedidos= pedidoDao.getPedidosByIdUsuario(id_usuario);
+		
+		modelo.addAttribute("pedidos", pedidos);
+		
+	}
 
 }

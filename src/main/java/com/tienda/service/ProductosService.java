@@ -9,6 +9,10 @@ import com.tienda.entities.Usuarios;
 
 public interface ProductosService {
 	
+	public void insertOrUpdateProducto(Productos producto);
+	
+	public void darBajaProducto(int id);
+	
 	public ArrayList<Productos> ordenarProductosByPrecio();
 	
 	public ArrayList<Productos> ordenarProductosByFecha();

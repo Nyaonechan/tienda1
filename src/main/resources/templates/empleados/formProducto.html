@@ -14,9 +14,9 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a th:href="@{/perfilResumen}">Home</a></li>
-              <li class="breadcrumb-item"><a th:href="@{/perfilPedidos}">Ver pedidos</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/adminInicio}">Home</a></li>
               <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/logout}">Cerrar sesión</a></li>
               
             </ol>
           </nav>
@@ -36,96 +36,84 @@
                 </div>
               </div>
             </div>
+            
+            <h3 style="margin-top:100px; margin-left:50px"> Insertar o modificar producto</h3>
     
-    		<form th:action="@{/}" th:object="${user}" method="post">
-				<div class="col-lg-8">
-					<div class="card">
-						<div class="card-body">
+    		<form th:action="@{/insertOrUpdateProducto}" th:object="${producto}" method="post" class="container-fluid">
+				<div class="container">
+
+							<input type="hidden" th:field="*{id}" value="${producto.id}">
+							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Name</h6>
+									<h6 class="mb-0">Id Categoría</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.nombre}" th:field="*{nombre}">
+									<input type="text" class="form-control" value="${producto.id_categoria}" th:field="*{id_categoria}">
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">First Surname</h6>
+									<h6 class="mb-0">Nombre</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.apellido1}" th:field="*{apellido1}">
+									<input type="text" class="form-control" value="${producto.nombre}" th:field="*{nombre}">
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Second Surname</h6>
+									<h6 class="mb-0">Descripción</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.apellido2}" th:field="*{apellido2}">
+									<input type="text" class="form-control" value="${producto.descripcion}" th:field="*{descripcion}">
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Email</h6>
+									<h6 class="mb-0">Precio</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.email}" th:field="*{email}">
+									<input type="text" class="form-control" value="${producto.precio}" th:field="*{precio}">
+								</div>
+							</div>
+							
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Stock</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${producto.stock}" th:field="*{stock}">
 								</div>
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Phone</h6>
+									<h6 class="mb-0">Impuesto</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.telefono}" th:field="*{telefono}">
+									<input type="text" class="form-control" value="${producto.impuesto}" th:field="*{impuesto}">
 								</div>
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Address</h6>
+									<h6 class="mb-0">Imagen</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.dirección}" th:field="*{direccion}">
+									<input type="file"  value="${producto.imagen}" th:field="*{imagen}">
 								</div>
 							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Province</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.provincia}" th:field="*{provincia}">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">City</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.localidad}" th:field="*{localidad}">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">NIF</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${user.dni}" th:field="*{dni}">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-3"></div>
-								<div class="col-sm-9 text-secondary">
-									<button type="submit" class="btn btn-primary px-4" value="Save Changes"></button>
-								</div>
-							</div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn btn-info" th:href="@{/adminProductos}" style="margin-left:280px; margin-top:25px">Save Changes</a>
+                    </div>
+                  </div>
 						</div>
-					</div>
-				</div>
+
 			</form>
+		</div>
 		</div>
 	</div>
 </body>
