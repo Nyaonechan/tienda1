@@ -84,5 +84,15 @@ public class PedidosServiceImpl implements PedidosService{
 		modelo.addAttribute("pedidos", pedidos);
 		
 	}
+	
+	@Override
+	public void modificarEstadoPedido(int id) {
+		
+		Pedidos pedido = pedidoDao.getPedidoById(id);
+		pedidoDao.modificarEstado(id, pedido.getEstado());
+		pedido = pedidoDao.getPedidoById(id);
+		if (pedido.getEstado().equals("E")) pedidoDao.establecerNumFactura(id);
+		
+	}
 
 }

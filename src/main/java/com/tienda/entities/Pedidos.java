@@ -26,7 +26,7 @@ public class Pedidos {
 	
 	private String estado;
 	
-	private String num_factura;
+	private Integer num_factura;
 	
 	private double total;
 	
@@ -82,11 +82,11 @@ public class Pedidos {
 		this.estado = estado;
 	}
 
-	public String getNum_factura() {
+	public Integer getNum_factura() {
 		return num_factura;
 	}
 
-	public void setNum_factura(String num_factura) {
+	public void setNum_factura(Integer num_factura) {
 		this.num_factura = num_factura;
 	}
 

@@ -36,7 +36,7 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="@{/adminInicio}">Home</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/adminInicio}">Home</a></li>
               <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
               <li class="breadcrumb-item"><a th:href="@{/logout}">Cerrar sesión</a></li>
               
@@ -87,7 +87,8 @@
                             <td class="align-middle" th:text=${pedido.estado}></td>
                             <td class="align-middle" th:text=${pedido.num_factura}></td>
 							<td class="align-middle" th:text=${pedido.total}></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''"><i>Modificar Estado</i></button></td>
+							<td th:if="${pedido.estado.equals('E')||pedido.estado.equals('C')}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''" disabled><i>Modificar Estado</i></button></td>
+                            <td th:if="${pedido.estado.equals('P.E.')||pedido.estado.equals('P.C.')}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''"><i>Modificar Estado</i></button></td>
                         </tr>  
                         
                     </tbody>

@@ -17,9 +17,11 @@ public interface PedidosDao {
 	
 	public Pedidos getLastPedido();
 	
-	public void modificarEstado();
+	public void modificarEstado(int id, String estado);
 	
-	public void establecerNumFactura();
+	public Pedidos getLastFactura();
+	
+	public void establecerNumFactura(int id);
 	
 	public void insertDetallePedido(Detalles_pedido detallePedido);
 	

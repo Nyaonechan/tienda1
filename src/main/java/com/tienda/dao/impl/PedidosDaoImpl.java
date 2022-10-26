@@ -88,20 +88,54 @@ public class PedidosDaoImpl implements PedidosDao {
 		return pedido;
 		
 	}
-
+	
+	@Transactional
 	@Override
-	public void modificarEstado() {
+	public void modificarEstado(int id, String estado) {
 		
 		Session session = entityManager.unwrap(Session.class);
-		// TODO Auto-generated method stub
+		
+		Query<Pedidos> query = session.createQuery("update Pedidos set estado=:estado where id=:id");
+		query.setParameter("id", id);
+		if(estado.equals("P.E.")) query.setParameter("estado", "E");
+		else query.setParameter("estado", "C");
+		
+		query.executeUpdate();
+		
+	}
+	
+	@Override
+	public Pedidos getLastFactura() {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query <Pedidos> query = session.createQuery("FROM Pedidos WHERE num_factura = (SELECT MAX(num_factura) FROM Pedidos)", Pedidos.class);
+		
+		Pedidos pedido = null;
+		List<Pedidos> result = query.getResultList();
+		if (!result.isEmpty()) {
+			pedido=(Pedidos) result.get(0);
+		}
+		
+		return pedido;
 		
 	}
 
+	@Transactional
 	@Override
-	public void establecerNumFactura() {
+	public void establecerNumFactura(int id) {
 		
 		Session session = entityManager.unwrap(Session.class);
-		// TODO Auto-generated method stub
+		
+		Pedidos pedido = getLastFactura();
+		
+		Query<Pedidos> query = session.createQuery("update Pedidos set num_factura=:num_factura where id=:id");
+		
+		query.setParameter("id", id);
+		
+		query.setParameter("num_factura", pedido.getNum_factura()+1);
+
+		query.executeUpdate();
 		
 	}
 

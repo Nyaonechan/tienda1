@@ -293,3 +293,46 @@
 [http-nio-8080-exec-2] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
 [restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
 [http-nio-8080-exec-6] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[main] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[main] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[main] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[main] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-1] INFO  com.tienda.DemoApplication  - Loggeo correcto 1
+[http-nio-8080-exec-9] INFO  com.tienda.DemoApplication  - Desloggeo correcto 
+[http-nio-8080-exec-7] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-1] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[main] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-7] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-8] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-2] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-2] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-9] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
+[main] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
