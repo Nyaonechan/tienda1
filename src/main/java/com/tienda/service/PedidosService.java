@@ -19,5 +19,7 @@ public interface PedidosService {
 	public void getPedidosByIdUsuario(int id_usuario, Model modelo);
 	
 	public void modificarEstadoPedido(int id);
+	
+	public void getMetodosPago(Model modelo);
 
 }

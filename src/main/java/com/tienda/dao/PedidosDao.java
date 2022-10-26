@@ -3,6 +3,7 @@ package com.tienda.dao;
 import java.util.ArrayList;
 
 import com.tienda.entities.Detalles_pedido;
+import com.tienda.entities.Metodos_pago;
 import com.tienda.entities.Pedidos;
 
 public interface PedidosDao {
@@ -30,5 +31,7 @@ public interface PedidosDao {
 	public void eliminarArticulosCarritoByIdPedido(int id);
 	
 	public void modificarStock(int cantidad, int id_producto);
+	
+	public ArrayList<Metodos_pago> getMetodosPago();
 
 }

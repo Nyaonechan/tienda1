@@ -97,6 +97,78 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 	}
 	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioSinCat(){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos order by precio desc",Productos.class);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+		
+	}
+	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioSinCat(double min, double max){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " order by precio desc",Productos.class);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+
+	}
+	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioConCat(int cat){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos where id categoria=:id_categoria order by precio desc",Productos.class);
+		
+		query.setParameter("id_categoria", cat);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+		
+	}
+	
+	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioConCat(double min, double max, int cat){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and id categoria=:id_categoria order by precio desc",Productos.class);
+		
+		query.setParameter("id_categoria", cat);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+		
+	}
+	
+	@Override
+	public ArrayList<Productos> getProductosByNombre(String nombre){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos where nombre like :nombre",Productos.class);
+		
+		query.setParameter("nombre", "%"+nombre+"%");
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+		
+	}
+	
 	//COMPROBAR TABLA CARRITO
 	
 	@Override

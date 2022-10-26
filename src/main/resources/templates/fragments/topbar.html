@@ -27,17 +27,15 @@
                 <div class="d-inline-flex align-items-center">
                 
                 
-	               <li class=" dropdown">	 
+	               <div class=" dropdown">	 
 	               	 <a class=" dropdown-toggle btn btn-success btn-sm ml-3" style="background-color:pink; border-color:pink" id="dropdown3" data-toggle="dropdown" 
-	                   th:text="#{idioma}">Dropdown2</a>
+	                   th:text="#{idioma}"></a>
 	                   
 	                  <ul class="dropdown-menu" aria-labelledby="dropdown3">
-	                    <li class="dropdown-item" ><a th:href="@{''(idioma=ES)}" th:text="#{idioma.espanol}">Espanol</a></li>
-	                    <li class="dropdown-item" ><a th:href="@{''(idioma=EN)}" th:text="#{idioma.ingles}">Ingles</a></li>
-	                    
-	                    
+	                    <li class="dropdown-item" ><a th:href="@{''(idioma=ES)}" th:text="#{idioma.espanol}"></a></li>
+	                    <li class="dropdown-item" ><a th:href="@{''(idioma=EN)}" th:text="#{idioma.ingles}"></a></li>
 	               	 </ul>
-	               </li>
+	               </div>
 
                 	
                     <a class="text-dark px-2" href="">
@@ -65,12 +63,14 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form th:action="@{/nombres}" method="post">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Search for products" th:name="${nombre}">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit" class="btn btn-sm btn-primary btn-plus">
                                 <i class="fa fa-search"></i>
+                            </button>
                             </span>
                         </div>
                     </div>

@@ -26,12 +26,13 @@ public class PedidosController {
 		productoService.cargarCategorias(modelo);
 		double precioTotal=productoService.precioTotalCarro(modelo);
 		productoService.desgloseIva(modelo, precioTotal);
+		pedidoService.getMetodosPago(modelo);
 		
 		return "checkout";
 	}
 	
 	@GetMapping ("/confirmarCompra")
-	public String confirmarCompra (Model modelo /*@RequestParam("payment") String payment*/) {
+	public String confirmarCompra (Model modelo) {
 		
 		System.out.println("Controlador confirmarCompra");
 		

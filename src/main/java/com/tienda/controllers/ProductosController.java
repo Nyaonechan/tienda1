@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tienda.dao.ProductosDao;
+import com.tienda.entities.Categorias;
 import com.tienda.entities.Productos;
 import com.tienda.entities.Usuarios;
 import com.tienda.service.ProductosService;
@@ -38,6 +40,12 @@ public class ProductosController {
 		
 		productoService.precioTotalCarro(modelo);
 		
+		Categorias categoria = new Categorias();
+		
+		categoria.setId(0);
+		
+		modelo.addAttribute("categoria", categoria);
+		
 		return "shop";
 	}
 	
@@ -49,9 +57,40 @@ public class ProductosController {
 		productoService.cargarCategorias(modelo);
 		
 		productoService.cargarProductosByIdCat(modelo, id_categoria);
+		
+		Categorias categoria = new Categorias();
+		
+		categoria.setId(id_categoria);
+		
+		modelo.addAttribute("categoria", categoria);
 
         return "shop";
     }
+	@PostMapping ("/precios")
+	public String precios(@RequestParam String price, Model modelo) {
+		
+		System.out.println("Controlador precios");
+		
+		productoService.cargarCategorias(modelo);
+		
+		int cat = (int) modelo.getAttribute("cat");
+		
+		productoService.filtroPorPrecio(modelo, cat, price);
+		
+		return "shop";
+	}
+	
+	@PostMapping("/nombres")
+	public String nombres(Model modelo) {
+		
+		System.out.println("Controlador nombres");
+		
+		String nombre = (String) modelo.getAttribute("nombre");
+		
+		productoService.getProductosByNombre(nombre, modelo);
+		
+		return "shop";
+	}
 	
 	@GetMapping ("/detail")
 	public String detail (Model modelo, @RequestParam("idProd") int id) {

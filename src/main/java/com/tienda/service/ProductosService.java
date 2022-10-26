@@ -13,7 +13,9 @@ public interface ProductosService {
 	
 	public void darBajaProducto(int id);
 	
-	public ArrayList<Productos> ordenarProductosByPrecio();
+	public void filtroPorPrecio(Model modelo, Integer categoria, String precio);
+	
+	public void getProductosByNombre(String nombre, Model modelo);
 	
 	public ArrayList<Productos> ordenarProductosByFecha();
 	
