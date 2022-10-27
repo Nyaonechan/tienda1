@@ -1,6 +1,5 @@
 package com.tienda.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +15,6 @@ public class Categorias {
 	
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-
     private int id;
 
     private String nombre;
@@ -42,6 +40,10 @@ public class Categorias {
 
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id=id;
 	}
 
 	public String getImagen() {

@@ -12,17 +12,35 @@ public interface ProductosDao {
 	
 	public void darBajaProducto(int id);
 	
+	// FILTROS
+	
 	public ArrayList<Productos> getProductos();
 	
 	public ArrayList<Productos> getProductosByCat(int cat);
 	
+	public ArrayList<Productos> getProductosByPrecioSinCat();
+	
+	public ArrayList<Productos> getProductosByPrecioSinCat(double min, double max);
+	
+	public ArrayList<Productos> getProductosByPrecioConCat(int cat);
+	
+	public ArrayList<Productos> getProductosByPrecioConCat(double min, double max, int cat);
+	
 	public Productos getProductoById(int id);
 	
+	public ArrayList<Productos> getProductosByNombre(String nombre);
+	
+	//------------------------------
+	
 	public ArrayList<Categorias> getCategorias();
+	
+	//COMPROBACIONES
 	
 	public boolean comprobarProdCarritoById (int id,  Usuarios user);
 	
 	public boolean comprobarProdCarritoTablaVacia (Usuarios user);
+	
+	//ACCIONES CARRITO
 	
 	public void insertProdCarrito (int id_producto, int id_usuario);
 	

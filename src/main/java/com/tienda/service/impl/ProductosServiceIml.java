@@ -34,13 +34,59 @@ public class ProductosServiceIml implements ProductosService {
 	}
 
 	@Override
-	public ArrayList<Productos> ordenarProductosByPrecio() {
+	public void filtroPorPrecio(Model modelo, Integer categoria, String precio) {
+		ArrayList<Productos> productos;
+
+		if (categoria==0) {
+			switch(precio) {
+			case "0":
+				productos=productoDao.getProductosByPrecioSinCat();
+				modelo.addAttribute("productos", productos);
+				break;
+			case "1":
+				productos=productoDao.getProductosByPrecioSinCat(0, 50);
+				modelo.addAttribute("productos", productos);
+				break;
+			case "2":
+				productos=productoDao.getProductosByPrecioSinCat(50.01, 100);
+				modelo.addAttribute("productos", productos);
+				break;
+			case "3":
+				productos=productoDao.getProductosByPrecioSinCat(100.01, 150);
+				modelo.addAttribute("productos", productos);
+				break;
+			}
+		}else {
+			
+			switch(precio) {
+			case "0":
+				productos=productoDao.getProductosByPrecioConCat(categoria);
+				modelo.addAttribute("productos", productos);
+				break;
+			case "1":
+				productos=productoDao.getProductosByPrecioConCat(0, 50, categoria);
+				modelo.addAttribute("productos", productos);
+				break;
+			case "2":
+				productos=productoDao.getProductosByPrecioConCat(50.01, 100, categoria);
+				modelo.addAttribute("productos", productos);
+				break;
+			case "3":
+				productos=productoDao.getProductosByPrecioConCat(100.01, 150, categoria);
+				modelo.addAttribute("productos", productos);
+				break;
+			}
+			
+		}
 		
-		ArrayList<Productos> productos = productoDao.getProductos();
+	}
+	
+	@Override
+	public void getProductosByNombre(String nombre, Model modelo) {
 		
-		productos.sort((p1,p2) -> Double.compare(p1.getPrecio(), p2.getPrecio()));
+		ArrayList<Productos> productos = productoDao.getProductosByNombre(nombre);
+		modelo.addAttribute("productos", productos);
 		
-		return productos;
 	}
 
 	@Override

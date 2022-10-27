@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.tienda.dao.PedidosDao;
 import com.tienda.entities.Detalles_pedido;
+import com.tienda.entities.Metodos_pago;
 import com.tienda.entities.Pedidos;
 import com.tienda.entities.Productos;
 import com.tienda.entities.Usuarios;
@@ -93,6 +94,13 @@ public class PedidosServiceImpl implements PedidosService{
 		pedido = pedidoDao.getPedidoById(id);
 		if (pedido.getEstado().equals("E")) pedidoDao.establecerNumFactura(id);
 		
+	}
+	
+	@Override
+	public void getMetodosPago(Model modelo) {
+		
+		ArrayList<Metodos_pago> metodos = pedidoDao.getMetodosPago();
+		modelo.addAttribute("metodos", metodos);
 	}
 
 }

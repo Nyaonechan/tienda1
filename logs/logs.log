@@ -336,3 +336,4 @@
 [http-nio-8080-exec-9] INFO  com.tienda.DemoApplication  - Loggeo correcto 3
 [main] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
 [restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  com.tienda.DemoApplication  - Log4j appender configuration is successful !!

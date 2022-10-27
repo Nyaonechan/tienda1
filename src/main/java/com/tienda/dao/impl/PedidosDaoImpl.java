@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tienda.dao.PedidosDao;
 import com.tienda.entities.Articulos_carrito;
 import com.tienda.entities.Detalles_pedido;
+import com.tienda.entities.Metodos_pago;
 import com.tienda.entities.Pedidos;
 import com.tienda.entities.Productos;
 
@@ -188,6 +189,18 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 		query.executeUpdate();
 		
+	}
+	
+	@Override
+	public ArrayList<Metodos_pago> getMetodosPago(){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Metodos_pago> query = session.createQuery("from Metodos_pago", Metodos_pago.class);
+		
+		ArrayList<Metodos_pago> metodos =  (ArrayList<Metodos_pago>) query.getResultList();
+		
+		return metodos;
 	}
 
 }

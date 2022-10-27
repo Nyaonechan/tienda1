@@ -56,27 +56,32 @@
                 <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all">
+                    <form th:action="@{/precios}" th:objetc="${categoria}" method="post">
+
+                    	<input type="hidden" th:value="${categoria.id}" th:attr="name='cat'">
+
+                        <div class="custom-control">
+                            <input type="radio" class="custom-control-input" name="price" id="price-all" th:value="0">
                             <label class="custom-control-label" for="price-all">All Price</label>
-                            <span class="badge border font-weight-normal">1000</span>
+                            
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1">
+                        <div class="custom-control">
+                            <input type="radio" class="custom-control-input" name="price" id="price-1" th:value="1">
                             <label class="custom-control-label" for="price-1">0€ - 50€</label>
-                            <span class="badge border font-weight-normal">150</span>
+                            
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-2">
+                        <div class="custom-control">
+                            <input type="radio" class="custom-control-input" name="price" id="price-2" th:value="2">
                             <label class="custom-control-label" for="price-2">50€ - 100€</label>
-                            <span class="badge border font-weight-normal">295</span>
+                            
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-3">
+                        <div class="custom-control">
+                            <input type="radio" class="custom-control-input" name="price" id="price-3" th:value="3">
                             <label class="custom-control-label" for="price-3">100€- 150€</label>
-                            <span class="badge border font-weight-normal">246</span>
+                            
                         </div>
+                        
+                        <button class="btn btn-primary" type="submit">Filter</button>
 
                     </form>
                 </div>
