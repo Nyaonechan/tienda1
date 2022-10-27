@@ -5,6 +5,23 @@
 <title>Profile</title>
 <link href="https://cdn.usebootstrap.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link th:href="@{/css/perfil.css}" rel="stylesheet" type="text/css" />
+
+
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -43,7 +60,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0"> Name</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.nombre}">
+                    <div class="col-sm-9 text" th:text="${user.nombre}">
                       Kenneth Valdez
                     </div>
                   </div>
@@ -53,7 +70,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0"> First Surname</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.apellido1}">
+                    <div class="col-sm-9 text" th:text="${user.apellido1}">
                       Kenneth Valdez
                     </div>
                   </div>
@@ -63,7 +80,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0"> Second Surname</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.apellido2}">
+                    <div class="col-sm-9 text" th:text="${user.apellido2}">
                       Kenneth Valdez
                     </div>
                   </div>
@@ -73,7 +90,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0">Email</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.email}">
+                    <div class="col-sm-9 text" th:text="${user.email}">
                       fip@jukmuh.al
                     </div>
                   </div>
@@ -83,7 +100,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0">Phone</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.telefono}">
+                    <div class="col-sm-9 text" th:text="${user.telefono}">
                       (239) 816-9029
                     </div>
                   </div>
@@ -94,7 +111,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0">Address</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.direccion}">
+                    <div class="col-sm-9 text" th:text="${user.direccion}">
                       Bay Area, San Francisco, CA
                     </div>
                   </div>
@@ -104,7 +121,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0"> Provincia</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.provincia}">
+                    <div class="col-sm-9 text" th:text="${user.provincia}">
                       Kenneth Valdez
                     </div>
                   </div>
@@ -114,7 +131,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0"> Localidad</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.localidad}">
+                    <div class="col-sm-9 text" th:text="${user.localidad}">
                       Kenneth Valdez
                     </div>
                   </div>
@@ -124,7 +141,7 @@
                     <div class="col-sm-3">
                       <h6 class="mb-0"> NIF</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary" th:text="${user.dni}">
+                    <div class="col-sm-9 text" th:text="${user.dni}">
                       Kenneth Valdez
                     </div>
                   </div>

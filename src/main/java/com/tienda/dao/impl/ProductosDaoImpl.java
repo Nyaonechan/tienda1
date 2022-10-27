@@ -97,8 +97,10 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 	}
 	
+	// Precio desc
+	
 	@Override
-	public ArrayList<Productos> getProductosByPrecioSinCat(){
+	public ArrayList<Productos> getProductosByPrecioSinCatDesc(){
 		
 		Session session = entityManager.unwrap(Session.class);
 		
@@ -111,7 +113,7 @@ public class ProductosDaoImpl implements ProductosDao {
 	}
 	
 	@Override
-	public ArrayList<Productos> getProductosByPrecioSinCat(double min, double max){
+	public ArrayList<Productos> getProductosByPrecioSinCatDesc(double min, double max){
 		
 		Session session = entityManager.unwrap(Session.class);
 		
@@ -124,11 +126,11 @@ public class ProductosDaoImpl implements ProductosDao {
 	}
 	
 	@Override
-	public ArrayList<Productos> getProductosByPrecioConCat(int cat){
+	public ArrayList<Productos> getProductosByPrecioConCatDesc(int cat){
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> query = session.createQuery("from Productos where id categoria=:id_categoria order by precio desc",Productos.class);
+		Query<Productos> query = session.createQuery("from Productos where id_categoria=:id_categoria order by precio desc",Productos.class);
 		
 		query.setParameter("id_categoria", cat);
 		
@@ -140,11 +142,11 @@ public class ProductosDaoImpl implements ProductosDao {
 	
 	
 	@Override
-	public ArrayList<Productos> getProductosByPrecioConCat(double min, double max, int cat){
+	public ArrayList<Productos> getProductosByPrecioConCatDesc(double min, double max, int cat){
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and id categoria=:id_categoria order by precio desc",Productos.class);
+		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and id_categoria=:id_categoria order by precio desc",Productos.class);
 		
 		query.setParameter("id_categoria", cat);
 		
@@ -153,6 +155,66 @@ public class ProductosDaoImpl implements ProductosDao {
 		return productos;
 		
 	}
+	
+	// Precio asc
+	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioSinCatAsc(){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos order by precio",Productos.class);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+		
+	}
+	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioSinCatAsc(double min, double max){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " order by precio",Productos.class);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+
+	}
+	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioConCatAsc(int cat){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos where id_categoria=:id_categoria order by precio",Productos.class);
+		
+		query.setParameter("id_categoria", cat);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+		
+	}
+	
+	
+	@Override
+	public ArrayList<Productos> getProductosByPrecioConCatAsc(double min, double max, int cat){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and id_categoria=:id_categoria order by precio",Productos.class);
+		
+		query.setParameter("id_categoria", cat);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+	}
+	
+	// Nombre
 	
 	@Override
 	public ArrayList<Productos> getProductosByNombre(String nombre){

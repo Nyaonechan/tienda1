@@ -18,15 +18,23 @@ public interface PedidosDao {
 	
 	public Pedidos getLastPedido();
 	
-	public void modificarEstado(int id, String estado);
+	//Estado
+	
+	public void modificarEstadoAdmin(int id, String estado);
+	
+	public void modificarEstadoCliente(int id);
+	
+	//Factura
 	
 	public Pedidos getLastFactura();
 	
 	public void establecerNumFactura(int id);
 	
-	public void insertDetallePedido(Detalles_pedido detallePedido);
+	// ---
 	
-	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id);
+	public void insertDetallePedido(Detalles_pedido detallePedido); // mover a detalles
+	
+	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id); // mover a detalles
 	
 	public void eliminarArticulosCarritoByIdPedido(int id);
 	

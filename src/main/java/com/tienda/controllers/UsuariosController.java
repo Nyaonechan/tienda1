@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tienda.DemoApplication;
 import com.tienda.dao.UsuariosDao;
 import com.tienda.entities.Usuarios;
+import com.tienda.service.Detalles_pedidoService;
 import com.tienda.service.PedidosService;
 import com.tienda.service.ProductosService;
 
@@ -32,6 +34,9 @@ public class UsuariosController {
 	
 	@Autowired
 	private PedidosService pedidoService;
+	
+	@Autowired
+	private Detalles_pedidoService detalle_pedidoService;
 	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
 	
@@ -129,6 +134,8 @@ public class UsuariosController {
 	@GetMapping ("/perfilPedidos")
 	public String  perfilPedidos (Model modelo) {
 		
+		System.out.println("Controlador perfilPedidos");
+		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
 		pedidoService.getPedidosByIdUsuario(user.getId(), modelo);
@@ -137,11 +144,22 @@ public class UsuariosController {
 	}
 	
 	@GetMapping ("/perfilDetallesPedido")
-	public String  perfilDetallesPedido () {
+	public String  perfilDetallesPedido (Model modelo, @RequestParam int id_pedido) {
+		
+		System.out.println("Controlador perfilDetallesPedido");
+		
+		detalle_pedidoService.getDetallesPedidoById(modelo, id_pedido);
 		
 		return "perfil/perfilDetallesPedido";
 	}
 	
+	@GetMapping ("/pedirCancelacion")
+	public String pedirCancelacion(@RequestParam int id_pedido, Model modelo) {
+		
+		pedidoService.modificarEstadoPedidoCliente(id_pedido);
+		
+		return perfilPedidos(modelo);
+	}
 
 
 }

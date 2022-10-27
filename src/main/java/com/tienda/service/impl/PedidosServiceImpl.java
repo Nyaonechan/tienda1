@@ -87,13 +87,18 @@ public class PedidosServiceImpl implements PedidosService{
 	}
 	
 	@Override
-	public void modificarEstadoPedido(int id) {
+	public void modificarEstadoPedidoAdmin(int id) {
 		
 		Pedidos pedido = pedidoDao.getPedidoById(id);
-		pedidoDao.modificarEstado(id, pedido.getEstado());
+		pedidoDao.modificarEstadoAdmin(id, pedido.getEstado());
 		pedido = pedidoDao.getPedidoById(id);
 		if (pedido.getEstado().equals("E")) pedidoDao.establecerNumFactura(id);
 		
+	}
+	
+	@Override
+	public void modificarEstadoPedidoCliente(int id) {
+		pedidoDao.modificarEstadoCliente(id);
 	}
 	
 	@Override

@@ -56,7 +56,7 @@
                     </div>
                     <div th:if="${user!=null}">
                         <div th:if="${user.id_rol==2} or ${user.id_rol==3}" class="navbar-nav ml-auto py-0">
-                            <a th:href="@{/dashboard}" class="nav-item nav-link">Admin Dashboard</a>
+                            <a th:href="@{/adminInicio}" class="nav-item nav-link">Admin Dashboard</a>
                         </div>
                     </div>
                         <div th:if="${user==null}" class="navbar-nav ml-auto py-0">

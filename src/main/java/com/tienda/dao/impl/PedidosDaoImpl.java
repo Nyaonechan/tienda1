@@ -92,7 +92,7 @@ public class PedidosDaoImpl implements PedidosDao {
 	
 	@Transactional
 	@Override
-	public void modificarEstado(int id, String estado) {
+	public void modificarEstadoAdmin(int id, String estado) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
@@ -101,6 +101,20 @@ public class PedidosDaoImpl implements PedidosDao {
 		if(estado.equals("P.E.")) query.setParameter("estado", "E");
 		else query.setParameter("estado", "C");
 		
+		query.executeUpdate();
+		
+	}
+	
+	@Transactional
+	@Override
+	public void modificarEstadoCliente (int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Pedidos> query = session.createQuery("update Pedidos set estado=:estado where id=:id");
+		query.setParameter("id", id);
+		query.setParameter("estado", "P.C.");
+
 		query.executeUpdate();
 		
 	}

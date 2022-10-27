@@ -37,71 +37,95 @@
               </div>
             </div>
             
-            <h3 style="margin-top:100px; margin-left:50px"> Insertar o modificar producto</h3>
+            <h3 style="margin-top:100px; margin-left:50px"> Insertar o modificar cliente</h3>
     
-    		<form th:action="@{/insertProducto}" th:object="${producto}" method="post" class="container-fluid">
+    		<form th:action="@{/insertCliente}" th:object="${usuario}" method="post" class="container-fluid">
 				<div class="container">
 
-							<input type="text" class="form-control" th:field="*{id}" value="${producto.id}">
-							
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Id Categoría</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.id_categoria}" th:field="*{id_categoria}">
-								</div>
-							</div>
+							<input type="text" class="form-control" th:field="*{id}" value="${usuario.id}">
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
 									<h6 class="mb-0">Nombre</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.nombre}" th:field="*{nombre}">
+									<input type="text" class="form-control" value="${cliente.nombre}" th:field="*{nombre}">
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Descripción</h6>
+									<h6 class="mb-0">Apellido 1</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.descripcion}" th:field="*{descripcion}">
+									<input type="text" class="form-control" value="${cliente.apellido1}" th:field="*{apellido1}">
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Precio</h6>
+									<h6 class="mb-0">Apellido 2</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.precio}" th:field="*{precio}">
+									<input type="text" class="form-control" value="${cliente.apellido2}" th:field="*{apellido2}">
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Stock</h6>
+									<h6 class="mb-0">Direccion</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.stock}" th:field="*{stock}">
+									<input type="text" class="form-control" value="${cliente.direccion}" th:field="*{direccion}">
+								</div>
+							</div>
+							
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Provincia</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${cliente.provincia}" th:field="*{provincia}">
 								</div>
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Impuesto</h6>
+									<h6 class="mb-0">Localidad</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.impuesto}" th:field="*{impuesto}">
+									<input type="text" class="form-control" value="${cliente.localidad}" th:field="*{localidad}">
 								</div>
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Imagen</h6>
+									<h6 class="mb-0">Telefono</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="file"  value="${producto.imagen}" th:field="*{imagen}">
+									<input type="file"  value="${cliente.telefono}" th:field="*{telefono}">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Dni</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="file"  value="${cliente.dni}" th:field="*{dni}">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Clave</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="file"  value="${cliente.clave}" th:field="*{clave}">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Repetir clave</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="file"  value="${cliente.clave}" >
 								</div>
 							</div>
 

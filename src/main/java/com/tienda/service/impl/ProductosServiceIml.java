@@ -22,7 +22,8 @@ public class ProductosServiceIml implements ProductosService {
 	ProductosDao productoDao;
 	
 	@Override
-	public void insertOrUpdateProducto(Productos producto) {
+	public void insertProducto(Productos producto) {
+
 		producto.setBaja(false);
 		producto.setFecha_alta(LocalDate.now());
 		productoDao.insertOrUpdateProducto(producto);
@@ -32,27 +33,40 @@ public class ProductosServiceIml implements ProductosService {
 	public void darBajaProducto(int id) {
 		productoDao.darBajaProducto(id);
 	}
+	
+	// Filtros
+	
+	@Override
+	public void getProductoById(int id, Model modelo) {
+		Productos producto =productoDao.getProductoById(id);
+		modelo.addAttribute("producto", producto);
+		
+	}
 
 	@Override
-	public void filtroPorPrecio(Model modelo, Integer categoria, String precio) {
+	public void filtroPorPrecio(Model modelo, Integer categoria, String precio, String orden) {
 		ArrayList<Productos> productos;
 
 		if (categoria==0) {
 			switch(precio) {
 			case "0":
-				productos=productoDao.getProductosByPrecioSinCat();
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioSinCatAsc();
+				else productos=productoDao.getProductosByPrecioSinCatDesc();
 				modelo.addAttribute("productos", productos);
 				break;
 			case "1":
-				productos=productoDao.getProductosByPrecioSinCat(0, 50);
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioSinCatAsc(0, 50);
+				else productos=productoDao.getProductosByPrecioSinCatDesc(0, 50);
 				modelo.addAttribute("productos", productos);
 				break;
 			case "2":
-				productos=productoDao.getProductosByPrecioSinCat(50.01, 100);
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioSinCatAsc(50.01, 100);
+				else productos=productoDao.getProductosByPrecioSinCatDesc(50.01, 100);
 				modelo.addAttribute("productos", productos);
 				break;
 			case "3":
-				productos=productoDao.getProductosByPrecioSinCat(100.01, 150);
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioSinCatAsc(100.01, 150);
+				else productos=productoDao.getProductosByPrecioSinCatDesc(100.01, 150);
 				modelo.addAttribute("productos", productos);
 				break;
 			}
@@ -60,19 +74,23 @@ public class ProductosServiceIml implements ProductosService {
 			
 			switch(precio) {
 			case "0":
-				productos=productoDao.getProductosByPrecioConCat(categoria);
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioConCatAsc(categoria);
+				else productos=productoDao.getProductosByPrecioConCatDesc(categoria);
 				modelo.addAttribute("productos", productos);
 				break;
 			case "1":
-				productos=productoDao.getProductosByPrecioConCat(0, 50, categoria);
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioConCatAsc(0, 50, categoria);
+				else productos=productoDao.getProductosByPrecioConCatDesc(0, 50, categoria);
 				modelo.addAttribute("productos", productos);
 				break;
 			case "2":
-				productos=productoDao.getProductosByPrecioConCat(50.01, 100, categoria);
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioConCatAsc(50.01, 100, categoria);
+				else productos=productoDao.getProductosByPrecioConCatDesc(50.01, 100, categoria);
 				modelo.addAttribute("productos", productos);
 				break;
 			case "3":
-				productos=productoDao.getProductosByPrecioConCat(100.01, 150, categoria);
+				if (orden.equals("asc")) productos=productoDao.getProductosByPrecioConCatAsc(100.01, 150, categoria);
+				else productos=productoDao.getProductosByPrecioConCatDesc(100.01, 150, categoria);
 				modelo.addAttribute("productos", productos);
 				break;
 			}

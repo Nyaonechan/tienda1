@@ -9,11 +9,15 @@ import com.tienda.entities.Usuarios;
 
 public interface ProductosService {
 	
-	public void insertOrUpdateProducto(Productos producto);
+	public void insertProducto(Productos producto);
 	
 	public void darBajaProducto(int id);
 	
-	public void filtroPorPrecio(Model modelo, Integer categoria, String precio);
+	// Filtros
+	
+	public void getProductoById(int id, Model modelo);
+	
+	public void filtroPorPrecio(Model modelo, Integer categoria, String precio, String orden);
 	
 	public void getProductosByNombre(String nombre, Model modelo);
 	

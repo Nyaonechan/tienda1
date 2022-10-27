@@ -18,7 +18,7 @@ import com.tienda.entities.Usuarios;
 import com.tienda.service.ProductosService;
 
 
-@SessionAttributes({"categorias", "user", "carrito", "cantidad"})
+@SessionAttributes({"categorias", "categoria", "user", "carrito", "cantidad"})
 @Controller
 public class ProductosController {
 	
@@ -67,27 +67,34 @@ public class ProductosController {
         return "shop";
     }
 	@PostMapping ("/precios")
-	public String precios(@RequestParam String price, Model modelo) {
+	public String precios(@RequestParam String price, @RequestParam String orden, Model modelo) {
 		
 		System.out.println("Controlador precios");
 		
 		productoService.cargarCategorias(modelo);
 		
-		int cat = (int) modelo.getAttribute("cat");
+		Categorias cat= (Categorias) modelo.getAttribute("categoria");
 		
-		productoService.filtroPorPrecio(modelo, cat, price);
+		productoService.filtroPorPrecio(modelo, cat.getId(), price, orden);
 		
 		return "shop";
 	}
 	
 	@PostMapping("/nombres")
-	public String nombres(Model modelo) {
+	public String nombres(Model modelo, @RequestParam String nombre) {
 		
 		System.out.println("Controlador nombres");
 		
-		String nombre = (String) modelo.getAttribute("nombre");
-		
 		productoService.getProductosByNombre(nombre, modelo);
+		
+		return "shop";
+	}
+	
+	@GetMapping ("/fecha")
+	public String fecha(Model modelo) {
+		
+		ArrayList<Productos> productos = productoService.ordenarProductosByFecha();
+		modelo.addAttribute("productos", productos);
 		
 		return "shop";
 	}

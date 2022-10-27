@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Profile</title>
+<title>Profile Pedidos</title>
 <link href="https://cdn.usebootstrap.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link th:href="@{/css/perfil.css}" rel="stylesheet" type="text/css" />
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -32,7 +32,7 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="@{/perfilResumen}">Home</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/perfilResumen}">Home</a></li>
               <li class="breadcrumb-item"><a th:href="@{/perfilPedidos}">Ver pedidos</a></li>
               <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
               
@@ -55,10 +55,14 @@
               </div>
             </div>
            </div> 
+                  <h3 style="margin-top:100px; margin-left:50px"> Pedidos</h3>
        	</div>
        </div>
        
+
+       
        <div class="container">
+       		
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
@@ -87,10 +91,12 @@
                             <td class="align-middle" th:text=${pedido.estado}></td>
                             <td class="align-middle" th:text=${pedido.num_factura}></td>
                             <td class="align-middle" th:text=${pedido.total}></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/perfilDetalles} + '\''" value="Ver detalles"><i>Ver detalles</i></button></td>
-                            <td th:if="${pedido.factura==null}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Descargar factura" disabled><i>Descargar factura</i></button></td>
-                            <td th:if="${pedido.factura!=null}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Descargar factura"><i>Descargar factura</i></button></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Cancelar pedido"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/perfilDetallesPedido?id_pedido={id_pedido}(id_pedido=${pedido.id})} + '\''" value="Ver detalles"><i>Ver detalles</i></button></td>
+                            <td th:if="${pedido.num_factura==null}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Descargar factura" disabled><i>Descargar factura</i></button></td>
+                            <td th:if="${pedido.num_factura!=null}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Descargar factura"><i>Descargar factura</i></button></td>
+                            <td th:if="${pedido.estado.equals('P.E.')}"class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/pedirCancelacion?id_pedido={id_pedido}(id_pedido=${pedido.id})} + '\''" value="Cancelar pedido"><i>Cancelar</i></button></td>
+                            <td th:unless="${pedido.estado.equals('P.E.')}"class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Cancelar pedido" disabled><i>Cancelar</i></button></td>
+                            
                         </tr>  
                         
                     </tbody>

@@ -18,15 +18,32 @@ public interface ProductosDao {
 	
 	public ArrayList<Productos> getProductosByCat(int cat);
 	
-	public ArrayList<Productos> getProductosByPrecioSinCat();
+	//Precio desc
 	
-	public ArrayList<Productos> getProductosByPrecioSinCat(double min, double max);
+	public ArrayList<Productos> getProductosByPrecioSinCatDesc();
 	
-	public ArrayList<Productos> getProductosByPrecioConCat(int cat);
+	public ArrayList<Productos> getProductosByPrecioSinCatDesc(double min, double max);
 	
-	public ArrayList<Productos> getProductosByPrecioConCat(double min, double max, int cat);
+	public ArrayList<Productos> getProductosByPrecioConCatDesc(int cat);
+	
+	public ArrayList<Productos> getProductosByPrecioConCatDesc(double min, double max, int cat);
+	
+	// Precio asc
+	
+	public ArrayList<Productos> getProductosByPrecioSinCatAsc();
+	
+	public ArrayList<Productos> getProductosByPrecioSinCatAsc(double min, double max);
+	
+	public ArrayList<Productos> getProductosByPrecioConCatAsc(int cat);
+	
+	public ArrayList<Productos> getProductosByPrecioConCatAsc(double min, double max, int cat);
+	
+	
+	// Id
 	
 	public Productos getProductoById(int id);
+	
+	//Nombre
 	
 	public ArrayList<Productos> getProductosByNombre(String nombre);
 	

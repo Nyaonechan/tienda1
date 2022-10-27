@@ -22,7 +22,7 @@ public class EmpleadoAdminController {
 	@Autowired
 	PedidosService pedidoService;
 	
-	@GetMapping ("/dashboard")
+	@GetMapping ("/adminInicio")
 	public String dashboard () {
 		
 		return "empleados/adminInicio";
@@ -36,26 +36,42 @@ public class EmpleadoAdminController {
 		return "empleados/adminProductos";
 	}
 	
-	@GetMapping ("/formProducto")
-	String formProducto(Model modelo) {
+	@GetMapping ("/nuevoProducto")
+	String nuevoProducto(Model modelo) {
+		
+		System.out.println("Controlador nuevoProducto");
 		
 		modelo.addAttribute("producto",new Productos());
 		
 		return "empleados/formProducto";
 	}
 	
-	@PostMapping ("insertOrUpdateProducto")
-	String insertOrUpdateProducto(Model modelo) {
+	@GetMapping("/modificarProducto")
+	public String modificarProducto (@RequestParam int idProd, Model modelo) {
 		
-		Productos producto = (Productos) modelo.getAttribute("producto");
+		productoService.getProductoById(idProd, modelo);
 
-		productoService.insertOrUpdateProducto(producto);
+		return "empleados/formProducto";
+	}
+	
+	@PostMapping ("/insertProducto")
+	String insertOrUpdateProducto(Model modelo, Productos producto) {
+		
+		System.out.println("Controlador insertProducto");
+		
+		System.out.println(producto);
+		
+		productoService.insertProducto(producto);
 		
 		return adminProductos(modelo);
 	}
 	
+
+	
 	@GetMapping ("/darBajaProducto")
 	public String darBajaProducto(Model modelo, @RequestParam("idProd") int id) {
+		
+		System.out.println("Controlador darBajaProducto");
 		
 		productoService.darBajaProducto(id);
 		
@@ -77,7 +93,7 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador modificarEstado");
 		
-		pedidoService.modificarEstadoPedido(id);
+		pedidoService.modificarEstadoPedidoAdmin(id);
 		
 		return adminPedidos(modelo);
 		

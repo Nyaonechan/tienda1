@@ -2,9 +2,26 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Profile</title>
+<title>Profile Detalles Pedido</title>
 <link href="https://cdn.usebootstrap.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link th:href="@{/css/perfil.css}" rel="stylesheet" type="text/css" />
+
+
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -14,7 +31,7 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="@{/perfilResumen}">Home</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/perfilResumen}">Home</a></li>
               <li class="breadcrumb-item"><a th:href="@{/perfilPedidos}">Ver pedidos</a></li>
               <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
               
@@ -35,20 +52,22 @@
                   </div>
                 </div>
               </div>
+                     <h3 style="margin-top:100px; margin-left:50px">Detalles Pedido</h3>
             </div>
+           </div> 
             
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
+    <div class="container">
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
-                        	<th>Id Pedido</th>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
+                        	<th>Id Producto</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Unidades</th>
                             <th>Impuesto</th>
                             <th>Total</th>
+                            <th>Cancelar Producto</th>
                             
                         </tr>
                     </thead>
@@ -57,31 +76,23 @@
                     
                     <!-- BUCLE CON DETALLES DEL PEDIDO -->
 
-                        <tr th:each="producto : ${carrito}">
-                            <td class="align-middle"><img th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle" th:text=${producto.precio}></td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" th:onclick="'window.location.href = \'' + @{/descenderCantidad?idProd={idProd}(idProd=${producto.id})} + '\''">
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" th:value=${producto.cantidad}>
-                                    <div class="input-group-btn">
-                                          <button class="btn btn-sm btn-primary btn-plus" th:onclick="'window.location.href = \'' + @{/aumentarCantidad?idProd={idProd}(idProd=${producto.id})} + '\''">
-                                       
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle" th:text=${producto.precio}*${producto.cantidad}></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/eliminarProducto?idProd={idProd}(idProd=${producto.id})} + '\''"><i class="fa fa-times"></i></button></td>
+                        <tr th:each="detalle : ${detalles}">
+                       
+                            <td class="align-middle" th:text=${detalle.id_producto}></td>
+                            <td class="align-middle" th:text=${detalle.id_producto}></td>
+                            <td class="align-middle" th:text=${detalle.precio_unidad}></td>
+                            <td class="align-middle" th:text=${detalle.unidades}></td>
+                            <td class="align-middle" th:text=${detalle.impuesto}></td>
+                            <td class="align-middle" th:text=${detalle.total}></td>
+							<td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Cancelar producto"><i class="fa fa-times"></i></button></td>
                         </tr>  
                         
                     </tbody>
                 </table>
+             </div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

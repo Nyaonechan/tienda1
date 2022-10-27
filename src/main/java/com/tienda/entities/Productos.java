@@ -26,7 +26,6 @@ public class Productos {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-
     private int id;
 
     private int id_categoria;
@@ -79,6 +78,11 @@ public class Productos {
 
 	public void setId_categoria(int id_categoria) {
 		this.id_categoria = id_categoria;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
