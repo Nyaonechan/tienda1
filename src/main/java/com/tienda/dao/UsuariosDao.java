@@ -1,5 +1,7 @@
 package com.tienda.dao;
 
+import java.util.ArrayList;
+
 import com.tienda.entities.Usuarios;
 
 public interface UsuariosDao {
@@ -8,7 +10,11 @@ public interface UsuariosDao {
 
 	public void insertarUsuario(Usuarios usuario);
 	
-	public void modificarUsuarioById(int id);
+	public Usuarios getUsuarioById(int id);
+	
+	public ArrayList<Usuarios> getUsuariosPorRol(int id);
+	
+	public void darBajaUsuarioById(int id);
 	
 	
 

@@ -61,8 +61,7 @@ public class Usuarios {
     }
 
 	public Usuarios(int id, int id_rol, String email, String clave, String nombre, String apellido1, String apellido2,
-			String direccion, String provincia, String localidad, String telefono, String dni, String imagen,
-			boolean baja, LocalDate fecha_alta) {
+			String direccion, String provincia, String localidad, String telefono, String dni, boolean baja, LocalDate fecha_alta) {
 		this.id = id;
 		this.id_rol = id_rol;
 		this.email = email;
@@ -75,7 +74,6 @@ public class Usuarios {
 		this.localidad = localidad;
 		this.telefono = telefono;
 		this.dni = dni;
-		this.imagen = imagen;
 		this.baja = baja;
 		this.fecha_alta = fecha_alta;
 	}
@@ -194,6 +192,10 @@ public class Usuarios {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 

@@ -64,25 +64,13 @@
        </div>
    
  <div class="container">
-	<button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminProductos} + '\''">Gestionar Productos</button>
-	
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminPedidos} + '\''">Gestionar Pedidos</button>
-    
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminCategoria} + '\''">Crear categorías</button>
-    
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminProveedores} + '\''">Gestionar Proveedores</button>
+ 	
+ 	<div th:each="opcion : ${opciones}">
+ 	
+	<button th:text="${opcion.nombre}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + ${opcion.url} + '\''"></button>
+	</div>
+    <button th:if="${user.nombre.equals(admin)}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminUsuarios?idRol=3} + '\''">Gestionar Administradores</button>
 
-    <div th:if="${user.id_rol==3}">
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminClientes} + '\''">Gestionar Clientes</button>
-
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminEmpleados} + '\''">Gestionar Empleados</button>
-
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminAdministradores} + '\''">Gestionar Administradores</button>
-    
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminDescuentos} + '\''">Gestionar descuentos</button>
-    
-    <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminEstadisticas} + '\''">Acceso a estadísticas</button>
-    </div>
 </div>
    
    

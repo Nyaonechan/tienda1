@@ -43,7 +43,7 @@
 
 function verificarPasswords() {
 	 
-    // Ontenemos los valores de los campos de contraseñas 
+    // Obtenemos los valores de los campos de contraseñas 
     pass1 = document.getElementById('pass1');
     pass2 = document.getElementById('pass2');
  
@@ -125,7 +125,7 @@ function verificarPasswords() {
 					<input class="text" type="password" name="password" placeholder="Password" th:field="*{clave}" id="pass1" required aria-label="password" aria-describedby="basic-addon1">
 					<input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" id="pass2" required aria-label="password" aria-describedby="basic-addon1">
 					
-								<div id="msg"></div>
+			<div id="msg"></div>
 			<!-- Mensajes de Verificación -->
 			<div id="error" class="alert alert-danger ocultar" role="alert" style="background-color:red; border-color:red">
     		La contraseña debe coincidir en ambos campos

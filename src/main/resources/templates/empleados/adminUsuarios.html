@@ -63,10 +63,10 @@
        </div>
 
 <div class="container"  >
-       <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/nuevoProducto} + '\''">Añadir cliente</button>
+       <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/nuevoUsuario} + '\''">Añadir</button>
+</div>
 
-
-                <table class="table table-bordered text-center mb-0">
+                <table class="table table-bordered text-center mb-0" style="margin:auto;display:block;">
                     <thead class="bg-secondary text-dark">
                         <tr>
                             <th>Id Cliente</th>
@@ -92,28 +92,28 @@
                     
                     <!-- BUCLE CON TODOS LOS PEDIDOS -->
 
-                        <tr th:each="cliente : ${clientes}">
-                        	<td class="align-middle" th:text=${cliente.id}></td>
-                        	<td class="align-middle" th:text=${cliente.nombre}></td>
-                        	<td class="align-middle" th:text=${cliente.apellido1}></td>
-                        	<td class="align-middle" th:text=${cliente.apellido2}></td>
-                        	<td class="align-middle" th:text=${cliente.direccion}></td>
-                        	<td class="align-middle" th:text=${cliente.provincia}></td>
-                        	<td class="align-middle" th:text=${cliente.localidad}></td>
-                        	<td class="align-middle" th:text=${cliente.telefono}></td>
-                        	<td class="align-middle" th:text=${cliente.dni}></td>
-                            <td class="align-middle" th:text=${cliente.fecha_alta}></td>
-                            <td class="align-middle" th:text=${cliente.baja}></td>
-                            <td class="align-middle" th:text=${cliente.email}></td>
-                            <td class="align-middle" th:text=${cliente.clave}></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarCliente?idCliente={idCliente}(idCliente=${cliente.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
-                            <td th:if="${user.id_rol==3}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaCliente?idCliente={idCliente}(idCliente=${cliente.id})} + '\''" value="Dar de baja"><i></i>Baja catálogo</button></td>
-                            <td th:unless="${user.id_rol==3}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaCliente?idCliente={idCliente}(idCliente=${cliente.id})} + '\''" value="Dar de baja" disabled><i></i>Baja catálogo</button></td>
+                        <tr th:each="usuario : ${usuarios}">
+                        	<td class="align-middle" th:text=${usuario.id}></td>
+                        	<td class="align-middle" th:text=${usuario.nombre}></td>
+                        	<td class="align-middle" th:text=${usuario.apellido1}></td>
+                        	<td class="align-middle" th:text=${usuario.apellido2}></td>
+                        	<td class="align-middle" th:text=${usuario.direccion}></td>
+                        	<td class="align-middle" th:text=${usuario.provincia}></td>
+                        	<td class="align-middle" th:text=${usuario.localidad}></td>
+                        	<td class="align-middle" th:text=${usuario.telefono}></td>
+                        	<td class="align-middle" th:text=${usuario.dni}></td>
+                            <td class="align-middle" th:text=${usuario.fecha_alta}></td>
+                            <td class="align-middle" th:text=${usuario.baja}></td>
+                            <td class="align-middle" th:text=${usuario.email}></td>
+                            <td class="align-middle" th:text=${usuario.clave}></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
+                            <td th:if="${user.id_rol==3 && usuario.baja==false}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja"><i></i>Baja</button></td>
+                            <td th:unless="${user.id_rol==3 && usuario.baja==false}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja" disabled><i></i>Baja</button></td>
                         </tr>  
                         
                     </tbody>
                 </table>
-	</div> 
+
 
 
 

@@ -64,8 +64,8 @@
 
 <div class="container"  >
        <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/nuevoProducto} + '\''">Añadir producto</button>
-       <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Importar productos desde excel</button>
-       <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/checkout} + '\''">Exportar catálogo</button>
+       <button th:if="{user.id==3}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/} + '\''">Importar productos desde excel</button>
+       <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/} + '\''">Exportar catálogo</button>
 
 
                 <table class="table table-bordered text-center mb-0">
