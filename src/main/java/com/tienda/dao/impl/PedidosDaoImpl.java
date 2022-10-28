@@ -90,16 +90,31 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 	}
 	
+	// Estado pedido
+	
 	@Transactional
 	@Override
-	public void modificarEstadoAdmin(int id, String estado) {
+	public void modificarEstadoAdminEnviado(int id) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
 		Query<Pedidos> query = session.createQuery("update Pedidos set estado=:estado where id=:id");
 		query.setParameter("id", id);
-		if(estado.equals("P.E.")) query.setParameter("estado", "E");
-		else query.setParameter("estado", "C");
+		query.setParameter("estado", "E");
+		
+		query.executeUpdate();
+		
+	}
+	
+	@Transactional
+	@Override
+	public void modificarEstadoAdminCancelado(int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Pedidos> query = session.createQuery("update Pedidos set estado=:estado where id=:id");
+		query.setParameter("id", id);
+		query.setParameter("estado", "C");
 		
 		query.executeUpdate();
 		
@@ -119,7 +134,7 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 	}
 	
-	@Override
+	/*@Override
 	public Pedidos getLastFactura() {
 		
 		Session session = entityManager.unwrap(Session.class);
@@ -134,25 +149,22 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 		return pedido;
 		
-	}
+	}*/
 
 	@Transactional
 	@Override
-	public void establecerNumFactura(int id) {
+	public void establecerNumFactura(int id, String factura) {
 		
 		Session session = entityManager.unwrap(Session.class);
-		
-		Pedidos pedido = getLastFactura();
 		
 		Query<Pedidos> query = session.createQuery("update Pedidos set num_factura=:num_factura where id=:id");
 		
 		query.setParameter("id", id);
 		
-		query.setParameter("num_factura", pedido.getNum_factura()+1);
+		query.setParameter("num_factura", factura);
 
 		query.executeUpdate();
-		
-	}
+	}	
 
 	@Override
 	public void insertDetallePedido(Detalles_pedido detallePedido) {

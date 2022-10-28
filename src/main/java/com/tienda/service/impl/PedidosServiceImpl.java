@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.tienda.dao.PedidosDao;
@@ -13,6 +14,7 @@ import com.tienda.entities.Metodos_pago;
 import com.tienda.entities.Pedidos;
 import com.tienda.entities.Productos;
 import com.tienda.entities.Usuarios;
+import com.tienda.service.ConfiguracionService;
 import com.tienda.service.PedidosService;
 
 @Service
@@ -20,6 +22,8 @@ public class PedidosServiceImpl implements PedidosService{
 	
 	@Autowired
 	PedidosDao pedidoDao;
+	@Autowired
+	ConfiguracionService configuracionService;
 
 	@Override
 	public void insertPedido(Usuarios user, String metodoPago, double total) {
@@ -86,16 +90,33 @@ public class PedidosServiceImpl implements PedidosService{
 		
 	}
 	
+	@Transactional
 	@Override
 	public void modificarEstadoPedidoAdmin(int id) {
 		
 		Pedidos pedido = pedidoDao.getPedidoById(id);
-		pedidoDao.modificarEstadoAdmin(id, pedido.getEstado());
-		pedido = pedidoDao.getPedidoById(id);
-		if (pedido.getEstado().equals("E")) pedidoDao.establecerNumFactura(id);
+		System.out.println(pedido);
+		if (pedido.getEstado().equals("P.E."))pedidoDao.modificarEstadoAdminEnviado(id);
+		else pedidoDao.modificarEstadoAdminCancelado(id);
+		
+
 		
 	}
 	
+	@Transactional
+	@Override
+	public void establecerFactura(int id) {
+		Pedidos pedido = pedidoDao.getPedidoById(id);
+		System.out.println(pedido);
+		if (pedido.getEstado().equals("E")) {
+			
+			String factura = configuracionService.generarFactura();
+			pedidoDao.establecerNumFactura(id, factura);
+			configuracionService.aumentarNumFactura();
+		}
+	}
+	
+	@Transactional
 	@Override
 	public void modificarEstadoPedidoCliente(int id) {
 		pedidoDao.modificarEstadoCliente(id);

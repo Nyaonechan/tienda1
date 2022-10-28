@@ -3,13 +3,11 @@ package com.tienda.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import com.tienda.entities.Productos;
 import com.tienda.entities.Usuarios;
+import com.tienda.service.Opciones_menuService;
 import com.tienda.service.PedidosService;
 import com.tienda.service.ProductosService;
 import com.tienda.service.UsuariosService;
@@ -27,11 +25,16 @@ public class EmpleadoAdminController {
 	@Autowired
 	UsuariosService usuarioService;
 	
+	@Autowired
+	Opciones_menuService opciones_menuService;
+	
 	
 	@GetMapping ("/adminInicio")
-	public String dashboard () {
+	public String dashboard (Model modelo) {
 		
-		// cargar las opciones
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		opciones_menuService.elegirOpciones(modelo, user.getId());
 		
 		return "empleados/adminInicio";
 	}
@@ -105,6 +108,8 @@ public class EmpleadoAdminController {
 		
 		pedidoService.modificarEstadoPedidoAdmin(id);
 		
+		pedidoService.establecerFactura(id);
+		
 		return adminPedidos(modelo);
 		
 	}
@@ -119,6 +124,10 @@ public class EmpleadoAdminController {
 		usuarioService.getUsuariosByRol(idRol, modelo);
 		
 		modelo.addAttribute("idRol", idRol);
+		
+		if (idRol==1) modelo.addAttribute("tipoUsuario", "Listado clientes");
+		if (idRol==2) modelo.addAttribute("tipoUsuario", "Listado empleados");
+		if (idRol==3) modelo.addAttribute("tipoUsuario", "Listado administradores");
 		
 		return "empleados/adminUsuarios";
 	}

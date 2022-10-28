@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.tienda.dao.UsuariosDao;
@@ -34,7 +35,8 @@ public class UsuariosServiceImpl implements UsuariosService {
 		modelo.addAttribute("usuario", usuario);
 		
 	}
-
+	
+	@Transactional
 	@Override
 	public void insertUsuario(Usuarios usuario, int rol) {
 		

@@ -22,6 +22,8 @@ public interface PedidosService {
 	
 	public void modificarEstadoPedidoCliente(int id);
 	
+	public void establecerFactura(int id);
+	
 	public void getMetodosPago(Model modelo);
 
 }

@@ -14,6 +14,12 @@ import lombok.Data;
 @Table (name="pedidos")
 public class Pedidos {
 	
+	@Override
+	public String toString() {
+		return "Pedidos [id=" + id + ", id_usuario=" + id_usuario + ", fecha=" + fecha + ", metodo_pago=" + metodo_pago
+				+ ", estado=" + estado + ", num_factura=" + num_factura + ", total=" + total + "]";
+	}
+
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -26,7 +32,7 @@ public class Pedidos {
 	
 	private String estado;
 	
-	private Integer num_factura;
+	private String num_factura;
 	
 	private double total;
 	
@@ -82,11 +88,11 @@ public class Pedidos {
 		this.estado = estado;
 	}
 
-	public Integer getNum_factura() {
+	public String getNum_factura() {
 		return num_factura;
 	}
 
-	public void setNum_factura(Integer num_factura) {
+	public void setNum_factura(String num_factura) {
 		this.num_factura = num_factura;
 	}
 

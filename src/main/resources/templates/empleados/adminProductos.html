@@ -64,9 +64,11 @@
 
 <div class="container"  >
        <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/nuevoProducto} + '\''">Añadir producto</button>
-       <button th:if="{user.id==3}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/} + '\''">Importar productos desde excel</button>
+       <button th:if="${user.id_rol==3}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/} + '\''">Importar productos desde excel</button>
        <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/} + '\''">Exportar catálogo</button>
+</div>
 
+<div style="  margin-left: 100px; margin-right: 100px;">
 
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
@@ -80,6 +82,7 @@
                             <th>Impuesto</th>
                             <th>Imagen</th>
                             <th>Fecha Alta</th>
+                            <th>Baja</th>
                             <th>Modificar producto</th>
                             <th>Dar de baja</th>
                             
@@ -100,9 +103,10 @@
                         	<td class="align-middle" th:text=${producto.impuesto}></td>
                             <td class="align-middle"><img th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"></td>
                             <td class="align-middle" th:text=${producto.fecha_alta}></td>
+                            <td class="align-middle" th:text=${producto.baja}></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
-                            <td th:if="${user.id_rol==3}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Dar de baja"><i></i>Baja catálogo</button></td>
-                            <td th:unless="${user.id_rol==3}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Dar de baja"><i></i>Baja catálogo</button></td>
+                            <td th:if="${user.id_rol==3 && !producto.baja}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Dar de baja"><i></i>Baja catálogo</button></td>
+                            <td th:if="${user.id_rol!=3 || producto.baja}" class="align-middle"><button disabled class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Dar de baja"><i></i>Baja catálogo</button></td>
                         </tr>  
                         
                     </tbody>

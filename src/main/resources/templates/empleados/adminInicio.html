@@ -67,9 +67,9 @@
  	
  	<div th:each="opcion : ${opciones}">
  	
-	<button th:text="${opcion.nombre}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + ${opcion.url} + '\''"></button>
+	<button th:text="${opcion.nombre_opcion}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{${opcion.url_opcion}}  + '\''"></button>
 	</div>
-    <button th:if="${user.nombre.equals(admin)}" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminUsuarios?idRol=3} + '\''">Gestionar Administradores</button>
+    <button th:if="${user.nombre}=='Admin'" class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/adminUsuarios?idRol=3} + '\''">Gestionar Administradores</button>
 
 </div>
    

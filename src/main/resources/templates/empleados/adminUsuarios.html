@@ -58,18 +58,23 @@
                 </div>
               </div>
             </div>
+                       <h3 th:text="${tipoUsuario}" style=" margin-top: auto; margin-right: auto;"></h3>
            </div> 
        	</div>
        </div>
+       
+       
 
 <div class="container"  >
+
        <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/nuevoUsuario} + '\''">Añadir</button>
 </div>
 
-                <table class="table table-bordered text-center mb-0" style="margin:auto;display:block;">
+<div style="  margin-left: 20px; margin-right: 20px;">
+                <table class="table table-bordered text-center mb-0" style=" margin-left: auto; margin-right: auto;">
                     <thead class="bg-secondary text-dark">
                         <tr>
-                            <th>Id Cliente</th>
+                            <th>Id Usuario</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
                             <th>Apellido 2</th>
@@ -107,15 +112,14 @@
                             <td class="align-middle" th:text=${usuario.email}></td>
                             <td class="align-middle" th:text=${usuario.clave}></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
-                            <td th:if="${user.id_rol==3 && usuario.baja==false}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja"><i></i>Baja</button></td>
-                            <td th:unless="${user.id_rol==3 && usuario.baja==false}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja" disabled><i></i>Baja</button></td>
+                            <td th:if="${user.id_rol==3 && !usuario.baja}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja"><i></i>Baja</button></td>
+                            <td th:unless="${user.id_rol==3 && !usuario.baja}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja" disabled><i></i>Baja</button></td>
                         </tr>  
                         
                     </tbody>
                 </table>
 
-
-
+</div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

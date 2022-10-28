@@ -20,16 +20,19 @@ public interface PedidosDao {
 	
 	//Estado
 	
-	public void modificarEstadoAdmin(int id, String estado);
+	public void modificarEstadoAdminEnviado(int id);
+	
+	public void modificarEstadoAdminCancelado(int id);
 	
 	public void modificarEstadoCliente(int id);
 	
 	//Factura
-	
+	/*
 	public Pedidos getLastFactura();
+	*/
 	
-	public void establecerNumFactura(int id);
-	
+	public void establecerNumFactura(int id, String factura);
+
 	// ---
 	
 	public void insertDetallePedido(Detalles_pedido detallePedido); // mover a detalles
