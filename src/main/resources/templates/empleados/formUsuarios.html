@@ -43,6 +43,8 @@
 				<div class="container">
 
 							<input type="hidden" class="form-control" th:field="*{id}" value="${usuario.id}">
+							<input th:id="${usuario.id!=0}" type="hidden" class="form-control" th:field="*{clave}" value="${usuario.clave}">
+							<input th:id="${usuario.id==0}" type="hidden" class="form-control" th:field="*{clave}" value="123456">
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
@@ -120,14 +122,7 @@
 									<input type="text" class="form-control" value="${usuario.email}" th:field="*{email}">
 								</div>
 							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Clave</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" min="6" class="form-control" value="${usuario.clave}" th:field="*{clave}">
-								</div>
-							</div>
+
 
                   <div class="row">
                     <div class="col-sm-12">

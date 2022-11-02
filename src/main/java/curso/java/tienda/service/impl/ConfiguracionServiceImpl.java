@@ -1,5 +1,7 @@
 package curso.java.tienda.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -63,6 +65,25 @@ public class ConfiguracionServiceImpl implements ConfiguracionService{
 		
 	}
 	
+	@Override
+	public void getConfiguraciones(Model modelo) {
+		
+		modelo.addAttribute("configuraciones", configuracionDao.getConfiguraciones());
+		
+	}
 	
+	@Override
+	public void getConfiById(Model modelo, int id) {
+		
+		modelo.addAttribute("configuracion", configuracionDao.getConfiById(id));
+		
+	}
+	
+	@Transactional
+	@Override
+	public void insertConfiguracion(Configuracion configuracion) {
+		
+		configuracionDao.insertConfiguracion(configuracion);
+	}
 
 }

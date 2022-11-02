@@ -61,18 +61,6 @@ public class ProductosDaoImpl implements ProductosDao {
 	}
 
 	@Override
-	public ArrayList<Categorias> getCategorias() {
-
-		Session session = entityManager.unwrap(Session.class);
-
-		Query<Categorias> query = session.createQuery("from Categorias", Categorias.class);
-
-		ArrayList<Categorias> categorias =  (ArrayList<Categorias>) query.getResultList();
-		
-		return categorias;
-	}
-
-	@Override
 	public Productos getProductoById(int id) {
 		
 		Session session = entityManager.unwrap(Session.class);

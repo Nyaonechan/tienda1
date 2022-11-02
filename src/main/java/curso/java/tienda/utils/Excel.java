@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import curso.java.tienda.dao.ProductosDao;
+import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Productos;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -64,7 +65,7 @@ public class Excel {
         		
             	cadena = new jxl.write.Label(0, i, String.valueOf(e.getId()));
                 sheet.addCell(cadena);
-            	cadena = new jxl.write.Label(1, i, String.valueOf(e.getId_categoria()));
+            	cadena = new jxl.write.Label(1, i, String.valueOf(e.getCategoria().getId()));
                 sheet.addCell(cadena);
                 cadena = new jxl.write.Label(2, i, e.getNombre());
                 sheet.addCell(cadena);
@@ -117,7 +118,7 @@ public class Excel {
 		for (int f=2; f<sheet.getRows(); f++) {
 			
 			producto = new Productos();
-    		producto.setId_categoria(Integer.valueOf(sheet.getCell(0,f).getContents()));
+    		producto.setCategoria(new Categorias((Integer.valueOf(sheet.getCell(0,f).getContents()))));
     		producto.setNombre(sheet.getCell(1,f).getContents()); 
     		producto.setDescripcion(sheet.getCell(2,f).getContents()); 
     		producto.setPrecio(Double.valueOf(sheet.getCell(3,f).getContents())); 

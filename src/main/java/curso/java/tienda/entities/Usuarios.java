@@ -39,8 +39,7 @@ public class Usuarios {
     @NotNull
     @Email
     private String email;
-    @NotEmpty
-    @NotNull
+
     private String clave;
     @NotEmpty
     @NotNull

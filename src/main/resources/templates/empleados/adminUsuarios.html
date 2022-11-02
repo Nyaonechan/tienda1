@@ -86,7 +86,6 @@
                             <th>Fecha Alta</th>
                             <th>Baja</th>
                             <th>Email</th>
-                            <th>Clave</th>
                             <th>Modificar</th>
                             <th>Dar baja</th>
                             
@@ -110,9 +109,14 @@
                             <td class="align-middle" th:text=${usuario.fecha_alta}></td>
                             <td class="align-middle" th:text=${usuario.baja}></td>
                             <td class="align-middle" th:text=${usuario.email}></td>
-                            <td class="align-middle" th:text=${usuario.clave}></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
-                            <td th:if="${user.id_rol==3 && !usuario.baja}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja"><i></i>Baja</button></td>
+                            <td th:if="${user.id_rol==3 && !usuario.baja}" class="align-middle">
+                            <a th:href="@{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})}">
+                            <i>
+                            <button class="btn btn-sm btn-primary" onclick="if(!confirm('Vas a dar de baja un usuario'))return false" value="Dar de baja">Dar de baja</button>
+                            </i>
+                            </a>
+                            </td>
                             <td th:unless="${user.id_rol==3 && !usuario.baja}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaUsuario?idUsuario={idUsuario}(idUsuario=${usuario.id})} + '\''" value="Dar de baja" disabled><i></i>Baja</button></td>
                         </tr>  
                         

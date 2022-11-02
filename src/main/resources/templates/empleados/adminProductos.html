@@ -95,7 +95,7 @@
 
                         <tr th:each="producto : ${productos}">
                         	<td class="align-middle" th:text=${producto.id}></td>
-                        	<td class="align-middle" th:text=${producto.id_categoria}></td>
+                        	<td class="align-middle" th:text=${producto.categoria.id}></td>
                         	<td class="align-middle" th:text=${producto.nombre}></td>
                         	<td class="align-middle" th:text=${producto.descripcion}></td>
                         	<td class="align-middle" th:text=${producto.precio}></td>
@@ -104,9 +104,15 @@
                             <td class="align-middle"><img th:src="@{/img/productos/}+${producto.imagen}" th:alt="${producto.nombre}" style="width: 50px;"></td>
                             <td class="align-middle" th:text=${producto.fecha_alta}></td>
                             <td class="align-middle" th:text=${producto.baja}></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="window.location.href = \'' + @{/modificarProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
-                            <td th:if="${user.id_rol==3 && !producto.baja}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Dar de baja"><i></i>Baja catálogo</button></td>
-                            <td th:if="${user.id_rol!=3 || producto.baja}" class="align-middle"><button disabled class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Dar de baja"><i></i>Baja catálogo</button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
+                            <td th:if="${user.id_rol==3 && !producto.baja}" class="align-middle">
+                            <a th:href="@{/darBajaProducto?idProd={idProd}(idProd=${producto.id})}">
+                            <i>
+                            <button class="btn btn-sm btn-primary" onclick="if(!confirm('Vas a dar de baja un producto'))return false" value="Dar de baja">Baja catálogo</button>
+                            </i>
+                            </a>
+                            </td>
+                            <td th:if="${user.id_rol!=3 || producto.baja}" class="align-middle"><button disabled class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/darBajaProducto?idProd={idProd}(idProd=${producto.id})} + '\''" value="Dar de baja"><i></i>Baja</button></td>
                         </tr>  
                         
                     </tbody>
