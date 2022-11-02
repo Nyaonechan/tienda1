@@ -1,6 +1,5 @@
 package curso.java.tienda.entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -8,7 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 
 
@@ -30,14 +35,24 @@ public class Usuarios {
     
     private int id_rol;
     
+    @NotEmpty
+    @NotNull
+    @Email
     private String email;
-    
+    @NotEmpty
+    @NotNull
     private String clave;
-    
+    @NotEmpty
+    @NotNull
+    @Size(min = 3)
     private String nombre;
-    
+    @NotEmpty
+    @NotNull
+    @Size(min = 3)
     private String apellido1;
-    
+    @NotEmpty
+    @NotNull
+    @Size(min = 3)
     private String apellido2;
     
     private String direccion;
@@ -45,9 +60,10 @@ public class Usuarios {
     private String provincia;
     
     private String localidad;
-    
+    @Min(600000000)
+    @Max(799999999)
     private String telefono;
-    
+    @Size(min = 9, max = 9)
     private String dni;
     
     private String imagen;

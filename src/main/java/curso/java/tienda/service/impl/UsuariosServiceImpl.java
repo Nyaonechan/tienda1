@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import curso.java.tienda.dao.UsuariosDao;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.UsuariosService;
+import curso.java.tienda.utils.Encriptacion;
 
 @Service
 public class UsuariosServiceImpl implements UsuariosService {
@@ -53,6 +54,18 @@ public class UsuariosServiceImpl implements UsuariosService {
 		
 		usuarioDao.darBajaUsuarioById(id);
 		
+	}
+
+	@Override
+	public boolean comprobarPass(String email, String clave, Usuarios user) {
+		
+		boolean bandera= false;
+		
+		String desencriptada = Encriptacion.desencriptar(user.getClave());
+		
+		if (desencriptada.equals(clave)) bandera = true;
+		
+		return bandera;
 	}
 	
 	

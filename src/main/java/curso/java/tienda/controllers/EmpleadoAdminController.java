@@ -13,6 +13,7 @@ import curso.java.tienda.service.Opciones_menuService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
 import curso.java.tienda.service.UsuariosService;
+import curso.java.tienda.utils.Excel;
 
 
 @SessionAttributes({"user", "idRol"})
@@ -31,11 +32,14 @@ public class EmpleadoAdminController {
 	@Autowired
 	Opciones_menuService opciones_menuService;
 	
+	@Autowired
+	Excel excel;
+	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
 	
 	
 	@GetMapping ("/adminInicio")
-	public String dashboard (Model modelo) {
+	public String adminInicio (Model modelo) {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
@@ -119,9 +123,11 @@ public class EmpleadoAdminController {
 		
 		pedidoService.establecerFactura(id);
 		
+		modelo.addAttribute("id_pedido", id);
+		
 		logger.info("Estado del pedido con id: " + id + " modificado");
 		
-		return adminPedidos(modelo);
+		return "empleados/pedidoModificado";
 		
 	}
 	
@@ -188,6 +194,21 @@ public class EmpleadoAdminController {
 		
 		return adminUsuarios(modelo, rol);
 
+	}
+	
+	@GetMapping ("/exportarCatalogo")
+	public String exportarCatalogo(Model modelo) {
+		
+		excel.exportarCatalogo();
+		
+		return adminInicio(modelo);
+	}
+	
+	@GetMapping ("/importarProductos")
+	public String importarProductos(Model modelo) {
+		
+		excel.importarProductos();
+		return adminInicio(modelo);
 	}
 
 }

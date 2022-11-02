@@ -13,5 +13,7 @@ public interface UsuariosService {
 	public void insertUsuario(Usuarios usuario, int rol);
 	
 	public void darBajaUsuarioById(int id);
+	
+	public boolean comprobarPass(String email, String clave, Usuarios user);
 
 }

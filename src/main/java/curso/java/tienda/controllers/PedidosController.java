@@ -5,15 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import curso.java.tienda.DemoApplication;
 import curso.java.tienda.entities.Usuarios;
+import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
 
-@SessionAttributes({"categorias", "user", "carrito"})
+@SessionAttributes({"categorias", "user", "carrito", "cantidad"})
 @Controller
 public class PedidosController {
 	
@@ -22,6 +24,12 @@ public class PedidosController {
 	
 	@Autowired
 	PedidosService pedidoService;
+	
+	@Autowired
+	Detalles_pedidoService detalles_pedidoService;
+	
+	@Autowired
+	ProductosController productosController;
 	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
 	
@@ -36,23 +44,27 @@ public class PedidosController {
 		return "checkout";
 	}
 	
-	@GetMapping ("/confirmarCompra")
-	public String confirmarCompra (Model modelo) {
+	@PostMapping ("/confirmarCompra")
+	public String confirmarCompra (Model modelo, @RequestParam String pago) {
 		
 		System.out.println("Controlador confirmarCompra");
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		double precioTotal=productoService.precioTotalCarro(modelo);
 		productoService.desgloseIva(modelo, precioTotal);
-		pedidoService.insertPedido(user, "Card" , precioTotal);
-		pedidoService.insertDetallesPedido(modelo);
-		pedidoService.modificarStock(modelo);
+		if (!pedidoService.comprobarStock(modelo)) {
+			pedidoService.modificarStock(modelo);
+			pedidoService.insertPedido(user, pago, precioTotal);
+			detalles_pedidoService.insertDetallesPedido(modelo);
+			modelo.addAttribute("carrito", null);
+			pedidoService.eliminarArticulosCarritoById();
+			logger.info("Pedido realizado por el usuario con id: " + user.getId());
+		} else {
+			modelo.addAttribute("stock", "No hay suficiente stock del producto " + modelo.getAttribute("nombre_producto"));
+			return productosController.cart(modelo);
+		}
 		
-		modelo.addAttribute("carrito", null);
-		
-		pedidoService.eliminarArticulosCarritoById();
-		
-		logger.info("Pedido realizado por el usuario con id: " + user.getId());
+
 		
 		return "ty_purchase"; 
 	}

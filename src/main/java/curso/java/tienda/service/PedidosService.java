@@ -8,9 +8,9 @@ public interface PedidosService {
 	
 	public void insertPedido (Usuarios user, String metodoPago, double total);
 	
-	public void insertDetallesPedido(Model modelo);
-	
 	public void eliminarArticulosCarritoById ();
+	
+	public boolean comprobarStock(Model modelo);
 	
 	public void modificarStock(Model modelo);
 	

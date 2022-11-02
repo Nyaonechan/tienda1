@@ -25,6 +25,10 @@ public interface ProductosService {
 	
 	public void ochoProductosMasNuevos(Model modelo);
 	
+	public void ochoProductosMasVendidos(Model modelo);
+	
+	// ---------------
+	
 	public void cargarCategorias(Model modelo);
 	
 	public void cantidadProductosCat(int id, Model modelo);

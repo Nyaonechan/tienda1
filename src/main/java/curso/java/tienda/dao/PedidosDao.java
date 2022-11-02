@@ -35,10 +35,6 @@ public interface PedidosDao {
 
 	// ---
 	
-	public void insertDetallePedido(Detalles_pedido detallePedido); // mover a detalles
-	
-	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id); // mover a detalles
-	
 	public void eliminarArticulosCarritoByIdPedido(int id);
 	
 	public void modificarStock(int cantidad, int id_producto);

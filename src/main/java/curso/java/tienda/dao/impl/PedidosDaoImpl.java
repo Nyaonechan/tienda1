@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.CacheMode;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,7 +26,8 @@ public class PedidosDaoImpl implements PedidosDao {
 	
 	@Autowired
 	EntityManager entityManager;
-
+	
+	@Transactional
 	@Override
 	public ArrayList<Pedidos> getPedidos() {
 		
@@ -106,6 +107,7 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 		query.executeUpdate();
 		
+		
 	}
 	
 	@Transactional
@@ -167,30 +169,6 @@ public class PedidosDaoImpl implements PedidosDao {
 
 		query.executeUpdate();
 	}	
-
-	@Override
-	public void insertDetallePedido(Detalles_pedido detallePedido) {
-		
-		Session session = entityManager.unwrap(Session.class);
-		
-		session.saveOrUpdate(detallePedido);
-		
-	}
-
-	@Override
-	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id) {
-		
-		Session session = entityManager.unwrap(Session.class);
-
-		Query<Detalles_pedido> query = session.createQuery("from Detalles_pedido where id_pedido=:id",Detalles_pedido.class);
-		
-		query.setParameter("id", id);
-
-		ArrayList<Detalles_pedido> detallesPedido =  (ArrayList<Detalles_pedido>) query.getResultList();
-		
-		return detallesPedido;
-		
-	}
 	
 	@Transactional
 	@Override

@@ -131,6 +131,18 @@ public class ProductosServiceIml implements ProductosService {
 		modelo.addAttribute("productos", masNuevos);
 		
 	}
+	
+	@Override
+	public void ochoProductosMasVendidos(Model modelo) {
+		ArrayList<Productos> productos = productoDao.getProductosByStock();
+		ArrayList<Productos> masVendidos = new ArrayList<Productos>();
+		
+		for (int i=0; i<8;i++) {
+			masVendidos.add(productos.get(i));
+		}
+		
+		modelo.addAttribute("masVendidos", masVendidos);
+	}
 
 	@Override
 	public void cargarCategorias(Model modelo) {

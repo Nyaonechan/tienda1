@@ -32,5 +32,29 @@ public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 		return detalles;
 		
 	}
+	
+	@Override
+	public void insertDetallePedido(Detalles_pedido detallePedido) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		session.saveOrUpdate(detallePedido);
+		
+	}
+
+	@Override
+	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+
+		Query<Detalles_pedido> query = session.createQuery("from Detalles_pedido where id_pedido=:id",Detalles_pedido.class);
+		
+		query.setParameter("id", id);
+
+		ArrayList<Detalles_pedido> detallesPedido =  (ArrayList<Detalles_pedido>) query.getResultList();
+		
+		return detallesPedido;
+		
+	}
 
 }

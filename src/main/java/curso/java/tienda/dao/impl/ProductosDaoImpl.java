@@ -231,6 +231,21 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 	}
 	
+	// Más vendidos
+	
+	@Override
+	public ArrayList<Productos> getProductosByStock(){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("from Productos order by stock",Productos.class);
+		
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+		
+		return productos;
+		
+	}
+	
 	//COMPROBAR TABLA CARRITO
 	
 	@Override

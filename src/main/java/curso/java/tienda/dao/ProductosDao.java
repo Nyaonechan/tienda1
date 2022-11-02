@@ -48,6 +48,10 @@ public interface ProductosDao {
 	
 	public ArrayList<Productos> getProductosByNombre(String nombre);
 	
+	// Más vendidos
+	
+	public ArrayList<Productos> getProductosByStock();
+	
 	//------------------------------
 	
 	public ArrayList<Categorias> getCategorias();

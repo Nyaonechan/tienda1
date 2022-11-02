@@ -31,7 +31,7 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="@{/perfilResumen}">Home</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/perfilResumen}">Home</a></li>
               <li class="breadcrumb-item"><a th:href="@{/perfilPedidos}">Ver pedidos</a></li>
               <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
               
@@ -142,6 +142,15 @@
                       <h6 class="mb-0"> NIF</h6>
                     </div>
                     <div class="col-sm-9 text" th:text="${user.dni}">
+                      Kenneth Valdez
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"> Password</h6>
+                    </div>
+                    <div class="col-sm-9 text" th:text="${desencriptada}">
                       Kenneth Valdez
                     </div>
                   </div>

@@ -6,7 +6,7 @@ import curso.java.tienda.entities.Usuarios;
 
 public interface UsuariosDao {
 
-	public Usuarios getPersonaByEmailAndPass(String email, String clave);
+	public Usuarios getPersonaByEmail(String email);
 
 	public void insertarUsuario(Usuarios usuario);
 	

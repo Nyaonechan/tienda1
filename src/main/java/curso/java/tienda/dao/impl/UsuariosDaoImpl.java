@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import curso.java.tienda.dao.UsuariosDao;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
+import curso.java.tienda.utils.Encriptacion;
 
 @Repository
 public class UsuariosDaoImpl implements UsuariosDao{
@@ -22,25 +23,28 @@ public class UsuariosDaoImpl implements UsuariosDao{
 	private EntityManager entityManager;
 
 	@Override
-	public Usuarios getPersonaByEmailAndPass(String email, String clave) {
+	public Usuarios getPersonaByEmail(String email) {
 		System.out.println("email: "+email);
-		System.out.println("pass: "+clave);
 
 		Session session=entityManager.unwrap(Session.class);
-		Query<Usuarios> query=session.createQuery("from Usuarios where email=:email and clave=:clave", Usuarios.class );
+		Query<Usuarios> query=session.createQuery("from Usuarios where email=:email", Usuarios.class );
 		query.setParameter("email", email);
-		query.setParameter("clave", clave);
 		List<Usuarios> usuarios = query.getResultList();
 		if (usuarios!=null && usuarios.size()!=0) {
 		 return usuarios.get(0);
 		}
 		return null;
 	}
-
+	
+	@Transactional
 	@Override
 	public void insertarUsuario(Usuarios usuario) {
 		
 		Session session = entityManager.unwrap(Session.class);
+		
+		String encriptada = Encriptacion.encriptar(usuario.getClave());
+		
+		usuario.setClave(encriptada);
 
 		session.saveOrUpdate(usuario);
 		

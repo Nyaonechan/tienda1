@@ -37,26 +37,7 @@ public class PedidosServiceImpl implements PedidosService{
 		pedidoDao.insertPedido(pedido);
 		
 	}
-
-	@Override
-	public void insertDetallesPedido(Model modelo) {
 		
-		Pedidos pedido = pedidoDao.getLastPedido();
-		
-		Detalles_pedido detallePedido;
-		
-		ArrayList <Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
-		
-		for (Productos e: carrito) {
-			
-			detallePedido = new Detalles_pedido(pedido.getId(), e.getId(), e.getCantidad(), (float)e.getPrecio(), e.getImpuesto(), e.getPrecio()*e.getCantidad());
-			
-			pedidoDao.insertDetallePedido(detallePedido);
-			
-		}
-		
-	}
-	
 	@Override
 	public void eliminarArticulosCarritoById () {
 		
@@ -65,6 +46,22 @@ public class PedidosServiceImpl implements PedidosService{
 		pedidoDao.eliminarArticulosCarritoByIdPedido(pedido.getId_usuario());
 		
 	}
+	
+	@Override
+	public boolean comprobarStock(Model modelo){
+		
+		boolean stock = false;
+		ArrayList <Productos> carrito = (ArrayList<Productos>) modelo.getAttribute("carrito");
+		
+		for (Productos e: carrito) {
+			if (e.getCantidad()>e.getStock()) {
+				stock = true;
+				modelo.addAttribute("nombre_producto", e.getNombre());
+			}
+		}
+		
+		return stock;
+	}
 
 	@Override
 	public void modificarStock(Model modelo) {
@@ -72,14 +69,16 @@ public class PedidosServiceImpl implements PedidosService{
 		ArrayList<Productos> productos = (ArrayList<Productos>) modelo.getAttribute("carrito");
 		
 		for (Productos e: productos) {
-			pedidoDao.modificarStock(e.getCantidad(), e.getId());
+			if (e.getStock()>e.getCantidad()) pedidoDao.modificarStock(e.getCantidad(), e.getId());
+			// falta el else
 		}
 		
 	}
 	
+	@Transactional
 	@Override
 	public void getPedidos(Model modelo) {
-		//PedidosDao pedidoDao = new PedidosDaoImpl();
+
 		ArrayList<Pedidos> pedidos=pedidoDao.getPedidos();
 		modelo.addAttribute("pedidos", pedidos);
 	}
@@ -111,12 +110,12 @@ public class PedidosServiceImpl implements PedidosService{
 	public void establecerFactura(int id) {
 		Pedidos pedido = pedidoDao.getPedidoById(id);
 		System.out.println(pedido);
-		//if (pedido.getEstado().equals("E")) {
+		if (pedido.getEstado().equals("E")|| pedido.getEstado().equals("P.E.")) {
 			
 			String factura = configuracionService.generarFactura();
 			pedidoDao.establecerNumFactura(id, factura);
 			configuracionService.aumentarNumFactura();
-		//}
+		}
 	}
 	
 	@Transactional

@@ -17,6 +17,10 @@ import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
+import curso.java.tienda.service.UsuariosService;
+import curso.java.tienda.utils.Encriptacion;
+import curso.java.tienda.utils.EnviarEmail;
+import curso.java.tienda.utils.FacturasPdf;
 
 
 @SessionAttributes({"categorias", "user"})
@@ -38,6 +42,15 @@ public class UsuariosController {
 	@Autowired
 	private Detalles_pedidoService detalle_pedidoService;
 	
+	@Autowired
+	UsuariosService usuarioService;
+	
+	@Autowired
+	EnviarEmail email;
+	
+	@Autowired
+	FacturasPdf factura;
+	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
 	
 	@GetMapping("/login") 
@@ -53,18 +66,22 @@ public class UsuariosController {
 	public String formularioLoginPost (Model modelo,Usuarios usuario) {
 		
 		System.out.println("llamando a controlador Login POST");
+		
+		Usuarios user = usuarioDao.getPersonaByEmail(usuario.getEmail());
 
-		Usuarios u =usuarioDao.getPersonaByEmailAndPass(usuario.getEmail(), usuario.getClave());
-		System.out.println("Persona obtenida:"+u);
-		if(u==null) {
-			modelo.addAttribute("error", "");
-			return "formularioLogin"; 
+		if( user==null) {
+			modelo.addAttribute("error", "Usuario no registrado");
+			return formularioLogin(modelo); 
 		}
-		modelo.addAttribute("user",u);
+		if (!usuarioService.comprobarPass(usuario.getEmail(), usuario.getClave(), user)) {
+			modelo.addAttribute("error", "Contraseña incorrecta");
+			return formularioLogin(modelo); 
+		}
+		modelo.addAttribute("user",user);
 		
-		logger.info("Loggeo correcto " + u.getId());
+		logger.info("Loggeo correcto " + user.getId());
 		
-		productoService.insertarProductosListaCarritoATabla(u, modelo); // SI NO HAY REGISTROS DE ESE USUARIO EN LA TABLA
+		productoService.insertarProductosListaCarritoATabla(user, modelo); // SI NO HAY REGISTROS DE ESE USUARIO EN LA TABLA
 				
 		return  productosController.todosProductos(modelo);
 
@@ -93,7 +110,7 @@ public class UsuariosController {
 	
 
 	
-	@PostMapping("/register")
+	@PostMapping("/registerPost")
 	public String processRegister(Model modelo, Usuarios usuario) {
 		
 		System.out.println("llamando a controlador registerPOST");
@@ -104,6 +121,7 @@ public class UsuariosController {
 		
 	    System.out.println(usuario);
 	    usuarioDao.insertarUsuario(usuario);
+	    email.enviarEmail(usuario.getEmail());
 	    
 	    logger.info("Registro correcto " + usuario.getId());
 	     
@@ -111,24 +129,43 @@ public class UsuariosController {
 	}
 	
 	@GetMapping("/perfilResumen")
-	public String perfilResumen() {
+	public String perfilResumen(Model modelo) {
+		
+		System.out.println("Controlador perfilResumen");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		String desencriptada = Encriptacion.desencriptar(user.getClave()); //null cuando vuelves a home
+		
+		modelo.addAttribute("desencriptada", desencriptada);
 		
 		return "perfil/perfilResumen";
 	}
 	
 	@GetMapping ("/modificarDatos")
-	public String modificarDatos() {
+	public String modificarDatos(Model modelo) {
+		
+		System.out.println("Controlador modificarDatos");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		String desencriptada = Encriptacion.desencriptar(user.getClave());
+		
+		modelo.addAttribute("desencriptada", desencriptada);
 		
 		return "perfil/perfilCambios";
 	}
 	
-	@PostMapping("/modificarDatosForm")
-	public String modificarDatosForm(Model modelo) {
+	@PostMapping("/modificarDatosPost")
+	public String modificarDatosForm(Model modelo, Usuarios usuario) {
 		
-		Usuarios user = (Usuarios) modelo.addAttribute("user");
+		System.out.println("Controlador modificarDatosPost");
 		
+		usuarioDao.insertarUsuario(usuario);
 		
-		return perfilResumen();
+		modelo.addAttribute("user", usuario);
+		
+		return perfilResumen(modelo);
 	}
 	
 	@GetMapping ("/perfilPedidos")
@@ -161,6 +198,18 @@ public class UsuariosController {
 		logger.info("Solicitada cancelación del pedido con id: "+id_pedido);
 		
 		return perfilPedidos(modelo);
+	}
+	
+	@GetMapping ("/facturasPdf")
+	public String facturasPdf(@RequestParam int id_pedido, Model modelo) {
+		
+		System.out.println("Controlador facturasPdf");
+		
+		factura.crearFactura(id_pedido, modelo);
+		
+		
+		return perfilPedidos(modelo);
+		
 	}
 
 

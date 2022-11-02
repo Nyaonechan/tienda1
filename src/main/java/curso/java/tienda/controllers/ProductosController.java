@@ -99,6 +99,13 @@ public class ProductosController {
 		return "shop";
 	}
 	
+	@GetMapping("/stock")
+	public String stock (Model modelo) {
+		ArrayList<Productos> productos = productoDao.getProductosByStock();
+		modelo.addAttribute("productos", productos);
+		return "shop";
+	}
+	
 	@GetMapping ("/detail")
 	public String detail (Model modelo, @RequestParam("idProd") int id) {
 		
