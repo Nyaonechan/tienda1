@@ -48,9 +48,14 @@ public class PedidosController {
 	}
 	
 	@PostMapping ("/confirmarCompra")
-	public String confirmarCompra (Model modelo, @RequestParam String pago) {
+	public String confirmarCompra (Model modelo, @RequestParam (required=false) String pago) {
 		
 		System.out.println("Controlador confirmarCompra");
+		
+		if (pago == null) {
+			modelo.addAttribute("eligeMetodo", "Debes elegir un método de pago");
+			return checkout(modelo);
+		}
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		double precioTotal=productoService.precioTotalCarro(modelo);

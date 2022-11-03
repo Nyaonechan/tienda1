@@ -185,14 +185,12 @@
                     <div class="card-body">
                         <div th:each="metodo : ${metodos}" class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="pago" th:id="${metodo.metodo_pago}" th:value="${metodo.metodo_pago}"
-                                th:onclick="'window.location.href = \'' + @{/checkout}">
+                                <input type="radio" class="custom-control-input" name="pago" th:id="${metodo.metodo_pago}" th:value="${metodo.metodo_pago}">
                                 <label class="custom-control-label" th:for="${metodo.metodo_pago}" th:text="${metodo.metodo_pago}"></label>
                             </div>
                         </div>
                     </div>
-                    <div th:if=${pago==null}>
-                    <div>Debes elegir un medio de pago</div>
+                    <div th:if=${eligeMetodo!=null} th:text="${eligeMetodo}">
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <button id="submit" type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>

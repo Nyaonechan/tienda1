@@ -33,6 +33,10 @@ public class UsuariosServiceImpl implements UsuariosService {
 		
 		Usuarios usuario = usuarioDao.getUsuarioById(id);
 		
+		String desencriptada = Encriptacion.desencriptar(usuario.getClave());
+		
+		usuario.setClave(desencriptada);
+		
 		modelo.addAttribute("usuario", usuario);
 		
 	}

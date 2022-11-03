@@ -32,7 +32,8 @@ public class HiloEstadoPedidos implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+		System.out.println("Hilo comprobando y modificando pedidos");
+		logger.info("Hilo comprobando y modificando pedidos");
 		modificarEstadoPedidos();
 		}while(bandera);
 		

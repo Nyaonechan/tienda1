@@ -1,5 +1,7 @@
 package curso.java.tienda.controllers;
 
+import javax.transaction.Transactional;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ import curso.java.tienda.utils.Encriptacion;
 import curso.java.tienda.utils.Excel;
 
 
-@SessionAttributes({"user", "idRol"})
+@SessionAttributes({"user", "idRol", "categorias"})
 @Controller
 public class EmpleadoAdminController {
 	
@@ -88,6 +90,7 @@ public class EmpleadoAdminController {
 	}
 	
 	@PostMapping ("/insertProducto")
+	@Transactional
 	String insertOrUpdateProducto(Model modelo, Productos producto) {
 		
 		System.out.println("Controlador insertProducto");
@@ -149,11 +152,6 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador adminClientes");
 		
-		//Usuarios user = (Usuarios) modelo.getAttribute("user");
-		//String clave = user.getClave();
-		//String desencriptada=Encriptacion.desencriptar(clave);
-		//modelo.addAttribute("desencriptada", desencriptada);
-		
 		usuarioService.getUsuariosByRol(idRol, modelo);
 		
 		modelo.addAttribute("idRol", idRol);
@@ -170,7 +168,11 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador nuevoUsuario");
 		
-		modelo.addAttribute("usuario", new Usuarios());
+		Usuarios user = new Usuarios();
+		
+		user.setClave("123456");
+		
+		modelo.addAttribute("usuario", user);
 		
 		return "empleados/formUsuarios";
 		
@@ -193,12 +195,6 @@ public class EmpleadoAdminController {
 		System.out.println("Controlador insertUsuario");
 		
 		int rol = (int) modelo.getAttribute("idRol");
-		String claveEnc = usuario.getClave();
-		//esto solo si es modificar
-		if (claveEnc.length()>15) {
-			String desenc = Encriptacion.desencriptar(claveEnc);
-			usuario.setClave(desenc);
-		}
 		
 		usuarioService.insertUsuario(usuario, rol);
 		

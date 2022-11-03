@@ -49,7 +49,9 @@
 									<h6 class="mb-0">Id Categoría</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.categia.id}" th:field="*{categoria.id}">
+									    <select th:object="${producto}" th:field="*{producto.categoria}" class="form-control">
+       										<option th:each="categoria: ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+    									</select>
 								</div>
 							</div>
 							
@@ -101,7 +103,7 @@
 									<h6 class="mb-0">Imagen</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="file"  value="" th:field="*{imagen}">
+									<input type="file"  value="${producto.imagen}" th:field="*{imagen}">
 								</div>
 							</div>
 

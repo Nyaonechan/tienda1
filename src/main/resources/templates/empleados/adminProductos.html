@@ -95,7 +95,7 @@
 
                         <tr th:each="producto : ${productos}">
                         	<td class="align-middle" th:text=${producto.id}></td>
-                        	<td class="align-middle" th:text=${producto.categoria.id}></td>
+                        	<td class="align-middle" th:text=${producto.categoria.nombre}></td>
                         	<td class="align-middle" th:text=${producto.nombre}></td>
                         	<td class="align-middle" th:text=${producto.descripcion}></td>
                         	<td class="align-middle" th:text=${producto.precio}></td>

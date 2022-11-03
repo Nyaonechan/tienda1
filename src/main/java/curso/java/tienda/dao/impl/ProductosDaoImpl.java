@@ -25,6 +25,7 @@ public class ProductosDaoImpl implements ProductosDao {
 	@Autowired
 	EntityManager entityManager;
 	
+	@Transactional
 	@Override
 	public void insertOrUpdateProducto(Productos producto) {
 		
@@ -75,7 +76,7 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> query = session.createQuery("from Productos where id_categoria=: id_cat",Productos.class);
+		Query<Productos> query = session.createQuery("from Productos where categoria_id=: id_cat",Productos.class);
 		
 		query.setParameter("id_cat", cat);
 
@@ -118,7 +119,7 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> query = session.createQuery("from Productos where id_categoria=:id_categoria order by precio desc",Productos.class);
+		Query<Productos> query = session.createQuery("from Productos where categoria_id=:id_categoria order by precio desc",Productos.class);
 		
 		query.setParameter("id_categoria", cat);
 		
@@ -134,7 +135,7 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and id_categoria=:id_categoria order by precio desc",Productos.class);
+		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and categoria_id=:id_categoria order by precio desc",Productos.class);
 		
 		query.setParameter("id_categoria", cat);
 		
@@ -177,7 +178,7 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> query = session.createQuery("from Productos where id_categoria=:id_categoria order by precio",Productos.class);
+		Query<Productos> query = session.createQuery("from Productos where categoria_id=:id_categoria order by precio",Productos.class);
 		
 		query.setParameter("id_categoria", cat);
 		
@@ -193,7 +194,7 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and id_categoria=:id_categoria order by precio",Productos.class);
+		Query<Productos> query = session.createQuery("from Productos where precio between " + min + "and " + max + " and categoria_id=:id_categoria order by precio",Productos.class);
 		
 		query.setParameter("id_categoria", cat);
 		

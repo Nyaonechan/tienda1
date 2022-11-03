@@ -33,6 +33,8 @@ public class IndexController {
 		Thread thread = new Thread(hiloEstadoPedidos);
 		thread.start();
 		
+		//TODO Si el usuario ha sido creado por admin, llevar a /perfilCambios para obligar a editar la contraseña por defecto
+		
 		// CARGAR DATOS EMPRESA
 		configuracionService.recogerDatosEmpresa(modelo);
 		

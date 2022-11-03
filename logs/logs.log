@@ -1129,3 +1129,290 @@
 [http-nio-8080-exec-9] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
 [http-nio-8080-exec-8] INFO  curso.java.tienda.DemoApplication  - Desloggeo correcto 
 [restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-8] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 14
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-1] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 14
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-7] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 14
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Desloggeo correcto 
+[http-nio-8080-exec-9] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[http-nio-8080-exec-8] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 10
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-8] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[Thread-794] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[Thread-990] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-990] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-990] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[Thread-990] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-9] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1383] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1382] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1385] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1384] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-1381] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos

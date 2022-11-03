@@ -25,12 +25,13 @@ public class ProductosServiceIml implements ProductosService {
 	@Transactional
 	@Override
 	public void insertProducto(Productos producto) {
-
+		
 		producto.setBaja(false);
 		producto.setFecha_alta(LocalDate.now());
 		productoDao.insertOrUpdateProducto(producto);
 	}
 	
+	@Transactional
 	@Override
 	public void darBajaProducto(int id) {
 		productoDao.darBajaProducto(id);
