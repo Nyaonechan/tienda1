@@ -19,15 +19,36 @@ public class Categorias {
 
     private String nombre;
     
+    private String descripcion;
+    
     private String imagen;
 
 	public Categorias() {	
+	}
+	
+	public Categorias(int id) {
+		this.id = id;
 	}
 
 	public Categorias(int id, String nombre, String imagen) {
 		this.id = id;
 		this.nombre = nombre;
 		this.imagen = imagen;
+	}
+	
+	public Categorias(int id, String nombre, String descripcion, String imagen) {
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion= descripcion;
+		this.imagen = imagen;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getNombre() {

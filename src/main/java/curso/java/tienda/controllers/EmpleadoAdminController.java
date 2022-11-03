@@ -7,12 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import curso.java.tienda.DemoApplication;
+import curso.java.tienda.entities.Categorias;
+import curso.java.tienda.entities.Configuracion;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
+import curso.java.tienda.service.CategoriasService;
+import curso.java.tienda.service.ConfiguracionService;
 import curso.java.tienda.service.Opciones_menuService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
 import curso.java.tienda.service.UsuariosService;
+import curso.java.tienda.utils.Encriptacion;
 import curso.java.tienda.utils.Excel;
 
 
@@ -31,6 +36,12 @@ public class EmpleadoAdminController {
 	
 	@Autowired
 	Opciones_menuService opciones_menuService;
+	
+	@Autowired
+	CategoriasService categoriaService;
+	
+	@Autowired
+	ConfiguracionService configuracionService;
 	
 	@Autowired
 	Excel excel;
@@ -138,6 +149,11 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador adminClientes");
 		
+		//Usuarios user = (Usuarios) modelo.getAttribute("user");
+		//String clave = user.getClave();
+		//String desencriptada=Encriptacion.desencriptar(clave);
+		//modelo.addAttribute("desencriptada", desencriptada);
+		
 		usuarioService.getUsuariosByRol(idRol, modelo);
 		
 		modelo.addAttribute("idRol", idRol);
@@ -177,6 +193,12 @@ public class EmpleadoAdminController {
 		System.out.println("Controlador insertUsuario");
 		
 		int rol = (int) modelo.getAttribute("idRol");
+		String claveEnc = usuario.getClave();
+		//esto solo si es modificar
+		if (claveEnc.length()>15) {
+			String desenc = Encriptacion.desencriptar(claveEnc);
+			usuario.setClave(desenc);
+		}
 		
 		usuarioService.insertUsuario(usuario, rol);
 		
@@ -209,6 +231,56 @@ public class EmpleadoAdminController {
 		
 		excel.importarProductos();
 		return adminInicio(modelo);
+	}
+	
+	@GetMapping ("/formCategoria")
+	public String formCategoria(Model modelo) {
+		
+		System.out.println("Controlador formCategoria");
+		
+		modelo.addAttribute("categoria", new Categorias());
+		
+		return "empleados/formCategoria";
+	}
+	
+	@PostMapping("/crearCategoría")
+	public String crearCategoria(Model modelo, Categorias categoria) {
+		
+		System.out.println("Controlador crearCategorias");
+		
+		categoriaService.insertarCategoria(categoria);
+		
+		return adminInicio(modelo);
+	}
+	
+	@GetMapping ("/adminConfiguracion")
+	public String adminConfiguracion(Model modelo) {
+		
+		System.out.println("Controlador adminConfiguracion");
+		
+		configuracionService.getConfiguraciones(modelo);
+		
+		return "empleados/adminConfiguracion";
+	}
+	
+	@GetMapping("/formConfiguracion")
+	public String formConfiguracion(@RequestParam int idConfiguracion, Model modelo) {
+		
+		System.out.println("Controlador formConfiguracion");
+		
+		configuracionService.getConfiById(modelo, idConfiguracion);
+		
+		return "empleados/formConfiguracion";
+	}
+	
+	@PostMapping("/modificarConfiguracion")
+	String modificarConfiguracion(Model modelo, Configuracion configuracion) {
+		
+		System.out.println("Controlador modificarConfiguracion");
+		
+		configuracionService.insertConfiguracion(configuracion);
+		
+		return adminConfiguracion(modelo);
 	}
 
 }

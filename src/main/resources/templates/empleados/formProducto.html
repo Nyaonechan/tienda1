@@ -42,14 +42,14 @@
     		<form th:action="@{/insertProducto}" th:object="${producto}" method="post" class="container-fluid">
 				<div class="container">
 
-							<input type="text" class="form-control" th:field="*{id}" value="${producto.id}">
+							<input type="hidden" class="form-control" th:field="*{id}" value="${producto.id}">
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
 									<h6 class="mb-0">Id Categoría</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${producto.id_categoria}" th:field="*{id_categoria}">
+									<input type="text" class="form-control" value="${producto.categia.id}" th:field="*{categoria.id}">
 								</div>
 							</div>
 							
@@ -101,13 +101,13 @@
 									<h6 class="mb-0">Imagen</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="file"  value="${producto.imagen}" th:field="*{imagen}">
+									<input type="file"  value="" th:field="*{imagen}">
 								</div>
 							</div>
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <input type="submit" value="Guardar"/>
+                      <input type="submit" value="Guardar" onclick="alert('Producto insertado o modificado')"/>
                     </div>
                   </div>
 						</div>

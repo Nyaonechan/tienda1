@@ -143,13 +143,6 @@ public class ProductosServiceIml implements ProductosService {
 		
 		modelo.addAttribute("masVendidos", masVendidos);
 	}
-
-	@Override
-	public void cargarCategorias(Model modelo) {
-		ArrayList<Categorias> categorias = productoDao.getCategorias();
-		modelo.addAttribute("categorias", categorias);
-		
-	}
 	
 	@Override
 	public void cantidadProductosCat(int id, Model modelo) { // de la categoria

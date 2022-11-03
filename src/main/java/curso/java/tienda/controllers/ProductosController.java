@@ -15,6 +15,7 @@ import curso.java.tienda.dao.ProductosDao;
 import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
+import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.ProductosService;
 
 
@@ -28,11 +29,14 @@ public class ProductosController {
 	@Autowired
 	private ProductosService productoService;
 	
+	@Autowired
+	CategoriasService categoriaService;
+	
 	@GetMapping("/shop")
 	public String todosProductos(Model modelo) {
 		System.out.println("llamando a controlador shop");
 		
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 	
 		productoService.cargarProductos(modelo);
 		
@@ -54,7 +58,7 @@ public class ProductosController {
 		
 		System.out.println("llamando a controlador shop/id");
 		
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 		
 		productoService.cargarProductosByIdCat(modelo, id_categoria);
 		
@@ -71,7 +75,7 @@ public class ProductosController {
 		
 		System.out.println("Controlador precios");
 		
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 		
 		Categorias cat= (Categorias) modelo.getAttribute("categoria");
 		
@@ -111,7 +115,7 @@ public class ProductosController {
 		
 		System.out.println("llamando a controlador detail");
 		
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 		
 		productoService.cargarProductoById(modelo, id);
 		
@@ -123,7 +127,7 @@ public class ProductosController {
 		
 		System.out.println("llamando a controlador añadirCarrito");
 		
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 		
 		Productos productoCesta = productoDao.getProductoById(id);
 		
@@ -151,7 +155,7 @@ public class ProductosController {
 		
 		System.out.println("llamando a controlador cart");
 		
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		

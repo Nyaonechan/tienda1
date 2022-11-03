@@ -37,44 +37,35 @@
               </div>
             </div>
             
-            <h3 style="margin-top:100px; margin-left:50px">Crear categoría</h3>
+            <h3 style="margin-top:100px; margin-left:50px">Modificar configuracion</h3>
     
-    		<form th:action="@{/crearCategoría}" th:object="${categoria}" method="post" class="container-fluid">
+    		<form th:action="@{/modificarConfiguracion}" th:object="${configuracion}" method="post" class="container-fluid">
 				<div class="container">
 
-							<input type="hidden" class="form-control" th:field="*{id}" value="${categoria.id}">
+							<input type="hidden" class="form-control" th:field="*{id}" value="${configuracion.id}">
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Nombre Categoría</h6>
+									<h6 class="mb-0">Clave</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${categoria.nombre}" th:field="*{nombre}">
+									<input type="text" class="form-control" th:value="${configuracion.clave}" th:field="*{clave}" readonly>
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Descripción</h6>
+									<h6 class="mb-0">Valor</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="${categoria.descripcion}" th:field="*{descripcion}">
+									<input type="text" class="form-control" value="${configuracion.valor}" th:field="*{valor}">
 								</div>
 							</div>
 							
-
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Imagen</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="file"  value="${categoria.imagen}" th:field="*{imagen}">
-								</div>
-							</div>
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <input type="submit" value="Guardar" onclick="alert('Categoría creada')"/>
+                      <input type="submit" value="Guardar" onclick="alert('Configuracion modificada')"/>
                     </div>
                   </div>
 						</div>

@@ -52,10 +52,6 @@ public interface ProductosDao {
 	
 	public ArrayList<Productos> getProductosByStock();
 	
-	//------------------------------
-	
-	public ArrayList<Categorias> getCategorias();
-	
 	//COMPROBACIONES
 	
 	public boolean comprobarProdCarritoById (int id,  Usuarios user);

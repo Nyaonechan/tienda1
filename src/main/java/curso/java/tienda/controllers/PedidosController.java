@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import curso.java.tienda.DemoApplication;
 import curso.java.tienda.entities.Usuarios;
+import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
@@ -30,13 +31,15 @@ public class PedidosController {
 	
 	@Autowired
 	ProductosController productosController;
+	@Autowired
+	CategoriasService categoriaService;
 	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
 	
 	@GetMapping ("/checkout")
 	public String checkout (Model modelo) {
 		
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 		double precioTotal=productoService.precioTotalCarro(modelo);
 		productoService.desgloseIva(modelo, precioTotal);
 		pedidoService.getMetodosPago(modelo);

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.ConfiguracionService;
 import curso.java.tienda.service.ProductosService;
 import curso.java.tienda.utils.HiloEstadoPedidos;
@@ -22,6 +23,8 @@ public class IndexController {
 	private ConfiguracionService configuracionService;
 	@Autowired
 	HiloEstadoPedidos hiloEstadoPedidos;
+	@Autowired
+	CategoriasService categoriaService;
 	
 	@GetMapping("")
 	public String muestraIndex(Model modelo) {
@@ -40,7 +43,7 @@ public class IndexController {
 		productoService.ochoProductosMasNuevos(modelo);
 		
 		//CARGAR CATEGORIAS
-		productoService.cargarCategorias(modelo);
+		categoriaService.cargarCategorias(modelo);
 		
 		//CARGAR CANTIDAD CATEGORIAS
 		//productoService.cantidadProductosCat(id, modelo);

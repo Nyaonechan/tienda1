@@ -2,10 +2,12 @@ package curso.java.tienda.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,7 +19,7 @@ public class Productos {
 	
     @Override
 	public String toString() {
-		return "Productos [id=" + id + ", id_categoria=" + id_categoria + ", nombre=" + nombre + ", descripcion="
+		return "Productos [id=" + id + ", categoria=" + categoria + ", nombre=" + nombre + ", descripcion="
 				+ descripcion + ", precio=" + precio + ", stock=" + stock + ", impuesto=" + impuesto + ", imagen="
 				+ imagen + ", baja=" + baja + ", fecha_alta=" + fecha_alta + "]";
 	}
@@ -26,8 +28,8 @@ public class Productos {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-
-    private int id_categoria;
+	@ManyToOne(cascade=CascadeType.ALL)
+    private Categorias categoria;
 
     private String nombre;
 
@@ -54,10 +56,10 @@ public class Productos {
     }
 
 
-	public Productos(int id, int id_categoria, String nombre, String descripcion, double precio, int stock,
+	public Productos(int id, Categorias categoria, String nombre, String descripcion, double precio, int stock,
 			float impuesto, String imagen, boolean baja, LocalDate fecha_alta) {
 		this.id = id;
-		this.id_categoria = id_categoria;
+		this.categoria = categoria;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
@@ -70,13 +72,13 @@ public class Productos {
 	}
 
 
-	public int getId_categoria() {
-		return id_categoria;
+	public Categorias getCategoria() {
+		return categoria;
 	}
 
 
-	public void setId_categoria(int id_categoria) {
-		this.id_categoria = id_categoria;
+	public void setCategoria(Categorias categoria) {
+		this.categoria = categoria;
 	}
 
 
