@@ -1,7 +1,6 @@
 package curso.java.tienda.controllers;
 
 import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +16,7 @@ import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.ProductosService;
+import curso.java.tienda.service.ValoracionesService;
 
 
 @SessionAttributes({"categorias", "categoria", "user", "carrito", "cantidad"})
@@ -31,6 +31,9 @@ public class ProductosController {
 	
 	@Autowired
 	CategoriasService categoriaService;
+	
+	@Autowired
+	ValoracionesService valoracionService;
 	
 	@GetMapping("/shop")
 	public String todosProductos(Model modelo) {
@@ -118,6 +121,8 @@ public class ProductosController {
 		categoriaService.cargarCategorias(modelo);
 		
 		productoService.cargarProductoById(modelo, id);
+		
+		valoracionService.getValoraciones(modelo);
 		
 		return "detail";
 	}

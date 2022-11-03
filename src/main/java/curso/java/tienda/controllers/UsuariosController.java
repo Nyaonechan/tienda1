@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import curso.java.tienda.DemoApplication;
 import curso.java.tienda.dao.UsuariosDao;
 import curso.java.tienda.entities.Usuarios;
+import curso.java.tienda.entities.Valoraciones;
+import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
 import curso.java.tienda.service.UsuariosService;
+import curso.java.tienda.service.ValoracionesService;
 import curso.java.tienda.utils.Encriptacion;
 import curso.java.tienda.utils.EnviarEmail;
 import curso.java.tienda.utils.FacturasPdf;
@@ -26,6 +29,9 @@ import curso.java.tienda.utils.FacturasPdf;
 @SessionAttributes({"categorias", "user"})
 @Controller
 public class UsuariosController {
+	
+	@Autowired
+	private CategoriasService categoriaService;
 	
 	@Autowired
 	private ProductosController productosController;
@@ -44,6 +50,9 @@ public class UsuariosController {
 	
 	@Autowired
 	UsuariosService usuarioService;
+	
+	@Autowired
+	ValoracionesService valoracionService;
 	
 	@Autowired
 	EnviarEmail email;
@@ -185,6 +194,7 @@ public class UsuariosController {
 		
 		System.out.println("Controlador perfilDetallesPedido");
 		
+		pedidoService.getPedidoById(id_pedido, modelo);
 		detalle_pedidoService.getDetallesPedidoById(modelo, id_pedido);
 		
 		return "perfil/perfilDetallesPedido";
@@ -210,6 +220,31 @@ public class UsuariosController {
 		
 		return perfilPedidos(modelo);
 		
+	}
+	
+	@GetMapping ("/valorarProducto")
+	public String valorarProducto (@RequestParam int idDet, Model modelo) {
+		
+		System.out.println("Controlador valorarProducto");
+		
+		categoriaService.cargarCategorias(modelo);
+		
+		productoService.cargarProductoById(modelo, idDet);
+		
+		modelo.addAttribute("comprado", "");
+		modelo.addAttribute("valor", new Valoraciones());
+		
+		valoracionService.getValoraciones(modelo);
+		
+		return "detail";
+	}
+	
+	@PostMapping ("/guardarValoracion")
+	public String guardarValoracion(Model modelo, Valoraciones valoracion) {
+		
+		valoracionService.insertValoracion(valoracion);
+		
+		return "/detail";
 	}
 
 

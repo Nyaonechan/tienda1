@@ -1,8 +1,6 @@
 package curso.java.tienda.dao.impl;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
@@ -13,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import curso.java.tienda.dao.ProductosDao;
 import curso.java.tienda.entities.Articulos_carrito;
-import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 

@@ -18,11 +18,9 @@ public class Valoraciones {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Productos producto;
+	private int producto_id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Usuarios usuario;
+	private int usuario_id;
 	
 	private int valoracion;
 	
@@ -34,12 +32,12 @@ public class Valoraciones {
 		
 	}
 
-	public Valoraciones(int id, Productos producto, Usuarios usuario, int valoracion, String comentario,
+	public Valoraciones(int id, int producto_id, int usuario_id, int valoracion, String comentario,
 			LocalDate fecha) {
 		super();
 		this.id = id;
-		this.producto = producto;
-		this.usuario = usuario;
+		this.producto_id = producto_id;
+		this.usuario_id = usuario_id;
 		this.valoracion = valoracion;
 		this.comentario = comentario;
 		this.fecha = fecha;
@@ -53,20 +51,20 @@ public class Valoraciones {
 		this.id = id;
 	}
 
-	public Productos getProducto() {
-		return producto;
+	public int getProducto_id() {
+		return producto_id;
 	}
 
-	public void setProducto(Productos producto) {
-		this.producto = producto;
+	public void setProducto_id(int producto_id) {
+		this.producto_id = producto_id;
 	}
 
-	public Usuarios getUsuario() {
-		return usuario;
+	public int getUsuario_id() {
+		return usuario_id;
 	}
 
-	public void setUsuario(Usuarios usuario) {
-		this.usuario = usuario;
+	public void setUsuario_id(int usuario_id) {
+		this.usuario_id = usuario_id;
 	}
 
 	public int getValoracion() {
