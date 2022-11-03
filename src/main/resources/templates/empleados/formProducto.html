@@ -49,8 +49,8 @@
 									<h6 class="mb-0">Id Categoría</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									    <select th:object="${producto}" th:field="*{producto.categoria}" class="form-control">
-       										<option th:each="categoria: ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+									    <select th:field="*{categoria}" class="form-control">
+       										<option th:each="cat: ${categorias}" th:value="${cat.id}" th:text="${cat.nombre}"></option>
     									</select>
 								</div>
 							</div>
