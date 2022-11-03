@@ -54,6 +54,8 @@ public class EmpleadoAdminController {
 	@GetMapping ("/adminInicio")
 	public String adminInicio (Model modelo) {
 		
+		System.out.println("Controlador adminInicio");
+		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
 		opciones_menuService.elegirOpciones(modelo, user.getId());
@@ -66,6 +68,8 @@ public class EmpleadoAdminController {
 	@GetMapping ("/adminProductos")
 	public String adminProductos(Model modelo) {
 		
+		System.out.println("Controlador adminProductos");
+		
 		productoService.cargarProductos(modelo);
 		
 		return "empleados/adminProductos";
@@ -77,12 +81,15 @@ public class EmpleadoAdminController {
 		System.out.println("Controlador nuevoProducto");
 		
 		modelo.addAttribute("producto",new Productos());
+		//modelo.addAttribute("categoria",new Categorias());
 		
 		return "empleados/formProducto";
 	}
 	
 	@GetMapping("/modificarProducto")
 	public String modificarProducto (@RequestParam int idProd, Model modelo) {
+		
+		System.out.println("Controlador modificarProducto");
 		
 		productoService.getProductoById(idProd, modelo);
 

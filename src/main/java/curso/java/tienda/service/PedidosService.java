@@ -18,6 +18,8 @@ public interface PedidosService {
 	
 	public void getPedidosByIdUsuario(int id_usuario, Model modelo);
 	
+	public void getPedidoById(int id, Model modelo);
+	
 	public void modificarEstadoPedidoAdmin(int id);
 	
 	public void modificarEstadoPedidoCliente(int id);

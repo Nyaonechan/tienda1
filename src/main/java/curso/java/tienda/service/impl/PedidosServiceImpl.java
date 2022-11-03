@@ -92,6 +92,13 @@ public class PedidosServiceImpl implements PedidosService{
 		
 	}
 	
+	@Override
+	public void getPedidoById(int id, Model modelo) {
+		
+		modelo.addAttribute("pedido", pedidoDao.getPedidoById(id));
+		
+	}
+	
 	@Transactional
 	@Override
 	public void modificarEstadoPedidoAdmin(int id) {
