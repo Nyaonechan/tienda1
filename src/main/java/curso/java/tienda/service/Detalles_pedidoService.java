@@ -8,4 +8,6 @@ public interface Detalles_pedidoService {
 	
 	public void insertDetallesPedido(Model modelo);
 
+	public void modificarEstadoCliente(int id);
+
 }

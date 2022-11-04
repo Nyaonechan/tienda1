@@ -41,11 +41,18 @@ public class Detalles_pedidoServiceImpl implements Detalles_pedidoService {
 		
 		for (Productos e: carrito) {
 			
-			detallePedido = new Detalles_pedido(pedido.getId(), e.getId(), e.getCantidad(), (float)e.getPrecio(), e.getImpuesto(), e.getPrecio()*e.getCantidad());
+			detallePedido = new Detalles_pedido(pedido.getId(), e.getId(), e.getCantidad(), (float)e.getPrecio(), e.getImpuesto(), e.getPrecio()*e.getCantidad(), pedido.getEstado());
 			
 			detalle_pedidoDao.insertDetallePedido(detallePedido);
 			
 		}
+	}
+
+	@Override
+	public void modificarEstadoCliente(int id) {
+		
+		detalle_pedidoDao.modificarEstadoCliente(id);
+		
 	}
 
 }

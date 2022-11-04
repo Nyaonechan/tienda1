@@ -11,5 +11,7 @@ public interface Detalles_pedidoDao {
 	public void insertDetallePedido(Detalles_pedido detallePedido); 
 	
 	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id); 
+	
+	public void modificarEstadoCliente (int id);
 
 }

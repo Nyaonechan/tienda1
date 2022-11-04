@@ -26,18 +26,29 @@ public class Detalles_pedido {
 	
 	private double total;
 	
+	private String estado;
+	
 	public Detalles_pedido() {
 		
 	}
 
 	public Detalles_pedido(int id_pedido, int id_producto, int unidades, float precio_unidad, float impuesto,
-			double total) {
+			double total, String estado) {
 		this.id_pedido = id_pedido;
 		this.id_producto = id_producto;
 		this.unidades = unidades;
 		this.precio_unidad = precio_unidad;
 		this.impuesto = impuesto;
 		this.total = total;
+		this.estado=estado;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public int getId() {

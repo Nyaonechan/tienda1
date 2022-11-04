@@ -66,6 +66,7 @@
                             <th>Unidades</th>
                             <th>Impuesto</th>
                             <th>Total</th>
+                            <th>Estado</th>
                             <th>Cancelar Producto</th>
                             <th>Valorar Producto</th>
                             
@@ -84,13 +85,14 @@
                             <td class="align-middle" th:text=${detalle.unidades}></td>
                             <td class="align-middle" th:text=${detalle.impuesto}></td>
                             <td class="align-middle" th:text=${detalle.total}></td>
+                            <td class="align-middle" th:text=${detalle.estado}></td>
 							<td th:if="${pedido.estado.equals('P.E')}" class="align-middle">
-                            	<a th:href="@{/valorarProducto?idDet={idDet}(idDet=${detalle.id_producto})}"><i>
+                            	<a th:href="@{/cancelarProducto?idDet={idDet}(idDet=${detalle.id})&idPedido={idPedido}(idPedido=${detalle.id_pedido}))}"><i>
                             		<button class="btn btn-sm btn-primary" value="Cancelar producto">Cancelar producto</button>
                             	</i></a>
                             </td>
                             <td th:unless="${pedido.estado.equals('P.E')}" class="align-middle">
-                            	<a th:href="@{/valorarProducto?idDet={idDet}(idDet=${detalle.id})}"><i>
+                            	<a href=""><i>
                             		<button class="btn btn-sm btn-primary" value="Cancelar producto" disabled>Cancelar producto</button>
                             	</i></a>
                             </td>

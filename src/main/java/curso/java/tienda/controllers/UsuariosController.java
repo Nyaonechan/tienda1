@@ -203,6 +203,8 @@ public class UsuariosController {
 	@GetMapping ("/pedirCancelacion")
 	public String pedirCancelacion(@RequestParam int id_pedido, Model modelo) {
 		
+		System.out.println("Controlador pedirCancelacion");
+		
 		pedidoService.modificarEstadoPedidoCliente(id_pedido);
 		
 		logger.info("Solicitada cancelación del pedido con id: "+id_pedido);
@@ -245,6 +247,16 @@ public class UsuariosController {
 		valoracionService.insertValoracion(valoracion);
 		
 		return "/detail";
+	}
+	
+	@GetMapping("/cancelarProducto")
+	public String cancelarProducto(@RequestParam int idDet, @RequestParam int idPedido, Model modelo) {
+		
+		System.out.println("Controlador cancelarProducto");
+		
+		detalle_pedidoService.modificarEstadoCliente(idDet);
+		
+		return perfilDetallesPedido(modelo, idPedido);
 	}
 
 

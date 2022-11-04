@@ -15,6 +15,7 @@ import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.ConfiguracionService;
+import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.Opciones_menuService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
@@ -32,6 +33,9 @@ public class EmpleadoAdminController {
 	
 	@Autowired
 	PedidosService pedidoService;
+	
+	@Autowired
+	Detalles_pedidoService detalle_pedidoService;
 	
 	@Autowired
 	UsuariosService usuarioService;
@@ -284,6 +288,24 @@ public class EmpleadoAdminController {
 		configuracionService.insertConfiguracion(configuracion);
 		
 		return adminConfiguracion(modelo);
+	}
+	
+	@GetMapping("/verDetalles")
+	public String verDetalles(@RequestParam int idPedido, Model modelo) {
+		
+		System.out.println("Controlador verDetalles");
+		
+		detalle_pedidoService.getDetallesPedidoById(modelo, idPedido);
+		
+		return "empleados/adminDetallesPedido";
+	}
+	
+	@GetMapping ("/confirmarCancProducto")
+	public String confirmarCancProducto(@RequestParam int idPedido, @RequestParam int idDet, Model modelo) {
+		
+		//TODO
+		
+		return verDetalles(idPedido, modelo);
 	}
 
 }

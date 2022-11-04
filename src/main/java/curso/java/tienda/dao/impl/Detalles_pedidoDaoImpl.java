@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import curso.java.tienda.dao.Detalles_pedidoDao;
 import curso.java.tienda.entities.Detalles_pedido;
+import curso.java.tienda.entities.Pedidos;
 
 @Repository
 public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
@@ -54,6 +55,19 @@ public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 		ArrayList<Detalles_pedido> detallesPedido =  (ArrayList<Detalles_pedido>) query.getResultList();
 		
 		return detallesPedido;
+		
+	}
+
+	@Override
+	public void modificarEstadoCliente(int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Detalles_pedido> query = session.createQuery("update Detalles_pedido set estado=:estado where id=:id");
+		query.setParameter("id", id);
+		query.setParameter("estado", "P.C.");
+
+		query.executeUpdate();
 		
 	}
 

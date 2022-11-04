@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin Dashboard Pedidos</title>
+    <title>Admin Dashboard Productos</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -36,7 +36,7 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a th:href="@{/adminInicio}">Home</a></li>
+              <li class="breadcrumb-item"><a th:href="@{adminInicio}">Home</a></li>
               <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
               <li class="breadcrumb-item"><a th:href="@{/logout}">Cerrar sesión</a></li>
               
@@ -61,42 +61,57 @@
            </div> 
        	</div>
        </div>
-       <div class="container">
+
+
+<div style="  margin-left: 100px; margin-right: 100px;">
+
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
                             <th>Id Pedido</th>
-                            <th>Fecha</th>
-                            <th>Método Pago</th>
-                            <th>Estado</th>
-                            <th>Número Factura</th>
+                            <th>Id Prodcuto</th>
+                            <th>Precio Unidad</th>
+                            <th>Impuesto</th>
                             <th>Total</th>
-                            <th>Modificar Estado</th>
-                            <th>Ver detalles</th>
-                            
+                            <th>Estado</th>
+                            <th>Cancelar Producto</th>
+
                         </tr>
                     </thead>
                     
                     <tbody  class="align-middle">
                     
-                    <!-- BUCLE CON TODOS LOS PEDIDOS -->
+                    <!-- BUCLE CON TODOS LOS DETALLES -->
 
-                        <tr th:each="pedido : ${pedidos}">
-                        	<td class="align-middle" th:text=${pedido.id}></td>
-                        	<td class="align-middle" th:text=${pedido.fecha}></td>
-                            <td class="align-middle" th:text=${pedido.metodo_pago}></td>
-                            <td class="align-middle" th:text=${pedido.estado}></td>
-                            <td class="align-middle" th:text=${pedido.num_factura}></td>
-							<td class="align-middle" th:text=${pedido.total}></td>
-							<td th:if="${pedido.estado.equals('E')||pedido.estado.equals('C')}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''" disabled><i>Modificar Estado</i></button></td>
-                            <td th:if="${pedido.estado.equals('P.E.')||pedido.estado.equals('P.C.')}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''"><i>Modificar Estado</i></button></td>
-                            <td th:if="${pedido.estado.equals('P.C.')&& user.id_rol==2}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''"><i>Modificar Estado</i></button></td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/verDetalles?idPedido={idPedido}(idPedido=${pedido.id})} + '\''"><i>Ver detalles</i></button></td>
+                        <tr th:each="detalle : ${detalles}">
+                        	<td class="align-middle" th:text=${detalle.id_pedido}></td>
+                        	<td class="align-middle" th:text=${detalle.id_producto}></td>
+                        	<td class="align-middle" th:text=${detalle.precio_unidad}></td>
+                        	<td class="align-middle" th:text=${detalle.impuesto}></td>
+                        	<td class="align-middle" th:text=${detalle.total}></td>
+                        	<td class="align-middle" th:text=${detalle.estado}></td>
+                  
+                            <td th:if="${user.id_rol==3 && detalle.estado.equals('P.EC.')}" class="align-middle">
+                            <a th:href="@{/cancelarProducto?idDet={idDet}(idDet=${detalle.id})&idPedido={idPedido}(idPedido=${detalle.id_pedido})}">
+                            <i>
+                            <button class="btn btn-sm btn-primary"  value="Cancelar producto">Cancelar producto</button>
+                            </i>
+                            </a>
+                            </td>
+                            
+                            <td th:unless="${user.id_rol==3 && detalle.estado.equals('P.EC.')}" class="align-middle">
+                            <a th:href="@{/cancelarProducto?idDet={idDet}(idDet=${detalle.id})&idPedido={idPedido}(idPedido=${detalle.id_pedido})}">
+                            <i>
+                            <button class="btn btn-sm btn-primary"  value="Cancelar producto" disabled>Cancelar producto</button>
+                            </i>
+                            </a>
+                            </td>
+                            
                         </tr>  
                         
                     </tbody>
                 </table>
-               </div>
+	</div> 
 
 
 
