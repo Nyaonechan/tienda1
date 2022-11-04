@@ -27,5 +27,7 @@ public interface PedidosService {
 	public void establecerFactura(int id);
 	
 	public void getMetodosPago(Model modelo);
+	
+	public void modificarPedidoTotal(int id, String estado);
 
 }

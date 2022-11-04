@@ -1806,3 +1806,92 @@
 [Thread-2153] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
 [Thread-2153] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
 [Thread-2153] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-7] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 1
+[Thread-2899] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-2900] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-2901] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-2899] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-2900] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-2901] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[http-nio-8080-exec-2] INFO  curso.java.tienda.DemoApplication  - Pedido realizado por el usuario con id: 1
+[Thread-2899] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-2899] INFO  curso.java.tienda.DemoApplication  - Estado del pedido con id: 8 modificado
+[Thread-2900] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-2901] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 1
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Pedido realizado por el usuario con id: 1
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 1
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Estado del pedido con id: 9 modificado
+[http-nio-8080-exec-9] INFO  curso.java.tienda.DemoApplication  - Pedido realizado por el usuario con id: 1
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-7] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 1
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[Thread-389] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-390] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-391] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[Thread-778] INFO  curso.java.tienda.DemoApplication  - Hilo comprobando y modificando pedidos
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[http-nio-8080-exec-2] INFO  curso.java.tienda.DemoApplication  - Estado del pedido con id: 10 modificado
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 1
+[http-nio-8080-exec-7] INFO  curso.java.tienda.DemoApplication  - Pedido realizado por el usuario con id: 1
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!

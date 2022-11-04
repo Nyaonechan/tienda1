@@ -209,4 +209,17 @@ public class PedidosDaoImpl implements PedidosDao {
 		return metodos;
 	}
 
+	@Override
+	public void modificarTotalPedido(int id, double total) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("update Pedidos set total=:total where id=:id");
+		query.setParameter("id", id);
+		query.setParameter("total", total);
+		
+		query.executeUpdate();
+		
+	}
+
 }

@@ -91,20 +91,17 @@
                         	<td class="align-middle" th:text=${detalle.total}></td>
                         	<td class="align-middle" th:text=${detalle.estado}></td>
                   
-                            <td th:if="${user.id_rol==3 && detalle.estado.equals('P.EC.')}" class="align-middle">
-                            <a th:href="@{/cancelarProducto?idDet={idDet}(idDet=${detalle.id})&idPedido={idPedido}(idPedido=${detalle.id_pedido})}">
+                            <td th:if="${user.id_rol==3 && detalle.estado.equals('P.C.')}" class="align-middle">
+                            <a th:href="@{/confirmarCancProducto(idDet=${detalle.id},idPedido=${detalle.id_pedido}, estado='P.E.')}">
                             <i>
                             <button class="btn btn-sm btn-primary"  value="Cancelar producto">Cancelar producto</button>
                             </i>
                             </a>
                             </td>
                             
-                            <td th:unless="${user.id_rol==3 && detalle.estado.equals('P.EC.')}" class="align-middle">
-                            <a th:href="@{/cancelarProducto?idDet={idDet}(idDet=${detalle.id})&idPedido={idPedido}(idPedido=${detalle.id_pedido})}">
-                            <i>
-                            <button class="btn btn-sm btn-primary"  value="Cancelar producto" disabled>Cancelar producto</button>
-                            </i>
-                            </a>
+                            <td th:unless="${user.id_rol==3 && detalle.estado.equals('P.C.')}" class="align-middle">
+                            <a href=""><i><button class="btn btn-sm btn-primary"  value="Cancelar producto" disabled>Cancelar producto</button>
+                            </i></a>
                             </td>
                             
                         </tr>  

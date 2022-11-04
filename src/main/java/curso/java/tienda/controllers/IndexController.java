@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import curso.java.tienda.service.CategoriasService;
@@ -30,8 +29,8 @@ public class IndexController {
 	public String muestraIndex(Model modelo) {
 		System.out.println("Controlador index");
 		
-		Thread thread = new Thread(hiloEstadoPedidos);
-		thread.start();
+		//Thread thread = new Thread(hiloEstadoPedidos);
+		//thread.start();
 		
 		//TODO Si el usuario ha sido creado por admin, llevar a /perfilCambios para obligar a editar la contraseña por defecto
 		

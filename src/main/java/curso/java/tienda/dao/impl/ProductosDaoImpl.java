@@ -367,6 +367,20 @@ public class ProductosDaoImpl implements ProductosDao {
 		return productos;
 		
 	}
+	
+	@Transactional
+	@Override
+	public void modificarStock(int id, int cantidad) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Productos> query = session.createQuery("update Productos set stock=stock+"+cantidad+" where id=:id");
+		
+		query.setParameter("id", id);
+
+		query.executeUpdate();
+		
+	}
 
 
 

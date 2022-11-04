@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import curso.java.tienda.dao.PedidosDao;
+import curso.java.tienda.dao.Detalles_pedidoDao;
 import curso.java.tienda.dao.impl.PedidosDaoImpl;
 import curso.java.tienda.entities.Detalles_pedido;
 import curso.java.tienda.entities.Metodos_pago;
@@ -16,6 +17,7 @@ import curso.java.tienda.entities.Pedidos;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.ConfiguracionService;
+import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.PedidosService;
 
 @Service
@@ -23,6 +25,10 @@ public class PedidosServiceImpl implements PedidosService{
 	
 	@Autowired
 	PedidosDao pedidoDao;
+	@Autowired
+	Detalles_pedidoDao detalle_pedidoDao;
+	@Autowired
+	Detalles_pedidoService detalle_pedidoService;
 	@Autowired
 	ConfiguracionService configuracionService;
 	
@@ -104,9 +110,23 @@ public class PedidosServiceImpl implements PedidosService{
 	public void modificarEstadoPedidoAdmin(int id) {
 		
 		Pedidos pedido = pedidoDao.getPedidoById(id);
+		ArrayList<Detalles_pedido> detalles = detalle_pedidoDao.getDetallesByIdPedido(pedido.getId());
 		System.out.println(pedido);
-		if (pedido.getEstado().equals("P.E."))pedidoDao.modificarEstadoAdminEnviado(id);
-		else pedidoDao.modificarEstadoAdminCancelado(id);
+		if (pedido.getEstado().equals("P.E.")) {
+			pedidoDao.modificarEstadoAdminEnviado(id);
+			
+			for (Detalles_pedido e: detalles) {
+				if (e.getEstado().equals("P.E.")) {
+					detalle_pedidoDao.modificarEstadoAdminEnv(id);
+				}
+			}
+			
+		}else {
+			pedidoDao.modificarEstadoAdminCancelado(id);
+			for (Detalles_pedido e: detalles) {
+				detalle_pedidoDao.modificarEstadoAdminEnv(id);
+			}
+		}
 		
 
 		
@@ -136,6 +156,21 @@ public class PedidosServiceImpl implements PedidosService{
 		
 		ArrayList<Metodos_pago> metodos = pedidoDao.getMetodosPago();
 		modelo.addAttribute("metodos", metodos);
+	}
+	
+	@Transactional
+	@Override
+	public void modificarPedidoTotal(int id, String estado) {
+		
+		ArrayList<Detalles_pedido> detalles = detalle_pedidoDao.getDetallesByIdAndEstado(id, estado);
+		
+		double total=0;
+		for(Detalles_pedido e: detalles) {
+			total+=e.getTotal();
+		}
+		
+		pedidoDao.modificarTotalPedido(id, total);
+		
 	}
 
 }

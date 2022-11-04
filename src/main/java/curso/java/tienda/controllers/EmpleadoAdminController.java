@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import curso.java.tienda.DemoApplication;
 import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Configuracion;
+import curso.java.tienda.entities.Detalles_pedido;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.CategoriasService;
@@ -301,9 +302,15 @@ public class EmpleadoAdminController {
 	}
 	
 	@GetMapping ("/confirmarCancProducto")
-	public String confirmarCancProducto(@RequestParam int idPedido, @RequestParam int idDet, Model modelo) {
+	public String confirmarCancProducto(@RequestParam int idPedido, @RequestParam int idDet, @RequestParam String estado, Model modelo) {
 		
-		//TODO
+		detalle_pedidoService.modificarEstadoAdminCanc(idDet);
+		
+		pedidoService.modificarPedidoTotal(idPedido, estado);
+		
+		//sumar el stock del producto cancelado
+		
+		detalle_pedidoService.restablecerStockCancelado(idDet);
 		
 		return verDetalles(idPedido, modelo);
 	}

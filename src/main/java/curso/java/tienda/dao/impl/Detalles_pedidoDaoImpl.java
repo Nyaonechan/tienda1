@@ -3,6 +3,7 @@ package curso.java.tienda.dao.impl;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -44,20 +45,17 @@ public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 	}
 
 	@Override
-	public ArrayList<Detalles_pedido> getDetallesPedidosByIdPedido(int id) {
+	public Detalles_pedido getDetalleById(int id) {
 		
 		Session session = entityManager.unwrap(Session.class);
 
-		Query<Detalles_pedido> query = session.createQuery("from Detalles_pedido where id_pedido=:id",Detalles_pedido.class);
+		Detalles_pedido detalle = session.get(Detalles_pedido.class, id);
 		
-		query.setParameter("id", id);
-
-		ArrayList<Detalles_pedido> detallesPedido =  (ArrayList<Detalles_pedido>) query.getResultList();
-		
-		return detallesPedido;
+		return detalle;
 		
 	}
-
+	
+	@Transactional
 	@Override
 	public void modificarEstadoCliente(int id) {
 		
@@ -68,6 +66,51 @@ public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 		query.setParameter("estado", "P.C.");
 
 		query.executeUpdate();
+		
+	}
+	
+	@Transactional
+	@Override
+	public void modificarEstadoAdminCanc (int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Detalles_pedido> query = session.createQuery("update Detalles_pedido set estado=:estado where id=:id");
+		query.setParameter("id", id);
+		query.setParameter("estado", "C");
+
+		query.executeUpdate();
+		
+	}
+	
+	@Transactional
+	@Override
+	public void modificarEstadoAdminEnv (int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Detalles_pedido> query = session.createQuery("update Detalles_pedido set estado=:estado where id=:id");
+		query.setParameter("id", id);
+		query.setParameter("estado", "E");
+
+		query.executeUpdate();
+		
+	}
+	
+	@Override
+	public ArrayList<Detalles_pedido> getDetallesByIdAndEstado(int id, String estado){
+		
+		Session session = entityManager.unwrap(Session.class);
+
+		Query<Detalles_pedido> query = session.createQuery("from Detalles_pedido where id_pedido=:id and estado=:estado",Detalles_pedido.class);
+		
+		query.setParameter("id", id);
+		
+		query.setParameter("estado", estado);
+
+		ArrayList<Detalles_pedido> detallesPedido =  (ArrayList<Detalles_pedido>) query.getResultList();
+		
+		return detallesPedido;
 		
 	}
 

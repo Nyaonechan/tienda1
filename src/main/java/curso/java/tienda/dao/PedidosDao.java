@@ -40,5 +40,7 @@ public interface PedidosDao {
 	public void modificarStock(int cantidad, int id_producto);
 	
 	public ArrayList<Metodos_pago> getMetodosPago();
+	
+	public void modificarTotalPedido(int id, double total);
 
 }

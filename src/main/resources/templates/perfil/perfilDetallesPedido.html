@@ -86,12 +86,12 @@
                             <td class="align-middle" th:text=${detalle.impuesto}></td>
                             <td class="align-middle" th:text=${detalle.total}></td>
                             <td class="align-middle" th:text=${detalle.estado}></td>
-							<td th:if="${pedido.estado.equals('P.E')}" class="align-middle">
-                            	<a th:href="@{/cancelarProducto?idDet={idDet}(idDet=${detalle.id})&idPedido={idPedido}(idPedido=${detalle.id_pedido}))}"><i>
+							<td th:if="${detalle.estado.equals('P.E.')}" class="align-middle">
+                            	<a th:href="@{/cancelarProducto(idDet=${detalle.id},idPedido=${detalle.id_pedido})}"><i>
                             		<button class="btn btn-sm btn-primary" value="Cancelar producto">Cancelar producto</button>
                             	</i></a>
                             </td>
-                            <td th:unless="${pedido.estado.equals('P.E')}" class="align-middle">
+                            <td th:unless="${detalle.estado.equals('P.E.')}" class="align-middle">
                             	<a href=""><i>
                             		<button class="btn btn-sm btn-primary" value="Cancelar producto" disabled>Cancelar producto</button>
                             	</i></a>
