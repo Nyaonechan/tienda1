@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2022 a las 13:53:44
+-- Tiempo de generación: 05-11-2022 a las 09:37:55
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -38,7 +38,8 @@ CREATE TABLE `articulos_carrito` (
 --
 
 INSERT INTO `articulos_carrito` (`id_producto`, `id_usuario`, `cantidad`) VALUES
-(9, 14, 3);
+(43, 14, 1),
+(42, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,7 @@ INSERT INTO `configuracion` (`id`, `clave`, `valor`) VALUES
 (2, 'prefijo', 'ZA-'),
 (3, 'sufijo', '-2022'),
 (5, 'nombre', 'BeFreak S.L.'),
-(6, 'direccion', 'Cl/Inventada n.40'),
+(6, 'direccion', 'Cl/Inventada n.40 Bj'),
 (7, 'provincia', 'Zamora'),
 (8, 'ciudad', 'Zamora');
 
@@ -103,25 +104,26 @@ CREATE TABLE `detalles_pedido` (
   `unidades` int(11) NOT NULL,
   `precio_unidad` float NOT NULL,
   `impuesto` float NOT NULL,
-  `total` double NOT NULL
+  `total` double NOT NULL,
+  `estado` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detalles_pedido`
 --
 
-INSERT INTO `detalles_pedido` (`id`, `id_pedido`, `id_producto`, `unidades`, `precio_unidad`, `impuesto`, `total`) VALUES
-(1, 1, 2, 2, 25, 0.21, 50),
-(2, 1, 15, 1, 35, 0.21, 35),
-(3, 2, 4, 1, 27, 0.21, 27),
-(4, 2, 18, 1, 30, 0.21, 30),
-(5, 3, 5, 1, 23, 0.21, 23),
-(6, 3, 6, 1, 30, 0.21, 30),
-(7, 3, 16, 1, 30, 0.21, 30),
-(8, 5, 27, 1, 100, 0.21, 100),
-(9, 6, 13, 1, 20, 0.21, 20),
-(10, 7, 43, 1, 50, 0.21, 50),
-(11, 7, 41, 1, 60, 0.21, 60);
+INSERT INTO `detalles_pedido` (`id`, `id_pedido`, `id_producto`, `unidades`, `precio_unidad`, `impuesto`, `total`, `estado`) VALUES
+(1, 1, 2, 2, 25, 0.21, 50, 'E'),
+(2, 1, 15, 1, 35, 0.21, 35, 'E'),
+(3, 2, 4, 1, 27, 0.21, 27, 'E'),
+(4, 2, 18, 1, 30, 0.21, 30, 'E'),
+(5, 3, 5, 1, 23, 0.21, 23, 'C'),
+(6, 3, 6, 1, 30, 0.21, 30, 'C'),
+(7, 3, 16, 1, 30, 0.21, 30, 'C'),
+(8, 5, 27, 1, 100, 0.21, 100, 'E'),
+(9, 6, 13, 1, 20, 0.21, 20, 'E'),
+(10, 7, 43, 1, 50, 0.21, 50, 'E'),
+(11, 7, 41, 1, 60, 0.21, 60, 'E');
 
 -- --------------------------------------------------------
 
@@ -165,7 +167,7 @@ INSERT INTO `opciones_menu` (`id`, `id_rol`, `nombre_opcion`, `url_opcion`) VALU
 (3, 2, 'Gestionar Clientes', '/adminUsuarios?idRol=1'),
 (4, 3, 'Gestionar Empleados', '/adminUsuarios?idRol=2'),
 (5, 2, 'Gestionar Proveedores', '/adminProveedores'),
-(6, 2, 'Crear Categorías', '/adminCategoria'),
+(6, 2, 'Crear Categorías', '/formCategoria'),
 (7, 3, 'Modificar datos Configuación', '/adminConfiguracion'),
 (8, 3, 'Visualizar Estadísticas', '/adminEstadisticas'),
 (9, 3, 'Gestionar Descuentos', '/adminDescuentos');
@@ -207,9 +209,9 @@ INSERT INTO `pedidos` (`id`, `id_usuario`, `fecha`, `metodo_pago`, `estado`, `nu
 
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
+  `categoria_id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
   `precio` double NOT NULL,
   `stock` int(11) NOT NULL,
   `impuesto` float DEFAULT NULL,
@@ -222,7 +224,7 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `id_categoria`, `nombre`, `descripcion`, `precio`, `stock`, `impuesto`, `imagen`, `baja`, `fecha_alta`) VALUES
+INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `stock`, `impuesto`, `imagen`, `baja`, `fecha_alta`) VALUES
 (1, 1, 'FunkoPop! Harry Potter', 'FunkoPop Saga Harry Potter - 25cm', 30, 10, 0.21, 'harry-potter-funko-pop.jpg', 1, '2022-10-01'),
 (2, 1, 'FunkoPop! Vegeta Niño', 'FunkoPop Saga Dragon Ball - 25cm', 25, 8, 0.21, 'funko-pop-vegeta-nino-dragon-ball-z.jpg', 0, '2022-09-01'),
 (3, 1, 'FunkoPop! Thor', 'FunkoPop Thor - Love and Thunder - 25cm', 30, 10, 0.21, 'funko-pop-thor-love-thunder.jpg', 0, '2022-10-01'),
@@ -312,11 +314,12 @@ INSERT INTO `usuarios` (`id`, `id_rol`, `email`, `clave`, `nombre`, `apellido1`,
 (1, 1, 'cl1@gmail.com', 'c5OFkiPC+vtsmAUsKE0yD4oPdRKp3q0M', 'Cliente', 'Cliente', 'Cliente', 'Avenida 1 numero 1', 'Ciudad1', 'Ciudad1', '654987321', '78945612A', '', 0, '2022-10-28'),
 (2, 2, 'emp@gmail.com', 'L0g5s/NZsaBZ7nC0+AubIg==', 'Empleado', 'Empleado', 'Empleado', 'Avenida 2 numero 2', 'Ciudad2', 'Ciudad2', '987456321', '74125896B', NULL, 0, '2022-10-28'),
 (3, 3, 'admin@gmail.com', 'J6qPWcc323Dz3rHhKOe3DA==', 'Admin', 'Admin', 'Admin', 'Avenida 3 numero 3', 'Ciudad3', 'Ciudad3', '693528741', '75342189C', 'user3.jpg', 0, '2021-01-01'),
-(10, 1, 'pedro@gmail.com', 'eW9C0C6gJ5Qr1Cco9Wb27g==', 'Pedro', 'Perez', 'Perez', 'Cl Primera', 'Zamora', 'Zamora', '789654123', '14725836S', NULL, 0, '2022-10-28'),
+(10, 1, 'pedro@gmail.com', 's2+Td8CD/1Z/cz6X85OCPw==', 'Pedro', 'Perez', 'Perez', 'Cl Primera 28', 'Zamora', 'Zamora', '789654123', '14725836S', NULL, 0, '2022-11-03'),
 (11, 2, 'pedrolo@gmail.com', 'iMjTn6PV5Z6j+BLLLmi+WA==', 'Pedro', 'Lopez', 'Perez', 'Cl Segunda', 'Zamora', 'Zamora', '789789789', '11236654L', NULL, 0, '2022-10-28'),
 (13, 1, 'lau@gmail.com', 'c1n2/YwJhzhABDTswbC5qg==', 'Laura', 'Dominguez', 'Sierra', 'Cl Larga 22 1E', 'Zamora', 'Zamora', '654448822', '74125895L', '', 0, '2022-10-31'),
 (14, 1, 'ana@gmail.com', 'RFUMwMJPYxhs99c8/rqXaQ==', 'Ana', 'Cuesta', 'Gago', 'Cl Corta 3 4B', 'Zamora', 'Zamora', '665544985', '77844553X', '', 0, '2022-10-31'),
-(19, 1, 'anixx89@gmail.com', 'GgE04juGgjJZivoPUGF88g==\n', 'Ana', 'Perez', 'Rodriguez', 'Cl Valladolid 54 6A', 'Zamora', 'Zamora', '698545858', '789654548C', '', 0, '2022-10-31');
+(19, 1, 'anixx89@gmail.com', 'GgE04juGgjJZivoPUGF88g==\n', 'Ana', 'Perez', 'Rodriguez', 'Cl Valladolid 54 6A', 'Zamora', 'Zamora', '698545858', '789654548C', '', 0, '2022-10-31'),
+(21, 1, 'tere@gmail.com', 'mY6/cGbDJY7+xmX140mvNQ==', 'Teresa', 'Ramos', 'Carrion', 'Cl Cuarta', 'Zamora', 'Zamora', '698965324', '78569542P', NULL, 0, '2022-11-03');
 
 --
 -- Índices para tablas volcadas
@@ -376,7 +379,7 @@ ALTER TABLE `pedidos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_id_categoria_idx` (`id_categoria`);
+  ADD KEY `FK_id_categoria_idx` (`categoria_id`);
 
 --
 -- Indices de la tabla `roles`
@@ -435,7 +438,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -447,7 +450,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas
@@ -483,7 +486,7 @@ ALTER TABLE `pedidos`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `FK_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_id_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuarios`
