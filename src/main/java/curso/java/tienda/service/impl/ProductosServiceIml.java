@@ -412,6 +412,22 @@ public class ProductosServiceIml implements ProductosService {
 		
 		return productoDao.getProductoById(id_producto);
 	}
+	
+	//comparar cantidad y stock
+
+	@Override
+	public boolean compararCantidadConStock(int cantidad, int id_producto) {
+		
+		boolean bandera = false;
+		
+		Productos producto = productoDao.getProductoById(id_producto);
+		
+		if (cantidad>producto.getStock()) {
+			bandera=true;
+		}
+		
+		return bandera;
+	}
 
 
 }

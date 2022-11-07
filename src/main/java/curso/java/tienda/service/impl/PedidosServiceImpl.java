@@ -179,4 +179,17 @@ public class PedidosServiceImpl implements PedidosService{
 		return pedidoDao.getLastPedido();
 	}
 
+	@Override
+	public void totalPedidos(Model modelo) {
+		
+		double total = 0;
+		
+		for(Pedidos e: pedidoDao.getPedidos()) {
+			total+=e.getTotal();
+		}
+		
+		modelo.addAttribute("total", total);
+		
+	}
+
 }

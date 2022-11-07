@@ -356,6 +356,21 @@ public class ProductosDaoImpl implements ProductosDao {
 		return productos;
 	}
 	
+	@Override
+	public ArrayList<Articulos_carrito> getProductosCarritoTablaByIdProducto(int id_producto){
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Articulos_carrito> query=session.createQuery("from Articulos_carrito where id_producto=:id_producto", Articulos_carrito.class);
+
+		query.setParameter("id_producto", id_producto);
+		
+		ArrayList<Articulos_carrito> productos =  (ArrayList<Articulos_carrito>) query.getResultList(); 
+
+		return productos;
+	}
+	
+	@Override
 	public ArrayList<Articulos_carrito> getProductosCarritoTabla (Usuarios user){
 		
 		Session session = entityManager.unwrap(Session.class);
@@ -365,9 +380,7 @@ public class ProductosDaoImpl implements ProductosDao {
 		query.setParameter("id", user.getId());
 		ArrayList<Articulos_carrito> productos =  (ArrayList<Articulos_carrito>) query.getResultList(); 
 		
-		
-		return productos;
-		
+		return productos;	
 	}
 	
 	@Transactional

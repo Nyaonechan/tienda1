@@ -1,12 +1,21 @@
 package curso.java.tienda.controllers;
 
+import java.io.IOException;
+
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import curso.java.tienda.DemoApplication;
 import curso.java.tienda.dao.CategoriasDao;
@@ -28,11 +37,15 @@ import curso.java.tienda.service.ProveedoresService;
 import curso.java.tienda.service.UsuariosService;
 import curso.java.tienda.utils.Encriptacion;
 import curso.java.tienda.utils.Excel;
+import curso.java.tienda.utils.FileUpload;
 
 
 @SessionAttributes({"user", "idRol", "categorias"})
 @Controller
 public class EmpleadoAdminController {
+	
+	@Autowired
+	private ObjectMapper mapper; // Jackson JSON
 	
 	@Autowired
 	ProductosService productoService;
@@ -127,7 +140,7 @@ public class EmpleadoAdminController {
 	
 	@PostMapping ("/insertProducto")
 	@Transactional
-	String insertOrUpdateProducto(Model modelo, @ModelAttribute Productos producto) {
+	String insertOrUpdateProducto(Model modelo, @ModelAttribute Productos producto, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 		
 		System.out.println("Controlador insertProducto");
 		
@@ -140,6 +153,18 @@ public class EmpleadoAdminController {
 		int id_categoria = producto.getCategoria().getId();
 		Categorias categoria = categoriaService.getCategoriaById(id_categoria);
 		producto.setCategoria(categoria);
+		
+		// Pasar el nombre del archivo al user
+		
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+				
+		producto.setImagen(fileName);
+		
+		// Cargar la imagen en el proyecto
+		
+		String uploadDir = "src/main/resources/static/img/productos";
+				
+		FileUpload.saveFile(uploadDir, fileName, multipartFile);
 		
 		productoService.insertProducto(producto);
 		
@@ -561,5 +586,50 @@ public class EmpleadoAdminController {
 		return adminDescuentos(modelo);
 		
 	}
+	
+	@GetMapping ("/adminEstadisticas")
+	public String adminEstadisticas(Model modelo) {
+		
+		System.out.println("Controlador adminEstadisticas");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		usuarioService.getUsuariosByRol(1, modelo); // clientes registrados
+		
+		pedidoService.getPedidos(modelo);
+		
+		detalle_pedidoService.cantidadTotalProductos(modelo);
+		
+		pedidoService.totalPedidos(modelo);
+		
+		
+		return "empleados/adminEstadisticas";
+	}
+	
+	/* =============================================== */
 
+	@GetMapping(value = "/pruebaJSON", produces="application/json")
+	public @ResponseBody String getJSON() {
+		
+		ObjectNode raiz = mapper.createObjectNode();
+	
+		raiz.put("nombre", "carlos");
+		
+		String json = null;
+		
+		try {
+			json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(raiz);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.err.println(json);
+		
+		return json;
+		
+	}
+	
 }

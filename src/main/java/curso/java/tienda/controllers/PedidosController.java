@@ -53,12 +53,15 @@ public class PedidosController {
 		
 		System.out.println("Controlador confirmarCompra");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		if (pago == null) {
 			modelo.addAttribute("eligeMetodo", "Debes elegir un método de pago");
 			return checkout(modelo);
 		}
-		
-		Usuarios user = (Usuarios) modelo.getAttribute("user");
+
 		double precioTotal=productoService.precioTotalCarro(modelo);
 		productoService.desgloseIva(modelo, precioTotal);
 		if (!pedidoService.comprobarStock(modelo)) {

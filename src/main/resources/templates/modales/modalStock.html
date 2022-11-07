@@ -1,0 +1,15 @@
+<div th:fragment="modalStock" id="modalStock" role="dialog" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div th:text="'Atención usuario, quedan pocas unidades del ' + &{producto.nombre} + ' . Finaliza tu compra lo antes posible para no quedarte sin él'"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

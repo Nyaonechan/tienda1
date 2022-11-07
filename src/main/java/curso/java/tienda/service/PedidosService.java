@@ -32,5 +32,7 @@ public interface PedidosService {
 	public void modificarPedidoTotal(int id, String estado);
 
 	public Pedidos getLastPedido();
+	
+	public void totalPedidos(Model modelo);
 
 }

@@ -100,4 +100,17 @@ public class Detalles_pedidoServiceImpl implements Detalles_pedidoService {
 		return bandera;
 	}
 
+	@Override
+	public void cantidadTotalProductos(Model modelo) {
+		
+		int unidades=0;
+		
+		for (Detalles_pedido e:detalle_pedidoDao.getDetalles()) {
+			unidades+=e.getUnidades();
+		}
+		
+		modelo.addAttribute("unidades", unidades);
+		
+	}
+
 }

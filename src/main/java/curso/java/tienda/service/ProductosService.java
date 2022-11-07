@@ -76,5 +76,9 @@ public interface ProductosService {
 	public boolean comprobarComprados(int producto_id, int id_usuario);
 
 	public Productos getProductoById(int id_producto);
+	
+	// comparar cantidad producto articulos_carrito con stock
+	
+	public boolean compararCantidadConStock(int cantidad, int id_producto);
 
 }

@@ -30,37 +30,9 @@
 
 <body>
     
-    <div class="container">
-    <div class="main-body">
-    
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a th:href="@{adminInicio}">Home</a></li>
-              <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
-              <li class="breadcrumb-item"><a th:href="@{/logout}">Cerrar sesión</a></li>
-              
-            </ol>
-          </nav>
-          <!-- /Breadcrumb -->
-    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img th:src="@{/img/user.jpg}" alt="" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4 th:text="${user.nombre} + ' ' + ${user.apellido1} + ' ' + ${user.apellido2}"> </h4>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-           </div> 
-       	</div>
-       </div>
+    <!-- PerfilAdmin -->
+ 	<div th:insert="fragments/perfilAdmin :: perfilAdmin"></div>
+    <!-- PerfilAdmin -->
 
 
 <div style="  margin-left: 100px; margin-right: 100px;">

@@ -17,5 +17,7 @@ public interface Detalles_pedidoService {
 	public void restablecerStockCancelado(int id_detalle);
 	
 	public boolean comprobarEstadoDetalle(int id_pedido);
+	
+	public void cantidadTotalProductos(Model modelo);
 
 }

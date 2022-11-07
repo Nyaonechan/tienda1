@@ -12,14 +12,26 @@ import org.springframework.stereotype.Repository;
 
 import curso.java.tienda.dao.Detalles_pedidoDao;
 import curso.java.tienda.entities.Detalles_pedido;
-import curso.java.tienda.entities.Pedidos;
 
 @Repository
 public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 	
 	@Autowired
 	EntityManager entityManager;
+	
+	@Override
+	public ArrayList<Detalles_pedido> getDetalles(){
+		
+		Session session = entityManager.unwrap(Session.class);
 
+		Query<Detalles_pedido> query = session.createQuery("from Detalles_pedido",Detalles_pedido.class);
+
+		ArrayList<Detalles_pedido> detalles =  (ArrayList<Detalles_pedido>) query.getResultList();
+		
+		return detalles;
+		
+	}
+	
 	@Override
 	public ArrayList<Detalles_pedido> getDetallesByIdPedido(int id) {
 		

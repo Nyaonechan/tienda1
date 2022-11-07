@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="en">
+<html xmlns:th="http://thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -30,43 +30,12 @@
 
 <body>
     
-    <div class="container">
-    <div class="main-body">
-    
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a th:href="@{adminInicio}">Home</a></li>
-              <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
-              <li class="breadcrumb-item"><a th:href="@{/logout}">Cerrar sesión</a></li>
-              
-            </ol>
-          </nav>
-          <!-- /Breadcrumb -->
-    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img th:src="@{/img/user.jpg}" alt="" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4 th:text="${user.nombre} + ' ' + ${user.apellido1} + ' ' + ${user.apellido2}"> </h4>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-                       <h3 th:text="${tipoUsuario}" style=" margin-top: auto; margin-right: auto;"></h3>
-           </div> 
-       	</div>
-       </div>
-       
-       
+    <!-- PerfilAdmin -->
+ 	<div th:insert="fragments/perfilAdmin :: perfilAdmin"></div>
+    <!-- PerfilAdmin -->
 
 <div class="container"  >
-
+		<h3 th:text="${tipoUsuario}" style=" margin-top: auto; margin-right: auto;"></h3>
        <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/nuevoUsuario} + '\''">Añadir</button>
 </div>
 

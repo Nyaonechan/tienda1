@@ -39,14 +39,14 @@
             
             <h3 style="margin-top:100px; margin-left:50px"> Insertar o modificar producto</h3>
     
-    		<form th:action="@{/insertProducto}" th:object="${producto}" method="post" class="container-fluid">
+    		<form th:action="@{/insertProducto}" th:object="${producto}" method="post" class="container-fluid" enctype="multipart/form-data">
 				<div class="container">
 
 							<input type="hidden" class="form-control" th:field="*{id}" value="${producto.id}">
 							
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Id Categoría</h6>
+									<h6 class="mb-0">Categoría</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
 									    <select th:object="${producto.categoria}" th:field="*{id}" class="form-control">
@@ -103,7 +103,7 @@
 									<h6 class="mb-0">Imagen</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="file"  value="${producto.imagen}" th:field="*{imagen}">
+									<input type="file"  accept="image/png, image/jpeg" name="image" value="">
 								</div>
 							</div>
 

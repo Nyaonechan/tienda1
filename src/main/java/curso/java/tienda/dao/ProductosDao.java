@@ -73,6 +73,8 @@ public interface ProductosDao {
 	
 	public ArrayList<Productos> getProductosCarritoTablaCruzada (Usuarios user);
 	
+	public ArrayList<Articulos_carrito> getProductosCarritoTablaByIdProducto(int id_producto);
+	
 	public ArrayList<Articulos_carrito> getProductosCarritoTabla (Usuarios user);
 	
 	public void modificarStock (int id, int cantidad);
