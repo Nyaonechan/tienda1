@@ -9,5 +9,7 @@ public interface CategoriasDao {
 	public void insertarCategoria(Categorias categoria);
 	
 	public ArrayList<Categorias> getCategorias();
+	
+	public Categorias getCategoriaById(int id);
 
 }

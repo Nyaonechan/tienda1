@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin Dashboard Productos</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+    
+    <div class="container">
+    <div class="main-body">
+    
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a th:href="@{adminInicio}">Home</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/logout}">Cerrar sesión</a></li>
+              
+            </ol>
+          </nav>
+          <!-- /Breadcrumb -->
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img th:src="@{/img/user.jpg}" alt="" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4 th:text="${user.nombre} + ' ' + ${user.apellido1} + ' ' + ${user.apellido2}"> </h4>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                       <h3 style=" margin-top: auto; margin-right: auto;">Proveedores</h3>
+           </div> 
+       	</div>
+       </div>
+       
+       
+
+<div class="container"  >
+
+       <button class="btn btn-block btn-primary my-3 py-3" th:onclick="'window.location.href = \'' + @{/nuevoProveedor} + '\''">Añadir</button>
+</div>
+
+<div style="  margin-left: 20px; margin-right: 20px;">
+                <table class="table table-bordered text-center mb-0" style=" margin-left: auto; margin-right: auto;">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Id Proveedor</th>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Localidad</th>
+                            <th>Provincia</th>
+                            <th>Telefono</th>
+                            <th>Email</th>
+                            <th>Cif</th>
+                            <th>Baja</th>
+                            <th>Modificar</th>
+                            <th>Dar baja</th>
+                            
+                        </tr>
+                    </thead>
+                    
+                    <tbody  class="align-middle">
+                    
+                    <!-- BUCLE CON TODOS LOS PEDIDOS -->
+
+                        <tr th:each="proveedor : ${proveedores}">
+                        	<td class="align-middle" th:text=${proveedor.id}></td>
+                        	<td class="align-middle" th:text=${proveedor.nombre}></td>
+                        	<td class="align-middle" th:text=${proveedor.direccion}></td>
+                        	<td class="align-middle" th:text=${proveedor.provincia}></td>
+                        	<td class="align-middle" th:text=${proveedor.localidad}></td>
+                        	<td class="align-middle" th:text=${proveedor.telefono}></td>
+                        	<td class="align-middle" th:text=${proveedor.email}></td>
+                        	<td class="align-middle" th:text=${proveedor.cif}></td>
+                            <td class="align-middle" th:text=${proveedor.baja}></td>
+                            
+                            <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarProveedor?idProv={idProv}(idProv=${proveedor.id})} + '\''" value="Modificar"><i>Modificar</i></button></td>
+                            
+                            <td th:if="${user.id_rol==3 && !proveedor.baja}" class="align-middle">
+                            <a th:href="@{/darBajaProveedor?idProv={idProv}(idProv=${proveedor.id})}">
+                            <i>
+                            <button class="btn btn-sm btn-primary" onclick="if(!confirm('Vas a dar de baja un proveedor'))return false" value="Dar de baja">Dar de baja</button>
+                            </i>
+                            </a>
+                            </td>
+                            
+                            <td th:unless="${user.id_rol==3 && !proveedor.baja}" class="align-middle"><button class="btn btn-sm btn-primary" onclick="" value="Dar de baja" disabled><i></i>Baja</button></td>
+                        </tr>  
+                        
+                    </tbody>
+                </table>
+
+</div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/lib/easing/easing.min.js}"></script>
+    <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+    <!-- Contact Javascript File -->
+    <script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>
+    <script th:src="@{/mail/contact.js}"></script>
+
+    <!-- Template Javascript -->
+    <script th:src="@{/js/main.js}"></script>
+</body>
+
+</html>

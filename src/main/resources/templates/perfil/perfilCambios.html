@@ -41,11 +41,23 @@
               </div>
             </div>
             </div>
-    
-    		<form th:action="@{/modificarDatosPost}" th:object="${user}" method="post" id="formCambios">
+            
+    	
+    		
+    		<form th:action="@{/modificarDatosPost}" th:object="${user}" method="post" id="formCambios" enctype="multipart/form-data">
 				<div class="col-lg-8">
 					<div class="card">
 						<div class="card-body">
+						
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Profile Image</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="file" class="form-control" value="" accept="image/png, image/jpeg" name="image">
+								</div>
+							</div>
+						
 							<div class="row mb-3">
 								<div class="col-sm-3">
 									<h6 class="mb-0">Name</h6>
@@ -154,6 +166,10 @@
               </div>
             </div>
           </div>
+          </div>
+          
+          <div th:if="${passDefecto!=null}" th:text="${passDefecto}" style="color:red"></div>
+          
 							<input type="hidden" class="form-control" value="${user.fecha_alta}" th:field="*{fecha_alta}">
 							<input type="hidden" class="form-control" value="${user.id_rol}" th:field="*{id_rol}">
 							<input type="hidden" class="form-control" value="${user.imagen}" th:field="*{imagen}">
@@ -165,7 +181,7 @@
                       			<button type="submit" class="btn btn-info" th:href="@{/modificarDatos}">Save Changes</button>
                     		</div>
                  		 </div>
-                		 </div>
+                		 
            		 </div>
      		</div>
      		</div>

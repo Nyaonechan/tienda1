@@ -9,5 +9,7 @@ public interface CategoriasService {
 	public void cargarCategorias(Model modelo);
 	
 	public void insertarCategoria(Categorias categoria);
+	
+	public Categorias getCategoriaById(int id);
 
 }

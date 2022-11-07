@@ -22,6 +22,13 @@ public class ValoracionesServiceImpl implements ValoracionesService{
 		modelo.addAttribute("valoraciones", valoracionDao.getValoraciones());
 		
 	}
+	
+	@Override
+	public void getValoracionesByIdProducto(int idProd, Model modelo) {
+		
+		modelo.addAttribute("valoraciones", valoracionDao.getValoracionesByIdProducto(idProd));
+		
+	}
 
 	@Override
 	public void insertValoracion(Valoraciones valoracion) {
@@ -29,5 +36,7 @@ public class ValoracionesServiceImpl implements ValoracionesService{
 		valoracionDao.insertValoracion(valoracion);
 		
 	}
+
+
 
 }

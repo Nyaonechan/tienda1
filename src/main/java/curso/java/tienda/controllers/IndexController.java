@@ -32,7 +32,6 @@ public class IndexController {
 		//Thread thread = new Thread(hiloEstadoPedidos);
 		//thread.start();
 		
-		//TODO Si el usuario ha sido creado por admin, llevar a /perfilCambios para obligar a editar la contraseña por defecto
 		
 		// CARGAR DATOS EMPRESA
 		configuracionService.recogerDatosEmpresa(modelo);
@@ -45,9 +44,6 @@ public class IndexController {
 		
 		//CARGAR CATEGORIAS
 		categoriaService.cargarCategorias(modelo);
-		
-		//CARGAR CANTIDAD CATEGORIAS
-		//productoService.cantidadProductosCat(id, modelo);
 
 		return "index";
 	}

@@ -9,17 +9,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import curso.java.tienda.DemoApplication;
+import curso.java.tienda.dao.CategoriasDao;
 import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Configuracion;
+import curso.java.tienda.entities.Descuentos;
 import curso.java.tienda.entities.Detalles_pedido;
 import curso.java.tienda.entities.Productos;
+import curso.java.tienda.entities.Proveedores;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.ConfiguracionService;
+import curso.java.tienda.service.DescuentosService;
 import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.Opciones_menuService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
+import curso.java.tienda.service.ProveedoresService;
 import curso.java.tienda.service.UsuariosService;
 import curso.java.tienda.utils.Encriptacion;
 import curso.java.tienda.utils.Excel;
@@ -51,6 +56,12 @@ public class EmpleadoAdminController {
 	ConfiguracionService configuracionService;
 	
 	@Autowired
+	ProveedoresService proveedorService;
+	
+	@Autowired
+	DescuentosService descuentoService;
+	
+	@Autowired
 	Excel excel;
 	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
@@ -62,6 +73,8 @@ public class EmpleadoAdminController {
 		System.out.println("Controlador adminInicio");
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		opciones_menuService.elegirOpciones(modelo, user.getId());
 		
@@ -75,6 +88,10 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador adminProductos");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		productoService.cargarProductos(modelo);
 		
 		return "empleados/adminProductos";
@@ -85,9 +102,12 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador nuevoProducto");
 		
-		modelo.addAttribute("producto",new Productos());
-		//modelo.addAttribute("categoria",new Categorias());
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
+		if (user == null) return "redirect:/login";
+		
+		modelo.addAttribute("producto",new Productos());
+
 		return "empleados/formProducto";
 	}
 	
@@ -96,6 +116,10 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador modificarProducto");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		productoService.getProductoById(idProd, modelo);
 
 		return "empleados/formProducto";
@@ -103,11 +127,19 @@ public class EmpleadoAdminController {
 	
 	@PostMapping ("/insertProducto")
 	@Transactional
-	String insertOrUpdateProducto(Model modelo, Productos producto) {
+	String insertOrUpdateProducto(Model modelo, @ModelAttribute Productos producto) {
 		
 		System.out.println("Controlador insertProducto");
 		
 		System.out.println(producto);
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		int id_categoria = producto.getCategoria().getId();
+		Categorias categoria = categoriaService.getCategoriaById(id_categoria);
+		producto.setCategoria(categoria);
 		
 		productoService.insertProducto(producto);
 		
@@ -120,6 +152,10 @@ public class EmpleadoAdminController {
 	public String darBajaProducto(Model modelo, @RequestParam("idProd") int id) {
 		
 		System.out.println("Controlador darBajaProducto");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		productoService.darBajaProducto(id);
 		
@@ -135,6 +171,10 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador adminPedidos");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		pedidoService.getPedidos(modelo);
 		
 		return "empleados/adminPedidos";
@@ -144,6 +184,10 @@ public class EmpleadoAdminController {
 	public String modificarEstado(@RequestParam("idPedido") int id, Model modelo) {
 		
 		System.out.println("Controlador modificarEstado");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		pedidoService.modificarEstadoPedidoAdmin(id);
 		
@@ -164,6 +208,10 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador adminClientes");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		usuarioService.getUsuariosByRol(idRol, modelo);
 		
 		modelo.addAttribute("idRol", idRol);
@@ -180,11 +228,15 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador nuevoUsuario");
 		
-		Usuarios user = new Usuarios();
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		Usuarios usuario = new Usuarios();
 		
 		user.setClave("123456");
 		
-		modelo.addAttribute("usuario", user);
+		modelo.addAttribute("usuario", usuario);
 		
 		return "empleados/formUsuarios";
 		
@@ -194,6 +246,10 @@ public class EmpleadoAdminController {
 	public String modificarUsuario(@RequestParam int idUsuario, Model modelo) {
 		
 		System.out.println("Controlador modificarUsuario");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		usuarioService.getUsuariosById(idUsuario, modelo);
 		
@@ -206,6 +262,10 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador insertUsuario");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		int rol = (int) modelo.getAttribute("idRol");
 		
 		usuarioService.insertUsuario(usuario, rol);
@@ -215,6 +275,12 @@ public class EmpleadoAdminController {
 	
 	@GetMapping("/darBajaUsuario")
 	public String darBajaUsuario(Model modelo, @RequestParam int idUsuario) {
+		
+		System.out.println("Controlador darBajaUsuario");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		int rol = (int) modelo.getAttribute("idRol");
 		
@@ -229,6 +295,12 @@ public class EmpleadoAdminController {
 	@GetMapping ("/exportarCatalogo")
 	public String exportarCatalogo(Model modelo) {
 		
+		System.out.println("Controlador exportarCatalogo");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		excel.exportarCatalogo();
 		
 		return adminInicio(modelo);
@@ -236,6 +308,12 @@ public class EmpleadoAdminController {
 	
 	@GetMapping ("/importarProductos")
 	public String importarProductos(Model modelo) {
+		
+		System.out.println("Controlador importarProductos");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		excel.importarProductos();
 		return adminInicio(modelo);
@@ -245,6 +323,10 @@ public class EmpleadoAdminController {
 	public String formCategoria(Model modelo) {
 		
 		System.out.println("Controlador formCategoria");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		modelo.addAttribute("categoria", new Categorias());
 		
@@ -256,6 +338,10 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador crearCategorias");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		categoriaService.insertarCategoria(categoria);
 		
 		return adminInicio(modelo);
@@ -265,6 +351,10 @@ public class EmpleadoAdminController {
 	public String adminConfiguracion(Model modelo) {
 		
 		System.out.println("Controlador adminConfiguracion");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		configuracionService.getConfiguraciones(modelo);
 		
@@ -276,6 +366,10 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador formConfiguracion");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		configuracionService.getConfiById(modelo, idConfiguracion);
 		
 		return "empleados/formConfiguracion";
@@ -285,6 +379,10 @@ public class EmpleadoAdminController {
 	String modificarConfiguracion(Model modelo, Configuracion configuracion) {
 		
 		System.out.println("Controlador modificarConfiguracion");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		configuracionService.insertConfiguracion(configuracion);
 		
@@ -296,13 +394,23 @@ public class EmpleadoAdminController {
 		
 		System.out.println("Controlador verDetalles");
 		
-		detalle_pedidoService.getDetallesPedidoById(modelo, idPedido);
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		detalle_pedidoService.getDetallesPedidoByIdPedido(modelo, idPedido);
 		
 		return "empleados/adminDetallesPedido";
 	}
 	
 	@GetMapping ("/confirmarCancProducto")
 	public String confirmarCancProducto(@RequestParam int idPedido, @RequestParam int idDet, @RequestParam String estado, Model modelo) {
+		
+		System.out.println("Controlador confirmarCancProducto");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		detalle_pedidoService.modificarEstadoAdminCanc(idDet);
 		
@@ -313,6 +421,145 @@ public class EmpleadoAdminController {
 		detalle_pedidoService.restablecerStockCancelado(idDet);
 		
 		return verDetalles(idPedido, modelo);
+	}
+	
+	@GetMapping ("/adminProveedores")
+	public String adminProveedores(Model modelo) {
+		
+		System.out.println("Controlador adminProveedores");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		proveedorService.getProveedores(modelo);
+		
+		return "empleados/adminProveedores";
+	}
+	
+	@GetMapping ("/nuevoProveedor")
+	String nuevoProveedor(Model modelo) {
+		
+		System.out.println("Controlador nuevoProveedor");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		modelo.addAttribute("proveedor",new Proveedores());
+
+		return "empleados/formProveedor";
+	}
+	
+	@GetMapping("/modificarProveedor")
+	public String modificarProveedor (@RequestParam int idProv, Model modelo) {
+		
+		System.out.println("Controlador modificarProveedor");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		proveedorService.getProveedorById(modelo, idProv);
+
+		return "empleados/formProveedor";
+	}
+	
+	@PostMapping ("/insertProveedor")
+	@Transactional
+	String insertOrUpdateProveedor(Model modelo, @ModelAttribute Proveedores proveedor) {
+		
+		System.out.println("Controlador insertProveedor");
+		
+		System.out.println(proveedor);
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		proveedorService.insertProveedor(proveedor);
+		
+		logger.info("Proveedor con id: " + proveedor.getId() + " añadido o modificado");
+		
+		return adminProveedores(modelo);
+	}
+	
+	@GetMapping ("/darBajaProveedor")
+	public String darBajaProveedor(Model modelo, @RequestParam("idProv") int id) {
+		
+		System.out.println("Controlador darBajaProveedor");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		proveedorService.darBajaProveedor(id); // pendientes los métodos
+		
+		logger.info("Proveedor con id: " + id + " dado de baja.");
+		
+		return adminProveedores(modelo);
+	}
+	
+	// Gestión descuentos
+	
+	@GetMapping("/adminDescuentos")
+	public String adminDescuentos(Model modelo) {
+		
+		System.out.println("Controlador adminDescuentos");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		descuentoService.getDescuentos(modelo);
+		
+		return "empleados/adminDescuentos";
+	}
+	
+	@GetMapping ("/nuevoDescuento")
+	public String nuevoDescuento(Model modelo) {
+		
+		System.out.println("Controlador nuevoDescuento");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		modelo.addAttribute("descuento", new Descuentos());
+		
+		return "empleados/formDescuentos";
+		
+	}
+	
+	@GetMapping ("/modificarDescuento")
+	public String modificarDescuento(@RequestParam int idDesc, Model modelo) {
+		
+		System.out.println("Controlador modificarDescuento");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		descuentoService.getDescuentoById(modelo, idDesc);
+		
+		return "empleados/formDescuentos";
+	}
+	
+	@PostMapping ("/insertDescuento")
+	public String insertDescuento(Model modelo, Descuentos descuento) {
+		
+		System.out.println("Controlador insertDescuento");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		descuentoService.insertDescuento(descuento);
+		
+		logger.info("Descuento con id: " + descuento.getId() + " añadido o modificado");
+		
+		return adminDescuentos(modelo);
+		
 	}
 
 }

@@ -16,4 +16,8 @@ public interface UsuariosService {
 	
 	public boolean comprobarPass(String email, String clave, Usuarios user);
 
+	public Usuarios getUsuarioById(int id_usuario);
+	
+	public boolean comprobarDefecto(String pass, Model modelo);
+
 }

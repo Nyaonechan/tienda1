@@ -2,6 +2,7 @@ package curso.java.tienda.service;
 
 import org.springframework.ui.Model;
 
+import curso.java.tienda.entities.Pedidos;
 import curso.java.tienda.entities.Usuarios;
 
 public interface PedidosService {
@@ -29,5 +30,7 @@ public interface PedidosService {
 	public void getMetodosPago(Model modelo);
 	
 	public void modificarPedidoTotal(int id, String estado);
+
+	public Pedidos getLastPedido();
 
 }

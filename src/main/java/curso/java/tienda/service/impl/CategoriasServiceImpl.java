@@ -16,6 +16,7 @@ public class CategoriasServiceImpl implements CategoriasService{
 	@Autowired
 	CategoriasDao categoriaDao;
 	
+	
 	@Override
 	public void cargarCategorias(Model modelo) {
 		ArrayList<Categorias> categorias = categoriaDao.getCategorias();
@@ -27,6 +28,13 @@ public class CategoriasServiceImpl implements CategoriasService{
 	public void insertarCategoria(Categorias categoria) {
 		
 		categoriaDao.insertarCategoria(categoria);
+		
+	}
+
+	@Override
+	public Categorias getCategoriaById(int id) {
+		Categorias categoria = categoriaDao.getCategoriaById(id);
+		return categoria;
 		
 	}
 

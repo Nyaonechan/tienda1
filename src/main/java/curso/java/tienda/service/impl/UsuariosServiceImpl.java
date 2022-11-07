@@ -71,6 +71,27 @@ public class UsuariosServiceImpl implements UsuariosService {
 		
 		return bandera;
 	}
+
+	@Override
+	public Usuarios getUsuarioById(int id_usuario) {
+		
+		return usuarioDao.getUsuarioById(id_usuario);
+	}
+
+	@Override
+	public boolean comprobarDefecto(String pass, Model modelo) {
+
+		boolean bandera = false;
+		
+		if (pass.equals("admin1")|| pass.equals("123456")) {
+			
+			bandera = true;
+			
+			modelo.addAttribute("passDefecto", "Debes cambiar la contraseña");
+		}
+		
+		return bandera;
+	}
 	
 	
 

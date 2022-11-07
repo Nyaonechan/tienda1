@@ -82,7 +82,7 @@
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                     <p class="text-right" th:text="${cantidadCat}">15 Products</p>
                     <a th:href="@{/shop/{catId}(catId=${categoria.id})}" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" th:src="@{/img/categorias/cat1.jpg}" th:alt="${categoria.nombre}">
+                        <img class="img-fluid" th:src="@{/img/categorias/}+${categoria.imagen}" th:alt="${categoria.nombre}">
                     </a>
                     <h5 th:text="${categoria.nombre}" class="font-weight-semi-bold m-0"></h5>
                 </div>
@@ -94,7 +94,7 @@
     <!-- Categories End -->
 
 
-    <!-- Offer Start -->
+    <!-- Offer Start 
     <div class="container-fluid offer pt-5">
         <div class="row px-xl-5">
             <div class="col-md-6 pb-4">
@@ -119,7 +119,7 @@
             </div>
         </div>
     </div>
-    <!-- Offer End -->
+ Offer End -->
 
 
     <!-- Products Start -->
@@ -209,7 +209,7 @@
     <!-- Subscribe End -->
 
   
-    <!-- Vendor Start 
+    <!-- Vendor Start BUCLE PARA PROVEEDORES
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
             <div class="col">
@@ -220,24 +220,7 @@
                     <div class="vendor-item border p-4">
                         <img src="img/vendor-2.jpg" alt="">
                     </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/vendor-3.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/vendor-4.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/vendor-5.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/vendor-6.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/vendor-7.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/vendor-8.jpg" alt="">
-                    </div>
+
                 </div>
             </div>
         </div>

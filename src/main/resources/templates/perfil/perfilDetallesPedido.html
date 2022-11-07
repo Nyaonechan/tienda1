@@ -79,8 +79,8 @@
 
                         <tr th:each="detalle : ${detalles}">
                        
-                            <td class="align-middle" th:text=${detalle.id_producto}></td>
-                            <td class="align-middle" th:text=${detalle.id_producto}></td>
+                            <td class="align-middle" th:text=${detalle.producto.id}></td>
+                            <td class="align-middle" th:text=${detalle.producto.nombre}></td>
                             <td class="align-middle" th:text=${detalle.precio_unidad}></td>
                             <td class="align-middle" th:text=${detalle.unidades}></td>
                             <td class="align-middle" th:text=${detalle.impuesto}></td>
@@ -97,14 +97,12 @@
                             	</i></a>
                             </td>
 							<td th:if="${pedido.estado.equals('E')}" class="align-middle">
-                            	<a th:href="@{/valorarProducto?idDet={idDet}(idDet=${detalle.id_producto})}"><i>
+                            	<a th:href="@{/detail(idProd=${detalle.producto.id}, idCat=${detalle.producto.categoria.id})}"><i>
                             		<button class="btn btn-sm btn-primary" value="Valorar producto">Valorar producto</button>
                             	</i></a>
                             </td>
                             <td th:unless="${pedido.estado.equals('E')}" class="align-middle">
-                            	<a th:href="@{/valorarProducto?idDet={idDet}(idDet=${detalle.id})}"><i>
-                            		<button class="btn btn-sm btn-primary" value="Valorar producto" disabled>Valorar producto</button>
-                            	</i></a>
+                            	<a href=""><i><button class="btn btn-sm btn-primary" value="Valorar producto" disabled>Valorar producto</button></i></a>
                             </td>
 						</tr>  
                         

@@ -13,7 +13,13 @@ import javax.persistence.Table;
 
 public class Categorias {
 	
-    @Id
+    @Override
+	public String toString() {
+		return "Categorias [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
+				+ "]";
+	}
+
+	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 

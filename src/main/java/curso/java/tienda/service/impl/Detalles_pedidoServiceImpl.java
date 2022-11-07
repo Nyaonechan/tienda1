@@ -27,7 +27,7 @@ public class Detalles_pedidoServiceImpl implements Detalles_pedidoService {
 	ProductosDao productoDao;
 
 	@Override
-	public void getDetallesPedidoById(Model modelo, int id_pedido) {
+	public void getDetallesPedidoByIdPedido(Model modelo, int id_pedido) {
 		
 		ArrayList<Detalles_pedido> detalles = detalle_pedidoDao.getDetallesByIdPedido(id_pedido);
 		
@@ -46,7 +46,7 @@ public class Detalles_pedidoServiceImpl implements Detalles_pedidoService {
 		
 		for (Productos e: carrito) {
 			
-			detallePedido = new Detalles_pedido(pedido.getId(), e.getId(), e.getCantidad(), (float)e.getPrecio(), e.getImpuesto(), e.getPrecio()*e.getCantidad(), pedido.getEstado());
+			detallePedido = new Detalles_pedido(pedido.getId(), e, e.getCantidad(), (float)e.getPrecio(), e.getImpuesto(), e.getPrecio()*e.getCantidad(), pedido.getEstado());
 			
 			detalle_pedidoDao.insertDetallePedido(detallePedido);
 			
@@ -81,7 +81,7 @@ public class Detalles_pedidoServiceImpl implements Detalles_pedidoService {
 		
 		Detalles_pedido detalle = detalle_pedidoDao.getDetalleById(id_detalle);
 		
-		productoDao.modificarStock(detalle.getId_producto(), detalle.getUnidades());
+		productoDao.modificarStock(detalle.getProducto().getId(), detalle.getUnidades());
 		
 	}
 

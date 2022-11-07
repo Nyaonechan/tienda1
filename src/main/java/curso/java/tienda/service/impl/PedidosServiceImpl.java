@@ -173,4 +173,10 @@ public class PedidosServiceImpl implements PedidosService{
 		
 	}
 
+	@Override
+	public Pedidos getLastPedido() {
+		
+		return pedidoDao.getLastPedido();
+	}
+
 }

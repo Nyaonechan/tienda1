@@ -8,6 +8,8 @@ public interface ValoracionesDao {
 	
 	public ArrayList<Valoraciones> getValoraciones();
 	
+	public ArrayList<Valoraciones> getValoracionesByIdProducto(int idProd);
+	
 	public void insertValoracion(Valoraciones valoracion);
 
 }

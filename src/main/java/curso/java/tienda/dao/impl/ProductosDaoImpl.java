@@ -1,6 +1,8 @@
 package curso.java.tienda.dao.impl;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
@@ -380,6 +382,24 @@ public class ProductosDaoImpl implements ProductosDao {
 
 		query.executeUpdate();
 		
+	}
+	
+	// comprobar comprados
+
+	@Override
+	public List<Object> productosComprados(int producto_id, int id_usuario) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Object> query= session.createQuery("FROM Pedidos p INNER JOIN Detalles_pedido d ON p.id =d.id_pedido where d.producto.id =:producto_id and p.id_usuario =:id_usuario");
+		
+		query.setParameter("producto_id", producto_id);
+		
+		query.setParameter("id_usuario", id_usuario);
+		
+		List<Object> comprados = query.getResultList();
+		
+		return comprados;
 	}
 
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import curso.java.tienda.DemoApplication;
+import curso.java.tienda.entities.Pedidos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.Detalles_pedidoService;
@@ -71,8 +72,10 @@ public class PedidosController {
 			modelo.addAttribute("stock", "No hay suficiente stock del producto " + modelo.getAttribute("nombre_producto"));
 			return productosController.cart(modelo);
 		}
-		
-
+		Pedidos pedido = pedidoService.getLastPedido();
+		modelo.addAttribute("idPedido", pedido.getId());
+		modelo.addAttribute("precioTotal", pedido.getTotal());
+		detalles_pedidoService.getDetallesPedidoByIdPedido(modelo, pedido.getId());
 		
 		return "ty_purchase"; 
 	}

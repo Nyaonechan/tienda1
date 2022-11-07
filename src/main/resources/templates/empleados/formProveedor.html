@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+<link th:href="@{/css/perfil2.css}" rel="stylesheet" type="text/css" />
+<link href="https://cdn.usebootstrap.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="container">
+    <div class="main-body">
+    
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a th:href="@{/adminInicio}">Home</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/shop}">Volver a la tienda</a></li>
+              <li class="breadcrumb-item"><a th:href="@{/logout}">Cerrar sesión</a></li>
+              
+            </ol>
+          </nav>
+          <!-- /Breadcrumb -->
+          
+                    <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img th:src="@{/img/user.jpg}" alt="" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4 th:text="${user.nombre} + ' ' + ${user.apellido1} + ' ' + ${user.apellido2}"> </h4>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <h3 style="margin-top:100px; margin-left:50px"> Insertar o modificar proveedor</h3>
+    
+    		<form th:action="@{/insertProveedor}" th:object="${proveedor}" method="post" class="container-fluid">
+				<div class="container">
+
+							<input type="hidden" class="form-control" th:field="*{id}" value="${proveedor.id}">
+							
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Nombre</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${proveedor.nombre}" th:field="*{nombre}">
+								</div>
+							</div>
+							
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Direccion</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${proveedor.direccion}" th:field="*{direccion}">
+								</div>
+							</div>
+							
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Localidad</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${proveedor.localidad}" th:field="*{localidad}">
+								</div>
+							</div>
+							
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Provincia</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${proveedor.provincia}" th:field="*{provincia}">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Telefono</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${proveedor.telefono}" th:field="*{telefono}">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Cif</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="${proveedor.cif}" th:field="*{cif}">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Email</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="email" class="form-control" value="${proveedor.email}" th:field="*{email}">
+								</div>
+							</div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <input type="submit" value="Guardar" onclick="alert('Proveedor insertado o modificado')"/>
+                    </div>
+                  </div>
+						</div>
+
+			</form>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

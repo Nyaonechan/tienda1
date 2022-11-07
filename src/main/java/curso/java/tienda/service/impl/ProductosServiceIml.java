@@ -145,7 +145,7 @@ public class ProductosServiceIml implements ProductosService {
 		modelo.addAttribute("masVendidos", masVendidos);
 	}
 	
-	@Override
+	/*@Override
 	public void cantidadProductosCat(int id, Model modelo) { // de la categoria
 		
 		ArrayList<Productos> productos = productoDao.getProductosByCat(id);
@@ -153,9 +153,8 @@ public class ProductosServiceIml implements ProductosService {
 		int cantidad = productos.size();
 		
 		modelo.addAttribute("cantidadCat", cantidad);
-		
 
-	}
+	}*/
 	
 	@Override
 	public void cargarProductos(Model modelo) {
@@ -395,6 +394,23 @@ public class ProductosServiceIml implements ProductosService {
 		
 		double precioSinIva = precioTotal / 1.21;
 		modelo.addAttribute("precioSinIva", precioSinIva);
+	}
+	
+	// comprobar comprados
+	
+	@Override
+	public boolean comprobarComprados(int producto_id, int id_usuario) {
+		boolean bandera=false;
+		if(productoDao.productosComprados(producto_id, id_usuario)!=null) {
+			bandera = true;
+		}
+		return bandera;
+	}
+
+	@Override
+	public Productos getProductoById(int id_producto) {
+		
+		return productoDao.getProductoById(id_producto);
 	}
 
 

@@ -29,7 +29,7 @@ public interface ProductosService {
 	
 	//-------------------------
 	
-	public void cantidadProductosCat(int id, Model modelo);
+	//public void cantidadProductosCat(int id, Model modelo);
 	
 	public void cargarProductos(Model modelo);
 	
@@ -71,6 +71,10 @@ public interface ProductosService {
 	
 	public void desgloseIva(Model modelo, double precioTotal);
 
+	// comprobar comprados
+	
+	public boolean comprobarComprados(int producto_id, int id_usuario);
 
+	public Productos getProductoById(int id_producto);
 
 }

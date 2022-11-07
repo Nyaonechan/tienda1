@@ -1,18 +1,24 @@
 package curso.java.tienda.controllers;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import curso.java.tienda.DemoApplication;
 import curso.java.tienda.dao.UsuariosDao;
+import curso.java.tienda.entities.Categorias;
+import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.entities.Valoraciones;
 import curso.java.tienda.service.CategoriasService;
@@ -24,6 +30,7 @@ import curso.java.tienda.service.ValoracionesService;
 import curso.java.tienda.utils.Encriptacion;
 import curso.java.tienda.utils.EnviarEmail;
 import curso.java.tienda.utils.FacturasPdf;
+import curso.java.tienda.utils.FileUpload;
 
 
 @SessionAttributes({"categorias", "user"})
@@ -91,8 +98,14 @@ public class UsuariosController {
 		logger.info("Loggeo correcto " + user.getId());
 		
 		productoService.insertarProductosListaCarritoATabla(user, modelo); // SI NO HAY REGISTROS DE ESE USUARIO EN LA TABLA
-				
-		return  productosController.todosProductos(modelo);
+		
+		//comprobar si es contraseña por defecto
+		
+		String clave = Encriptacion.desencriptar(user.getClave());
+		
+		if (usuarioService.comprobarDefecto(clave, modelo)) return "perfil/perfilCambios";
+			
+		return  "redirect:";
 
 	}
 	
@@ -144,6 +157,8 @@ public class UsuariosController {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
+		if (user == null) return "redirect:/login";
+		
 		String desencriptada = Encriptacion.desencriptar(user.getClave()); //null cuando vuelves a home
 		
 		modelo.addAttribute("desencriptada", desencriptada);
@@ -158,6 +173,8 @@ public class UsuariosController {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
+		if (user == null) return "redirect:/login";
+		
 		String desencriptada = Encriptacion.desencriptar(user.getClave());
 		
 		modelo.addAttribute("desencriptada", desencriptada);
@@ -166,13 +183,37 @@ public class UsuariosController {
 	}
 	
 	@PostMapping("/modificarDatosPost")
-	public String modificarDatosForm(Model modelo, Usuarios usuario) {
+	public String modificarDatosForm(Model modelo, Usuarios usuario, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 		
 		System.out.println("Controlador modificarDatosPost");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		// Pasar el nombre del archivo al user
+		
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		
+		usuario.setImagen(fileName);
+		
+		//Guardar cambios
 		
 		usuarioDao.insertarUsuario(usuario);
 		
 		modelo.addAttribute("user", usuario);
+		
+		// Cargar la imagen en el proyecto
+		
+		String uploadDir = "src/main/resources/static/img/users";
+		
+		FileUpload.saveFile(uploadDir, fileName, multipartFile);
+		
+		//Comprobar si la clave sigue siendo la de por defecto
+		
+		String clave = Encriptacion.desencriptar(usuario.getClave());
+		
+		if (usuarioService.comprobarDefecto(clave, modelo)) return "perfil/perfilCambios";
 		
 		return perfilResumen(modelo);
 	}
@@ -184,6 +225,8 @@ public class UsuariosController {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		
+		if (user == null) return "redirect:/login";
+		
 		pedidoService.getPedidosByIdUsuario(user.getId(), modelo);
 		
 		return "perfil/perfilPedidos";
@@ -194,8 +237,13 @@ public class UsuariosController {
 		
 		System.out.println("Controlador perfilDetallesPedido");
 		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
 		pedidoService.getPedidoById(id_pedido, modelo);
-		detalle_pedidoService.getDetallesPedidoById(modelo, id_pedido);
+		
+		detalle_pedidoService.getDetallesPedidoByIdPedido(modelo, id_pedido);
 		
 		return "perfil/perfilDetallesPedido";
 	}
@@ -204,6 +252,10 @@ public class UsuariosController {
 	public String pedirCancelacion(@RequestParam int id_pedido, Model modelo) {
 		
 		System.out.println("Controlador pedirCancelacion");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		pedidoService.modificarEstadoPedidoCliente(id_pedido);
 		
@@ -218,41 +270,42 @@ public class UsuariosController {
 		System.out.println("Controlador facturasPdf");
 		
 		factura.crearFactura(id_pedido, modelo);
-		
-		
+
 		return perfilPedidos(modelo);
 		
 	}
 	
-	@GetMapping ("/valorarProducto")
-	public String valorarProducto (@RequestParam int idDet, Model modelo) {
-		
-		System.out.println("Controlador valorarProducto");
-		
-		categoriaService.cargarCategorias(modelo);
-		
-		productoService.cargarProductoById(modelo, idDet);
-		
-		modelo.addAttribute("comprado", "");
-		modelo.addAttribute("valor", new Valoraciones());
-		
-		valoracionService.getValoraciones(modelo);
-		
-		return "detail";
-	}
-	
+
 	@PostMapping ("/guardarValoracion")
-	public String guardarValoracion(Model modelo, Valoraciones valoracion) {
+	public String guardarValoracion(Model modelo,@ModelAttribute Valoraciones valoracion, @RequestParam int idProd, @RequestParam int idUser) {
+		
+		System.out.println("Controlador guardarValoracion");
+		
+		System.out.println(valoracion);
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		Productos producto = productoService.getProductoById(idProd);
+		valoracion.setProducto(producto);
+		
+		Usuarios usuario = usuarioService.getUsuarioById(idUser);
+		valoracion.setUsuario(usuario);
 		
 		valoracionService.insertValoracion(valoracion);
 		
-		return "/detail";
+		return "redirect:/shop";
 	}
 	
 	@GetMapping("/cancelarProducto")
 	public String cancelarProducto(@RequestParam int idDet, @RequestParam int idPedido, Model modelo) {
 		
 		System.out.println("Controlador cancelarProducto");
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
 		
 		detalle_pedidoService.modificarEstadoCliente(idDet);
 		

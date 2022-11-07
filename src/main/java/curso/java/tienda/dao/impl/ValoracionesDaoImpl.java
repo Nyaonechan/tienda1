@@ -32,6 +32,21 @@ public class ValoracionesDaoImpl implements ValoracionesDao{
 	}
 	
 	@Override
+	public ArrayList<Valoraciones> getValoracionesByIdProducto(int idProd) {
+		
+		Session session=entityManager.unwrap(Session.class);
+		
+		Query<Valoraciones> query=session.createQuery("from Valoraciones where producto.id=:idProd", Valoraciones.class );
+		
+		query.setParameter("idProd", idProd);
+		
+		ArrayList<Valoraciones> valoraciones = (ArrayList<Valoraciones>) query.getResultList();
+		
+		return valoraciones;
+	}
+
+	
+	@Override
 	@Transactional
 	public void insertValoracion(Valoraciones valoracion) {
 		
@@ -40,5 +55,6 @@ public class ValoracionesDaoImpl implements ValoracionesDao{
 		session.saveOrUpdate(valoracion);
 		
 	}
+
 
 }

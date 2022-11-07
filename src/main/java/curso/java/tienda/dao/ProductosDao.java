@@ -1,6 +1,7 @@
 package curso.java.tienda.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import curso.java.tienda.entities.Articulos_carrito;
 import curso.java.tienda.entities.Categorias;
@@ -75,5 +76,9 @@ public interface ProductosDao {
 	public ArrayList<Articulos_carrito> getProductosCarritoTabla (Usuarios user);
 	
 	public void modificarStock (int id, int cantidad);
+	
+	// Comprobar comprados
+	
+	public List<Object> productosComprados(int producto_id, int id_usuario);
 
 }

@@ -14,6 +14,7 @@ import curso.java.tienda.dao.ProductosDao;
 import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
+import curso.java.tienda.entities.Valoraciones;
 import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.ProductosService;
 import curso.java.tienda.service.ValoracionesService;
@@ -114,7 +115,7 @@ public class ProductosController {
 	}
 	
 	@GetMapping ("/detail")
-	public String detail (Model modelo, @RequestParam("idProd") int id) {
+	public String detail (Model modelo, @RequestParam("idProd") int id, @RequestParam(required=false) int idCat) {
 		
 		System.out.println("llamando a controlador detail");
 		
@@ -122,7 +123,18 @@ public class ProductosController {
 		
 		productoService.cargarProductoById(modelo, id);
 		
-		valoracionService.getValoraciones(modelo);
+		productoService.cargarProductosByIdCat(modelo, idCat);
+		
+		valoracionService.getValoracionesByIdProducto(id, modelo);
+		
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user!=null && productoService.comprobarComprados(id, user.getId())) {
+			modelo.addAttribute("comprado","");
+		}
+		
+		modelo.addAttribute("valor", new Valoraciones());
+
 		
 		return "detail";
 	}

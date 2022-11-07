@@ -155,9 +155,9 @@
                         <!-- BUCLE CON LOS PRODUCTOS DE LA CESTA -->
                         
                         <div th:each="producto : ${carrito}" class="d-flex justify-content-between">
-                            <p th:text=${producto.nombre}></p>
-                            <p th:text=${producto.cantidad}></p>
-                            <p th:text="${producto.precio} + '€/u'"></p>
+                            <div th:text=${producto.nombre}></div>
+                            <div th:text=${producto.cantidad}></div>
+                            <div th:text="${producto.precio} + '€/u'"></div>
                         </div>
 
                         <hr class="mt-0">
