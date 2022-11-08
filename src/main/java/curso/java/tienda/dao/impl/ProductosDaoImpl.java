@@ -415,6 +415,19 @@ public class ProductosDaoImpl implements ProductosDao {
 		return comprados;
 	}
 
+	@Override
+	public ArrayList<Productos> getMasValorados() {
+		
+		Session session = entityManager.unwrap(Session.class);
+
+		Query<Productos> query = session.createQuery("from Productos order by valoracion_media desc",Productos.class);
+
+		ArrayList<Productos> productos =  (ArrayList<Productos>) query.getResultList();
+
+		return productos;
+
+	}
+
 
 
 

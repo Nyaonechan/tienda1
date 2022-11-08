@@ -1,6 +1,7 @@
 package curso.java.tienda.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import curso.java.tienda.entities.Detalles_pedido;
 
@@ -20,5 +21,9 @@ public interface Detalles_pedidoDao {
 	public void modificarEstadoAdminEnv(int id);
 	
 	public ArrayList<Detalles_pedido> getDetallesByIdAndEstado(int id, String estado);
-
+	
+	public int getDetallesByCat(int idCat);
+	
+	public ArrayList<Object> getDetallesBySumUnidades();
+	
 }

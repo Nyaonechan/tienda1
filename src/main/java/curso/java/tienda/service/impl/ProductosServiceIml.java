@@ -439,5 +439,19 @@ public class ProductosServiceIml implements ProductosService {
 		return bandera;
 	}
 
+	@Override
+	public ArrayList<Productos> seisMasValorados() {
+		
+		ArrayList<Productos> productosDefecto = productoDao.getMasValorados();
+		
+		ArrayList<Productos> seis = new ArrayList<Productos>();
+		
+		for(int i=0; i<6; i++) {
+			seis.add(productosDefecto.get(i));
+		}
+		
+		return seis;
+	}
+
 
 }

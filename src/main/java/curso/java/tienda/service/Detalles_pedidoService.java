@@ -1,6 +1,10 @@
 package curso.java.tienda.service;
 
+import java.util.ArrayList;
+
 import org.springframework.ui.Model;
+
+import curso.java.tienda.entities.Detalles_pedido;
 
 public interface Detalles_pedidoService {
 	
@@ -19,5 +23,9 @@ public interface Detalles_pedidoService {
 	public boolean comprobarEstadoDetalle(int id_pedido);
 	
 	public void cantidadTotalProductos(Model modelo);
+	
+	public void getProductosByCat(ArrayList<Integer> detalles, int idCat);
+	
+	public ArrayList<Object> getSeisConMasUnidades();
 
 }

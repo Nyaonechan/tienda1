@@ -113,4 +113,31 @@ public class Detalles_pedidoServiceImpl implements Detalles_pedidoService {
 		
 	}
 
+	@Override
+	public void getProductosByCat(ArrayList<Integer> detalles, int idCat) {
+		
+		detalles.add(detalle_pedidoDao.getDetallesByCat(idCat));
+
+	}
+
+	@Override
+	public ArrayList<Object> getSeisConMasUnidades() {
+		
+		ArrayList<Object> seis = new ArrayList<Object>();
+		
+		ArrayList<Object> detalles = detalle_pedidoDao.getDetallesBySumUnidades();
+
+		for (Object e: detalles)
+			System.out.print(e + " ");
+
+
+		//detalles.sort((o1, o2)-> ( o1.compareTo(o2)));
+		
+		for (int i = 0; i<6; i++) {
+			seis.add(detalles.get(i));
+		}
+
+		return seis;
+	}
+
 }

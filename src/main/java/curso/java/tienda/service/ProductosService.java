@@ -80,5 +80,7 @@ public interface ProductosService {
 	// comparar cantidad producto articulos_carrito con stock
 	
 	public boolean compararCantidadConStock(int cantidad, int id_producto);
+	
+	public ArrayList<Productos> seisMasValorados();
 
 }

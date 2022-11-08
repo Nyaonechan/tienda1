@@ -1,6 +1,7 @@
 package curso.java.tienda.dao.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -125,5 +126,34 @@ public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 		return detallesPedido;
 		
 	}
+
+	@Override
+	public int getDetallesByCat(int idCat) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Detalles_pedido> query = session.createQuery("from Detalles_pedido d, Productos p where p.id=d.producto.id and p.categoria.id=:idCat");
+		
+		query.setParameter("idCat", idCat);
+		
+		List<Detalles_pedido> detallesPedido =  (ArrayList<Detalles_pedido>) query.getResultList();
+		
+		int cantidad = detallesPedido.size();
+		
+		return cantidad;
+	}
+
+	@Override
+	public ArrayList<Object> getDetallesBySumUnidades() {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<Object> query = session.createQuery("SELECT SUM(unidades) FROM Detalles_pedido GROUP BY producto_id");
+		
+		ArrayList<Object> detalles =   (ArrayList<Object>) query.getResultList();
+		
+		return detalles;
+	}
+
 
 }

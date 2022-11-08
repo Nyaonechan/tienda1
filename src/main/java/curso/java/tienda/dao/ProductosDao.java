@@ -81,5 +81,7 @@ public interface ProductosDao {
 	// Comprobar comprados
 	
 	public List<Object> productosComprados(int producto_id, int id_usuario);
+	
+	public ArrayList<Productos> getMasValorados();
 
 }

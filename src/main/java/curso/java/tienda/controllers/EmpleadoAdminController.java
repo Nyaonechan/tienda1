@@ -615,19 +615,37 @@ public class EmpleadoAdminController {
 	@GetMapping(value = "/pruebaJSON", produces="application/json")
 	public @ResponseBody String getJSON(Model modelo) {
 		
-		
-		
 		ObjectNode raiz = mapper.createObjectNode();
 		
 		ArrayNode categorias = mapper.createArrayNode();
-		
 		ArrayList<Categorias> categoriasList = (ArrayList<Categorias>) modelo.getAttribute("categorias");
 		
-		for (Categorias e: categoriasList) {
-			categorias.addPOJO(e);
+		ArrayNode cantidades = mapper.createArrayNode();
+		ArrayList<Integer> cantidadesList = new ArrayList<Integer>();
+		
+		//cargar categorias en json
+		for (Categorias cat: categoriasList) {
+			categorias.addPOJO(cat);
+			detalle_pedidoService.getProductosByCat(cantidadesList, cat.getId()); //cargar cantidad productos vendidos por cat en lista
+		}
+		// cargar cantidades productos por cat en json
+		for (Integer element: cantidadesList) {
+			cantidades.add(element);
+		}
+		
+		ArrayNode productos = mapper.createArrayNode();
+		ArrayNode cantidades2 = mapper.createArrayNode();
+		ArrayList<Productos> productosList = productoService.seisMasValorados();
+		
+		for (Productos prod: productosList) {
+			productos.add(prod.getNombre());
+			cantidades2.add(prod.getValoracion_media());
 		}
 		
 		raiz.set("categorias", categorias);
+		raiz.set("cantidades", cantidades);
+		raiz.set("productos", productos);
+		raiz.set("cantidades2", cantidades2);
 		
 		String json = null;
 		
