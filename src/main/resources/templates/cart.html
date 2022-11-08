@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>EShopper - Bootstrap Shop Template</title>
+    <title>Cart</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -95,12 +95,14 @@
                 </table>
                 <div th:if="${stock!=null}" th:text="${stock}"></div>
             </div>
+            
             <div class="col-lg-4">
-                <form class="mb-5" action="">
+            <div th:if="${nodescuento!=null}" th:text="${nodescuento}"></div>
+                <form th:action="@{/descuento}" th:object="${descuento}" class="mb-5" action="" method="post">
                     <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                        <input type="text" th:field="*{codigo}" class="form-control p-4" placeholder="Coupon Code">
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
+                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
                         </div>
                     </div>
                 </form>

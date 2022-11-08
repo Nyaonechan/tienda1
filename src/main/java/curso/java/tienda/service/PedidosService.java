@@ -2,12 +2,13 @@ package curso.java.tienda.service;
 
 import org.springframework.ui.Model;
 
+import curso.java.tienda.entities.Descuentos;
 import curso.java.tienda.entities.Pedidos;
 import curso.java.tienda.entities.Usuarios;
 
 public interface PedidosService {
 	
-	public void insertPedido (Usuarios user, String metodoPago, double total);
+	public void insertPedido (Usuarios user, String metodoPago, double total, Descuentos descuento);
 	
 	public void eliminarArticulosCarritoById ();
 	

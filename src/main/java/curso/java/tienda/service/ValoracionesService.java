@@ -11,5 +11,7 @@ public interface ValoracionesService {
 	public void getValoracionesByIdProducto(int idProd, Model modelo);
 	
 	public void insertValoracion(Valoraciones valoracion);
+	
+	public void calcularValoracionMedia(int idProd);
 
 }

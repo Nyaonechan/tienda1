@@ -48,4 +48,22 @@ public class DescuentosDaoImpl implements DescuentosDao{
 		session.saveOrUpdate(descuento);
 	}
 
+	@Override
+	public Descuentos getDescuentoByCodigo(String codigo) {
+		
+		Session session = entityManager.unwrap(Session.class);
+
+		Query<Descuentos> query = session.createQuery("from Descuentos where codigo=:codigo", Descuentos.class);
+		
+		query.setParameter("codigo", codigo);
+		
+		ArrayList<Descuentos> descuentos = (ArrayList<Descuentos>) query.getResultList();
+		
+		if (descuentos!=null && descuentos.size()!=0) {
+			 return descuentos.get(0);
+			}
+		
+		return null;
+	}
+
 }

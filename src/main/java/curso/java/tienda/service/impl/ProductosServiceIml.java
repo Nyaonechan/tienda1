@@ -26,6 +26,7 @@ public class ProductosServiceIml implements ProductosService {
 	@Override
 	public void insertProducto(Productos producto) {
 		
+		producto.setValoracion_media(0);
 		producto.setBaja(false);
 		producto.setFecha_alta(LocalDate.now());
 		productoDao.insertOrUpdateProducto(producto);
@@ -352,7 +353,7 @@ public class ProductosServiceIml implements ProductosService {
 	}
 	
 	@Override
-	public double precioTotalCarro (Model modelo) {
+	public double precioTotalCarro (Model modelo, float descuento) {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		float precioTotal=0;
@@ -370,6 +371,11 @@ public class ProductosServiceIml implements ProductosService {
 			for (Productos e: carrito) {
 				precioTotal+=e.getCantidad()*e.getPrecio();
 			}
+			
+			if(descuento!=0) {
+				precioTotal = precioTotal - (precioTotal*descuento);
+			}
+			
 		}else {
 			ArrayList<Productos> productos =productoDao.getProductosCarritoTablaCruzada(user);
 			ArrayList<Articulos_carrito> articulos=productoDao.getProductosCarritoTabla(user);
@@ -380,6 +386,10 @@ public class ProductosServiceIml implements ProductosService {
 			
 			for (Productos e: productos) {
 				precioTotal+=e.getCantidad()*e.getPrecio();
+			}
+			
+			if(descuento!=0) {
+				precioTotal = precioTotal - (precioTotal*descuento);
 			}
 		}
 		

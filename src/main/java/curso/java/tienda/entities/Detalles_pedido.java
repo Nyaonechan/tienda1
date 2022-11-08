@@ -44,6 +44,7 @@ public class Detalles_pedido {
 		this.total = total;
 		this.estado=estado;
 	}
+	
 
 	public String getEstado() {
 		return estado;

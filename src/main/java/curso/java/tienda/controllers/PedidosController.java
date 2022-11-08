@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import curso.java.tienda.DemoApplication;
+import curso.java.tienda.entities.Descuentos;
 import curso.java.tienda.entities.Pedidos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.service.CategoriasService;
@@ -17,7 +18,7 @@ import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
 
-@SessionAttributes({"categorias", "user", "carrito", "cantidad"})
+@SessionAttributes({"categorias", "user", "carrito", "cantidad", "descuentoNuevo"})
 @Controller
 public class PedidosController {
 	
@@ -41,7 +42,15 @@ public class PedidosController {
 	public String checkout (Model modelo) {
 		
 		categoriaService.cargarCategorias(modelo);
-		double precioTotal=productoService.precioTotalCarro(modelo);
+		
+		Descuentos descuento = (Descuentos) modelo.getAttribute("descuentoNuevo"); // recogido por el formulario
+		
+		if (descuento==null) {
+			descuento = new Descuentos();
+			descuento.setDescuento(0);
+		}
+		
+		double precioTotal=productoService.precioTotalCarro(modelo, descuento.getDescuento());
 		productoService.desgloseIva(modelo, precioTotal);
 		pedidoService.getMetodosPago(modelo);
 		
@@ -61,12 +70,19 @@ public class PedidosController {
 			modelo.addAttribute("eligeMetodo", "Debes elegir un método de pago");
 			return checkout(modelo);
 		}
+		
+		Descuentos descuento = (Descuentos) modelo.getAttribute("descuentoNuevo"); // recogido por el formulario
+		
+		if (descuento==null) {
+			descuento = new Descuentos();
+			descuento.setDescuento(0);
+		}
 
-		double precioTotal=productoService.precioTotalCarro(modelo);
+		double precioTotal=productoService.precioTotalCarro(modelo, descuento.getDescuento());
 		productoService.desgloseIva(modelo, precioTotal);
 		if (!pedidoService.comprobarStock(modelo)) {
 			pedidoService.modificarStock(modelo);
-			pedidoService.insertPedido(user, pago, precioTotal);
+			pedidoService.insertPedido(user, pago, precioTotal, descuento);
 			detalles_pedidoService.insertDetallesPedido(modelo);
 			modelo.addAttribute("carrito", null);
 			pedidoService.eliminarArticulosCarritoById();
@@ -78,6 +94,7 @@ public class PedidosController {
 		Pedidos pedido = pedidoService.getLastPedido();
 		modelo.addAttribute("idPedido", pedido.getId());
 		modelo.addAttribute("precioTotal", pedido.getTotal());
+		modelo.addAttribute("cantidad", 0);
 		detalles_pedidoService.getDetallesPedidoByIdPedido(modelo, pedido.getId());
 		
 		return "ty_purchase"; 

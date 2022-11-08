@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -34,18 +35,31 @@ public class Pedidos {
 	
 	private String num_factura;
 	
+	@ManyToOne
+	private Descuentos descuento;
+	
 	private double total;
 	
 	public Pedidos() {
 		
 	}
 
-	public Pedidos(int id_usuario, LocalDate fecha, String metodo_pago, String estado, double total) {
+	public Pedidos(int id_usuario, LocalDate fecha, String metodo_pago, String estado, Descuentos descuento, double total) {
 		this.id_usuario = id_usuario;
 		this.fecha = fecha;
 		this.metodo_pago = metodo_pago;
 		this.estado = estado;
+		this.descuento=descuento;
 		this.total = total;
+		
+	}
+	
+	public Descuentos getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(Descuentos descuento) {
+		this.descuento = descuento;
 	}
 
 	public int getId() {

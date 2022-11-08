@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Table(name="descuentos")
 public class Descuentos {
 	
+	@Override
+	public String toString() {
+		return "Descuento=" + descuento;
+	}
+
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

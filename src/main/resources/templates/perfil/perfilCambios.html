@@ -14,10 +14,10 @@
 <body>
 
      <!-- PerfilAdmin -->
- 	<div th:insert="fragments/perfilAdmin :: perfilAdmin"></div>
+ 	<div th:insert="fragments/perfilUsuario :: perfilUsuario"></div>
     <!-- PerfilAdmin -->
     	
-    		
+    		<div class="container"> 
     		<form th:action="@{/modificarDatosPost}" th:object="${user}" method="post" id="formCambios" enctype="multipart/form-data">
 				<div class="col-lg-8">
 					<div class="card">
@@ -160,7 +160,7 @@
      		</div>
      		</div>
 		</form>
-		
+	</div>	
 		
 		 <script>
 		 

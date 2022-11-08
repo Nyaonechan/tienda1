@@ -2217,3 +2217,111 @@
 [http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
 [restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
 [http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Desloggeo correcto 
+[http-nio-8080-exec-7] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[http-nio-8080-exec-9] INFO  curso.java.tienda.DemoApplication  - Desloggeo correcto 
+[http-nio-8080-exec-8] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 14
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[http-nio-8080-exec-1] INFO  curso.java.tienda.DemoApplication  - Desloggeo correcto 
+[http-nio-8080-exec-8] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[http-nio-8080-exec-1] INFO  curso.java.tienda.DemoApplication  - Pedido realizado por el usuario con id: 21
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[main] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-1] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Producto con id: 53 añadido o modificado
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-9] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-9] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-1] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-10] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[http-nio-8080-exec-7] INFO  curso.java.tienda.DemoApplication  - Pedido realizado por el usuario con id: 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-1] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-10] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-2] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-10] INFO  curso.java.tienda.DemoApplication  - Desloggeo correcto 
+[http-nio-8080-exec-2] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-4] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[http-nio-8080-exec-8] INFO  curso.java.tienda.DemoApplication  - Pedido realizado por el usuario con id: 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-3] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-7] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 21
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-1] INFO  curso.java.tienda.DemoApplication  - Desloggeo correcto 
+[http-nio-8080-exec-6] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3
+[restartedMain] INFO  curso.java.tienda.DemoApplication  - Log4j appender configuration is successful !!
+[http-nio-8080-exec-5] INFO  curso.java.tienda.DemoApplication  - Loggeo correcto 3

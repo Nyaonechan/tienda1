@@ -34,7 +34,7 @@
  	<div th:insert="fragments/perfilAdmin :: perfilAdmin"></div>
     <!-- PerfilAdmin -->
 
-       <div class="container">
+       <div class="container-fluid">
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
@@ -43,6 +43,7 @@
                             <th>Método Pago</th>
                             <th>Estado</th>
                             <th>Número Factura</th>
+                            <th>Descuento</th>
                             <th>Total</th>
                             <th>Modificar Estado</th>
                             <th>Ver detalles</th>
@@ -60,6 +61,7 @@
                             <td class="align-middle" th:text=${pedido.metodo_pago}></td>
                             <td class="align-middle" th:text=${pedido.estado}></td>
                             <td class="align-middle" th:text=${pedido.num_factura}></td>
+                            <td class="align-middle" th:text=${pedido.descuento}></td>
 							<td class="align-middle" th:text=${pedido.total}></td>
 							<td th:if="${pedido.estado.equals('E')||pedido.estado.equals('C')}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''" disabled><i>Modificar Estado</i></button></td>
                             <td th:if="${pedido.estado.equals('P.E.')||pedido.estado.equals('P.C.')}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/modificarEstado?idPedido={idPedido}(idPedido=${pedido.id})} + '\''"><i>Modificar Estado</i></button></td>

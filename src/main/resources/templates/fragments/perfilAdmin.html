@@ -20,7 +20,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img th:if="${user.imagen==null}" th:src="@{/img/user.jpg}" alt="" class="rounded-circle" width="150">
+                    <img th:if="${user.imagen==null}" th:src="@{/img/users/user.jpg}" alt="" class="rounded-circle" width="150">
                     <img th:if="${user.imagen!=null}" th:src="@{/img/users/}+${user.imagen}" alt="" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4 th:text="${user.nombre} + ' ' + ${user.apellido1} + ' ' + ${user.apellido2}"> </h4>

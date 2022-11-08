@@ -32,6 +32,7 @@ public class IndexController {
 		//Thread thread = new Thread(hiloEstadoPedidos);
 		//thread.start();
 		
+		productoService.cantidadCarro(modelo);
 		
 		// CARGAR DATOS EMPRESA
 		configuracionService.recogerDatosEmpresa(modelo);

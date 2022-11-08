@@ -295,6 +295,8 @@ public class UsuariosController {
 		
 		valoracionService.insertValoracion(valoracion);
 		
+		valoracionService.calcularValoracionMedia(idProd);
+		
 		return "redirect:/shop";
 	}
 	

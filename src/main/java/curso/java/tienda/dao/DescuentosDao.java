@@ -11,5 +11,7 @@ public interface DescuentosDao {
 	public Descuentos getDescuentoById(int id);
 	
 	public void insertDescuento(Descuentos descuento);
+	
+	public Descuentos getDescuentoByCodigo(String codigo);
 
 }

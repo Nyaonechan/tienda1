@@ -47,7 +47,9 @@ public class Productos {
     
     private LocalDate fecha_alta;
     
-    @Transient
+    private int valoracion_media;
+
+	@Transient
     private int cantidad;
     
     
@@ -57,7 +59,7 @@ public class Productos {
 
 
 	public Productos(int id, Categorias categoria, String nombre, String descripcion, double precio, int stock,
-			float impuesto, String imagen, boolean baja, LocalDate fecha_alta) {
+			float impuesto, String imagen, boolean baja, LocalDate fecha_alta, int valoracion_media) {
 		this.id = id;
 		this.categoria = categoria;
 		this.nombre = nombre;
@@ -69,6 +71,17 @@ public class Productos {
 		this.baja = baja;
 		this.fecha_alta = fecha_alta;
 		cantidad = 1;
+		this.valoracion_media=valoracion_media;
+	}
+	
+
+	public int getValoracion_media() {
+		return valoracion_media;
+	}
+
+
+	public void setValoracion_media(int valoracion_media) {
+		this.valoracion_media = valoracion_media;
 	}
 
 

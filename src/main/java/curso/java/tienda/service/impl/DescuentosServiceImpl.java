@@ -1,5 +1,7 @@
 package curso.java.tienda.service.impl;
 
+import java.time.LocalDate;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,28 @@ public class DescuentosServiceImpl implements DescuentosService{
 	public void insertDescuento(Descuentos descuento) {
 		
 		descuentoDao.insertDescuento(descuento);
+		
+	}
+
+	@Override
+	public void gestionarDescuento(String codigo, Model modelo) {
+		
+
+		Descuentos descuento = descuentoDao.getDescuentoByCodigo(codigo);
+		System.out.println(descuento);
+
+		if (descuento!=null) {
+			int inicio = LocalDate.now().compareTo(descuento.getFecha_inicio());
+			int fin = LocalDate.now().compareTo(descuento.getFecha_fin());
+			System.out.println("Inicio: " + inicio);
+			System.out.println("Fin: " + fin);
+			if (inicio>0 && fin<0) {
+				modelo.addAttribute("descuentoNuevo", descuento);
+			}
+		} else {
+			modelo.addAttribute("nodescuento", "No existe un descuento con ese código");
+		}
+
 		
 	}
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import curso.java.tienda.entities.Articulos_carrito;
-import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 

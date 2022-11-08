@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import curso.java.tienda.dao.ProductosDao;
 import curso.java.tienda.entities.Categorias;
+import curso.java.tienda.entities.Descuentos;
 import curso.java.tienda.entities.Productos;
 import curso.java.tienda.entities.Usuarios;
 import curso.java.tienda.entities.Valoraciones;
 import curso.java.tienda.service.CategoriasService;
+import curso.java.tienda.service.DescuentosService;
 import curso.java.tienda.service.ProductosService;
 import curso.java.tienda.service.ValoracionesService;
 
 
-@SessionAttributes({"categorias", "categoria", "user", "carrito", "cantidad"})
+@SessionAttributes({"categorias", "categoria", "user", "carrito", "cantidad", "descuentoNuevo"})
 @Controller
 public class ProductosController {
 	
@@ -36,6 +38,9 @@ public class ProductosController {
 	@Autowired
 	ValoracionesService valoracionService;
 	
+	@Autowired
+	DescuentosService descuentoService;
+	
 	@GetMapping("/shop")
 	public String todosProductos(Model modelo) {
 		System.out.println("llamando a controlador shop");
@@ -46,7 +51,7 @@ public class ProductosController {
 		
 		productoService.cantidadCarro(modelo);
 		
-		productoService.precioTotalCarro(modelo);
+		//productoService.precioTotalCarro(modelo);
 		
 		Categorias categoria = new Categorias();
 		
@@ -181,10 +186,34 @@ public class ProductosController {
 			modelo.addAttribute("carrito", carroTabla);
 		}
 		
-		double precioTotal=productoService.precioTotalCarro(modelo);
+		modelo.addAttribute("descuento", new Descuentos()); // para el formulario
+		
+		Descuentos descuento = (Descuentos) modelo.getAttribute("descuentoNuevo"); // recogido por el formulario
+		System.out.println(descuento);
+
+		if (descuento==null) {
+			descuento = new Descuentos();
+			descuento.setDescuento(0);
+		}
+		
+		//if () modelo.addAttribute("nodescuento", "No existe un descuento con ese código");
+		
+		double precioTotal=productoService.precioTotalCarro(modelo, descuento.getDescuento());
 		productoService.desgloseIva(modelo, precioTotal);
 		
 		return "cart";
+	}
+	
+	@PostMapping("/descuento")
+	public String descuento(Model modelo, Descuentos descuento) {
+		
+		System.out.println("Controlador descuento");
+		
+		// comprobar si el codigo coincide con alguno existente, si no existe cargar mensaje, si existe cargar descuento
+		
+		descuentoService.gestionarDescuento(descuento.getCodigo(), modelo);
+		
+		return "redirect:/cart";
 	}
 	
 	// ACCIONES EN EL CARRO--------------------

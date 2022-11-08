@@ -1,7 +1,7 @@
 // Obtener una referencia al elemento canvas del DOM
 const $grafica = document.querySelector("#grafica");
 // Las etiquetas son las que van en el eje X. 
-const etiquetas = ["Enero", "Febrero", "Marzo", "Abril"]
+const etiquetas = ["FunkoPop", "Books", "Jewelry", "Clothes", "Figures", "Board Games"]
 // Podemos tener varios conjuntos de datos. Comencemos con uno
 const datosCategorias = {
     label: "Categorás más vendidas",

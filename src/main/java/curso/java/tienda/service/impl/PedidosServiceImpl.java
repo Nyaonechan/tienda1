@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import curso.java.tienda.dao.PedidosDao;
 import curso.java.tienda.dao.Detalles_pedidoDao;
 import curso.java.tienda.dao.impl.PedidosDaoImpl;
+import curso.java.tienda.entities.Descuentos;
 import curso.java.tienda.entities.Detalles_pedido;
 import curso.java.tienda.entities.Metodos_pago;
 import curso.java.tienda.entities.Pedidos;
@@ -34,9 +35,9 @@ public class PedidosServiceImpl implements PedidosService{
 	
 	@Transactional
 	@Override
-	public void insertPedido(Usuarios user, String metodoPago, double total) {
+	public void insertPedido(Usuarios user, String metodoPago, double total, Descuentos descuento) {
 		
-		Pedidos pedido = new Pedidos(user.getId(),LocalDate.now(), metodoPago, "P.E.", total); //null
+		Pedidos pedido = new Pedidos(user.getId(),LocalDate.now(), metodoPago, "P.E.", descuento, total); //null
 		
 		System.out.println(pedido.getId());
 		

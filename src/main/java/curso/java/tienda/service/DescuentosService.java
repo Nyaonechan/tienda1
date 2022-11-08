@@ -11,5 +11,7 @@ public interface DescuentosService {
 	public void getDescuentoById(Model modelo, int id);
 	
 	public void insertDescuento(Descuentos descuento);
+	
+	public void gestionarDescuento(String codigo, Model modelo);
 
 }

@@ -1,6 +1,7 @@
 package curso.java.tienda.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import curso.java.tienda.DemoApplication;
@@ -611,11 +613,21 @@ public class EmpleadoAdminController {
 	/* =============================================== */
 
 	@GetMapping(value = "/pruebaJSON", produces="application/json")
-	public @ResponseBody String getJSON() {
+	public @ResponseBody String getJSON(Model modelo) {
+		
+		
 		
 		ObjectNode raiz = mapper.createObjectNode();
-	
-		raiz.put("nombre", "carlos");
+		
+		ArrayNode categorias = mapper.createArrayNode();
+		
+		ArrayList<Categorias> categoriasList = (ArrayList<Categorias>) modelo.getAttribute("categorias");
+		
+		for (Categorias e: categoriasList) {
+			categorias.addPOJO(e);
+		}
+		
+		raiz.set("categorias", categorias);
 		
 		String json = null;
 		
