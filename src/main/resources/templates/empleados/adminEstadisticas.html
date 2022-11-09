@@ -53,12 +53,23 @@
       <section class="py-5">
         <div class="container-fluid">
           <div class="row">
+          
             <!-- Count item widget-->
             <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
               <div class="d-flex">
                 <div class="ms-2">
                   <h3 class="h4 text-dark text-uppercase fw-normal">Usuarios registrados</h3>
                   <p class="display-6 mb-0" th:text="${usuarios.size()}">25</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+              <div class="d-flex">
+                <div class="ms-2">
+                  <h3 class="h4 text-dark text-uppercase fw-normal">Usuarios con compras</h3>
+                  <p class="display-6 mb-0" th:text="${usuariosCompras.size()}">25</p>
                 </div>
               </div>
             </div>

@@ -20,9 +20,10 @@ import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.DescuentosService;
 import curso.java.tienda.service.ProductosService;
 import curso.java.tienda.service.ValoracionesService;
+import curso.java.tienda.utils.EnviarEmail;
 
 
-@SessionAttributes({"categorias", "categoria", "user", "carrito", "cantidad", "descuentoNuevo"})
+@SessionAttributes({"categorias", "categoria", "user", "carrito", "cantidad", "descuentoNuevo", "nombre", "direccion", "provincia", "ciudad"})
 @Controller
 public class ProductosController {
 	
@@ -40,6 +41,9 @@ public class ProductosController {
 	
 	@Autowired
 	DescuentosService descuentoService;
+	
+	@Autowired
+	EnviarEmail enviarEmail;
 	
 	@GetMapping("/shop")
 	public String todosProductos(Model modelo) {
@@ -106,6 +110,8 @@ public class ProductosController {
 	@GetMapping ("/fecha")
 	public String fecha(Model modelo) {
 		
+		System.out.println("Controlador fecha");
+		
 		ArrayList<Productos> productos = productoService.ordenarProductosByFecha();
 		modelo.addAttribute("productos", productos);
 		
@@ -114,8 +120,20 @@ public class ProductosController {
 	
 	@GetMapping("/stock")
 	public String stock (Model modelo) {
+		
+		System.out.println("Controlador stock");
 		ArrayList<Productos> productos = productoDao.getProductosByStock();
 		modelo.addAttribute("productos", productos);
+		return "shop";
+	}
+	
+	@GetMapping("/valoraciones")
+	public String valoraciones (Model modelo) {
+		
+		System.out.println("Controlador valoraciones");
+		
+		productoService.getProductosPorValoracion(modelo);
+		
 		return "shop";
 	}
 	
@@ -256,7 +274,35 @@ public class ProductosController {
 	
 	//---------------------------------------------------
 	
+	@PostMapping("/newsletter")
+	public String newsletter (@RequestParam String name, @RequestParam String email) {
+		
+		System.out.println("Controlador newsletter");
+		
+		enviarEmail.enviarEmailSuscrito(email, name);
+		
+		return "redirect:";
+	}
+	
+	@GetMapping ("/contact")
+	public String contact (Model modelo) {
+		
+		System.out.println("Controlador contact");
+		
+		categoriaService.cargarCategorias(modelo);
 
+		return "contact";
+	}
+	
+	@PostMapping("/postContact")
+	public String postContact(@RequestParam String name, @RequestParam String email, @RequestParam String subject, @RequestParam String message) {
+		
+		System.out.println("Controlador postContact");
+		
+		enviarEmail.enviarEmailContacto(email, name, subject, message);
+		
+		return "redirect:";
+	}
 	
 
 }

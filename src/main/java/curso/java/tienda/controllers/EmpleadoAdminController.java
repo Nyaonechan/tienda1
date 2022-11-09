@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import curso.java.tienda.utils.HiloBackups;
 
 import curso.java.tienda.DemoApplication;
 import curso.java.tienda.dao.CategoriasDao;
@@ -606,6 +607,7 @@ public class EmpleadoAdminController {
 		
 		pedidoService.totalPedidos(modelo);
 		
+		pedidoService.getPedidosGroupUsuarioId(modelo);
 		
 		return "empleados/adminEstadisticas";
 	}
@@ -661,5 +663,33 @@ public class EmpleadoAdminController {
 		return json;
 		
 	}
+	
+	//------------------- Backup--------------------
+	
+	@GetMapping("/lanzarHiloBackups")
+	public String lanzarHiloBackups(Model model) {
+		
+		System.out.println("Controlador lanzar hilos");
+	
+		HiloBackups hilo= new HiloBackups();
+		hilo.start();
+		
+		model.addAttribute("backup","Iniciando backups");
+		
+		return adminInicio(model);
+}
+	
+	
+	@GetMapping("/detenerHiloBackups")
+	public String detenerHiloBackups(Model model) {
+		
+		System.out.println("Controlador parar hilos");
+		
+		HiloBackups.detenerHilo();
+		
+		model.addAttribute("backup","Deteniendo backups");
+		
+		return adminInicio(model);
+}
 	
 }

@@ -16,6 +16,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -89,11 +90,11 @@
                 <h3 class="font-weight-semi-bold" th:text="${productoDetalle.nombre}"></h3>
                 <div class="d-flex mb-3">
                     <div th:if="${productoDetalle.valoracion_media!=0}" class="text-primary mr-2">
-						<i th:each="i: ${#numbers.sequence(0, productoDetalle.valoracion_media - 1)}" class="fas fa-star"></i>
-                        <i th:each="i: ${#numbers.sequence(0, (5-productoDetalle.valoracion_media) - 1)}" class="far fa-star"></i>
+						<i th:each="i: ${#numbers.sequence(0, productoDetalle.valoracion_media -1)}" class="fas fa-star"></i>
+                        <i th:if="${productoDetalle.valoracion_media!=5}" th:each="i: ${#numbers.sequence(0, (5-productoDetalle.valoracion_media)-1)}" class="far fa-star"></i>
                     </div>
                     <div th:if="${productoDetalle.valoracion_media==0}" class="text-primary mr-2">
-                        <i th:each="i: ${#numbers.sequence(0, 5 - 1)}" class="far fa-star"></i>
+                        <i th:each="i: ${#numbers.sequence(0, 5)}" class="far fa-star"></i>
                     </div>
                     <small class="pt-1" th:text="${valoraciones.size()}"></small>
                 </div>
@@ -163,7 +164,7 @@
                                         <h6 th:text="${val.usuario.nombre}"></h6><h6 ><small> - <i th:text="${val.fecha}"></i></small></h6>
                                         <div class="text-primary mb-2" >
                                             <i th:each="i: ${#numbers.sequence(0, val.valoracion - 1)}" class="fas fa-star"></i>
-                                            <i th:each="i: ${#numbers.sequence(0, (5-val.valoracion) - 1)}" class="far fa-star"></i>
+                                            <i th:if="${val.valoracion!=5}" th:each="i: ${#numbers.sequence(0, (5-val.valoracion) - 1)}" class="far fa-star"></i>
                                         </div>
                                         
                                         <p th:text="${val.comentario}">Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>

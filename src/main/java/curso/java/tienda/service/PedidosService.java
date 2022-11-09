@@ -35,5 +35,7 @@ public interface PedidosService {
 	public Pedidos getLastPedido();
 	
 	public void totalPedidos(Model modelo);
+	
+	public void getPedidosGroupUsuarioId(Model modelo);
 
 }

@@ -222,4 +222,17 @@ public class PedidosDaoImpl implements PedidosDao {
 		
 	}
 
+	@Override
+	public ArrayList<Pedidos> getPedidosGroupUsuario() {
+		
+		Session session = entityManager.unwrap(Session.class);
+
+		Query<Pedidos> query = session.createQuery("SELECT id_usuario, COUNT(id_usuario)FROM Pedidos GROUP BY id_usuario");
+
+		ArrayList<Pedidos> pedidos =  (ArrayList<Pedidos>) query.getResultList();
+		
+		return pedidos;
+		
+	}
+
 }

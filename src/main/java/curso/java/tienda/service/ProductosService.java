@@ -21,6 +21,8 @@ public interface ProductosService {
 	
 	public void getProductosByNombre(String nombre, Model modelo);
 	
+	public void getProductosPorValoracion(Model modelo);
+	
 	public ArrayList<Productos> ordenarProductosByFecha();
 	
 	public void ochoProductosMasNuevos(Model modelo);

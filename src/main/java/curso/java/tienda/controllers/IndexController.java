@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import curso.java.tienda.service.CategoriasService;
 import curso.java.tienda.service.ConfiguracionService;
 import curso.java.tienda.service.ProductosService;
+import curso.java.tienda.service.ProveedoresService;
 import curso.java.tienda.utils.HiloEstadoPedidos;
 
-@SessionAttributes({"categorias", "user"})
+@SessionAttributes({"categorias", "user", "nombre", "direccion", "provincia", "ciudad"})
 @Controller
 public class IndexController {
 	
@@ -24,6 +25,8 @@ public class IndexController {
 	HiloEstadoPedidos hiloEstadoPedidos;
 	@Autowired
 	CategoriasService categoriaService;
+	@Autowired
+	ProveedoresService proveedorService;
 	
 	@GetMapping("")
 	public String muestraIndex(Model modelo) {
@@ -45,6 +48,9 @@ public class IndexController {
 		
 		//CARGAR CATEGORIAS
 		categoriaService.cargarCategorias(modelo);
+		
+		//CARGAR PROVEEDORES
+		proveedorService.getProveedores(modelo);
 
 		return "index";
 	}

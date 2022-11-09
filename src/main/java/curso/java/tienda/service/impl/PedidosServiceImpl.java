@@ -193,4 +193,11 @@ public class PedidosServiceImpl implements PedidosService{
 		
 	}
 
+	@Override
+	public void getPedidosGroupUsuarioId(Model modelo) {
+		
+		modelo.addAttribute("usuariosCompras", pedidoDao.getPedidosGroupUsuario());
+		
+	}
+
 }

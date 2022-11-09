@@ -148,7 +148,7 @@ public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
-		Query<Object> query = session.createQuery("SELECT SUM(unidades) FROM Detalles_pedido GROUP BY producto_id");
+		Query<Object> query = session.createQuery("SELECT (unidades) FROM Detalles_pedido GROUP BY producto_id");
 		
 		ArrayList<Object> detalles =   (ArrayList<Object>) query.getResultList();
 		

@@ -1,6 +1,7 @@
 package curso.java.tienda.utils;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,14 @@ public class HiloEstadoPedidos implements Runnable {
 	Detalles_pedidoService detalle_pedidoService;
 	
 	static Logger logger = Logger.getLogger(DemoApplication.class);
+	private static final int TIEMPO_ENTRE_BACKUPS=300;
 
 	@Override
 	public void run() {
 		boolean bandera = true;
 		do {
 			try {
-				Thread.sleep(1800000);
+				TimeUnit.SECONDS.sleep(TIEMPO_ENTRE_BACKUPS);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -110,6 +110,13 @@ public class ProductosServiceIml implements ProductosService {
 		modelo.addAttribute("productos", productos);
 		
 	}
+	
+	@Override
+	public void getProductosPorValoracion(Model modelo) {
+		
+		modelo.addAttribute("productos", productoDao.getMasValorados());
+		
+	}
 
 	@Override
 	public ArrayList<Productos> ordenarProductosByFecha() {
@@ -166,10 +173,8 @@ public class ProductosServiceIml implements ProductosService {
 	@Override
 	public void cargarProductosByIdCat(Model modelo, int id_categoria) {
 		ArrayList<Productos> productos=productoDao.getProductosByCat(id_categoria);
-        
         modelo.addAttribute("productos", productos);
-        
-        productos.forEach(System.out::println);
+
 	}
 	
 	@Override
@@ -452,6 +457,8 @@ public class ProductosServiceIml implements ProductosService {
 		
 		return seis;
 	}
+
+
 
 
 }

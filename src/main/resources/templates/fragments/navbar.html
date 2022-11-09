@@ -1,6 +1,8 @@
  <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
+
 
    
     <div th:fragment="navbar"  class="container-fluid mb-5">
@@ -38,8 +40,6 @@
                             <a th:href="@{/}" class="nav-item nav-link active" th:text="#{index}">Home</a>
                             <a th:href="@{/shop}" class="nav-item nav-link" th:text="#{tienda}">Shop</a>
                             <a th:href="@{/cart}" class="nav-item nav-link" th:text="#{cesta}">Shoping Cart</a>
-
-                            
                             <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{contacto}">Contact</a>
                         </div>
                     </div>
@@ -60,30 +60,16 @@
                    </nav>
                         
                                      <!--   CARROUSEL -->
-                <div id="header-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div th:each="categoria:${categorias}"class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" th:src="@{/img/categorias/}+${categoria.imagen}" alt="Image">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4" th:text="${categoria.nombre}"></h3>
-                                    <a th:href="@{/shop/{catId}(catId=${categoria.id})}" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                            <span class="carousel-control-prev-icon mb-n2"></span>
-                        </div>
-                    </a>
-                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                            <span class="carousel-control-next-icon mb-n2"></span>
-                        </div>
-                    </a>
-                </div>
+				<div class="w3-container">
+					<div class="w3-display-container w3-text-black"> 
+
+					  <img th:src="@{/img/categorias/todasCategorias.jpg}" alt="Image" style="height:250px;width:1350px;">
+					  <div class="w3-display-topmiddle w3-container"><h3 style="background-color:#07F3FA">10% Off - Code: diez</h3></div>
+					  <div class="w3-display-middle w3-large"><h3 style="background-color:#07F3FA">5% Off - Code: cinco</h3></div> 
+					  <div class="w3-display-bottommiddle w3-container"><a  style="background-color:#07F3FA" th:href="@{/shop}" class="btn btn-light py-2 px-3"><h4>Shop Now</h4></a></div> 
+					</div> 
+				</div>
+              
               </div>
             </div>
         </div>

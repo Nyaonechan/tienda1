@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <!-- Favicon -->
     <link th:href="@{/img/favicon.ico}" rel="icon">
@@ -186,44 +186,22 @@
         </div>
     </div>
     <!-- Products End -->
-    
-    <!-- Subscribe Start -->
-    <div class="container-fluid bg-secondary my-5">
-        <div class="row justify-content-md-center py-5 px-xl-5">
-            <div class="col-md-6 col-12 py-5">
-                <div class="text-center mb-2 pb-2">
-                    <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Stay Updated</span></h2>
-                    <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo labore labore.</p>
-                </div>
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-white p-4" placeholder="Email Goes Here">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-4">Subscribe</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Subscribe End -->
+   
 
   
-    <!-- Vendor Start BUCLE PARA PROVEEDORES
+    <!-- Vendor Start BUCLE PARA PROVEEDORES -->
     <div class="container-fluid py-5">
+    <h2>Proveedores</h2>
         <div class="row px-xl-5">
-            <div class="col">
-                <div class="owl-carousel vendor-carousel">
-                    <div class="vendor-item border p-4">
-                        <img src="static/img/vendor-1.jpg" alt="vendor1">
+            <div th:each="proveedor : ${proveedores}" class="col">
+                    <div   class="vendor-item border p-4">
+                    	<div class="w3-display-container w3-text-black">
+                        	<img th:src="@{/img/vendor.jfif}" alt="vendor">
+                        	<div class="w3-display-bottommiddle w3-container"><h2><u th:text="${proveedor.nombre}"></u></h2></div> 
+                        </div>
                     </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/vendor-2.jpg" alt="">
-                    </div>
-
                 </div>
             </div>
-        </div>
     </div>
     <!-- Vendor End -->
 

@@ -42,5 +42,7 @@ public interface PedidosDao {
 	public ArrayList<Metodos_pago> getMetodosPago();
 	
 	public void modificarTotalPedido(int id, double total);
+	
+	public ArrayList<Pedidos> getPedidosGroupUsuario();
 
 }
