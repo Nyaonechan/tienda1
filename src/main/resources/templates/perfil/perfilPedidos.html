@@ -33,7 +33,8 @@
 
        
        <div class="container-fluid">
-       		                  <h3 style="margin-top:100px; margin-left:50px"> Pedidos</h3>
+       		  <h3 style="margin-top:100px; margin-left:50px"> Pedidos</h3>
+       		  <div th:if="${facturaDescargada}" th:text="${facturaDescargada}"></div>
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
@@ -66,7 +67,8 @@
                             <td class="align-middle" th:text=${pedido.total}></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/perfilDetallesPedido?id_pedido={id_pedido}(id_pedido=${pedido.id})} + '\''" value="Ver detalles"><i>Ver detalles</i></button></td>
                             <td th:if="${pedido.num_factura==null}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Descargar factura" disabled><i>Descargar factura</i></button></td>
-                            <td th:if="${pedido.num_factura!=null}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/facturasPdf?id_pedido={id_pedido}(id_pedido=${pedido.id})} + '\''" value="Descargar factura"><i>Descargar factura</i></button></td>
+                            <td th:if="${pedido.num_factura!=null}" class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/facturasPdf?id_pedido={id_pedido}(id_pedido=${pedido.id})} + '\''" value="Descargar factura"><i>Descargar factura</i></button>
+                            </td>
                             <td th:if="${pedido.estado.equals('P.E.')}"class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="'window.location.href = \'' + @{/pedirCancelacion?id_pedido={id_pedido}(id_pedido=${pedido.id})} + '\''" value="Cancelar pedido"><i>Cancelar</i></button></td>
                             <td th:unless="${pedido.estado.equals('P.E.')}"class="align-middle"><button class="btn btn-sm btn-primary" th:onclick="" value="Cancelar pedido" disabled><i>Cancelar</i></button></td>
                             

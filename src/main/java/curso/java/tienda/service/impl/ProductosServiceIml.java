@@ -346,11 +346,11 @@ public class ProductosServiceIml implements ProductosService {
 			}
 		}else {
 			
-			ArrayList<Articulos_carrito> productos =productoDao.getProductosCarritoTabla(user);
-			
-			for (Articulos_carrito e: productos) {
-				cantidad+=e.getCantidad();
-			}
+			ArrayList<Articulos_carrito> productos =productoDao.getProductosPorCantidad(user.getId());
+			//cantidad= 
+			//for (Articulos_carrito e: productos) {
+			//	cantidad+=e.getCantidad();
+			//}
 		}
 		
 		modelo.addAttribute("cantidad", cantidad);

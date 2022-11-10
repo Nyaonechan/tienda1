@@ -71,6 +71,8 @@ public class ProductosController {
 		
 		System.out.println("llamando a controlador shop/id");
 		
+		productoService.cantidadCarro(modelo);
+		
 		categoriaService.cargarCategorias(modelo);
 		
 		productoService.cargarProductosByIdCat(modelo, id_categoria);
@@ -88,6 +90,8 @@ public class ProductosController {
 		
 		System.out.println("Controlador precios");
 		
+		productoService.cantidadCarro(modelo);
+		
 		categoriaService.cargarCategorias(modelo);
 		
 		Categorias cat= (Categorias) modelo.getAttribute("categoria");
@@ -102,6 +106,8 @@ public class ProductosController {
 		
 		System.out.println("Controlador nombres");
 		
+		productoService.cantidadCarro(modelo);
+		
 		productoService.getProductosByNombre(nombre, modelo);
 		
 		return "shop";
@@ -111,6 +117,8 @@ public class ProductosController {
 	public String fecha(Model modelo) {
 		
 		System.out.println("Controlador fecha");
+		
+		productoService.cantidadCarro(modelo);
 		
 		ArrayList<Productos> productos = productoService.ordenarProductosByFecha();
 		modelo.addAttribute("productos", productos);
@@ -122,6 +130,7 @@ public class ProductosController {
 	public String stock (Model modelo) {
 		
 		System.out.println("Controlador stock");
+		productoService.cantidadCarro(modelo);
 		ArrayList<Productos> productos = productoDao.getProductosByStock();
 		modelo.addAttribute("productos", productos);
 		return "shop";
@@ -141,6 +150,8 @@ public class ProductosController {
 	public String detail (Model modelo, @RequestParam("idProd") int id, @RequestParam(required=false) int idCat) {
 		
 		System.out.println("llamando a controlador detail");
+		
+		productoService.cantidadCarro(modelo);
 		
 		categoriaService.cargarCategorias(modelo);
 		
@@ -196,6 +207,8 @@ public class ProductosController {
 		System.out.println("llamando a controlador cart");
 		
 		categoriaService.cargarCategorias(modelo);
+		
+		productoService.cantidadCarro(modelo);
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		

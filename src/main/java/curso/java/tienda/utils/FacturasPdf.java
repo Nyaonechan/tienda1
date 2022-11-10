@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ public class FacturasPdf {
 	@Autowired
 	ConfiguracionDao configuracionDao;
 	
-	public void crearFactura(int id, Model modelo) {
+	public String crearFactura(int id, Model modelo) {
 		
 		Usuarios user = (Usuarios) modelo.getAttribute("user");
 		Pedidos pedido = pedidoDao.getPedidoById(id);
@@ -184,16 +185,22 @@ public class FacturasPdf {
 		    //http://docs.oracle.com/javase/6/docs/api/java/awt/Desktop.html
 		    
 		    
-		    try {
-		        File path = new File("src/main/resources/ficheros/factura.pdf");
+		   /* try {
+		        File path = new File("src/main/resources/ficheros/factura"+pedido.getNum_factura()+".pdf");
 		        Desktop.getDesktop().open(path);
+		        //Desktop.getDesktop().browse(path);
+		       // Runtime.getRuntime().exec("rundll32 SHELL32.DLL,ShellExec_RunDLL factura"+pedido.getNum_factura()+".pdf");
 		    } catch (IOException ex) {
 		        ex.printStackTrace();
-		    }
+		    }*/
 			
 	    } catch (Exception ex) {
 	    	ex.getMessage();
+	    	ex.printStackTrace();
 	    }
+	    
+	    String factura = "factura"+pedido.getNum_factura()+".pdf";
+	    return factura;
 	}
 		
 }

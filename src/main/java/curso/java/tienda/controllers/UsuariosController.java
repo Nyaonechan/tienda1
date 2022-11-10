@@ -3,6 +3,8 @@ package curso.java.tienda.controllers;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javax.mail.MessagingException;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -269,7 +271,20 @@ public class UsuariosController {
 		
 		System.out.println("Controlador facturasPdf");
 		
-		factura.crearFactura(id_pedido, modelo);
+		Usuarios user = (Usuarios) modelo.getAttribute("user");
+		
+		if (user == null) return "redirect:/login";
+		
+		String facturaFile= factura.crearFactura(id_pedido, modelo);
+		
+		modelo.addAttribute("facturaDescargada", "Factura Descargada");
+		
+		try {
+			email.enviarEmailFactura(user.getEmail(), user.getNombre(), facturaFile);
+		} catch (MessagingException e) {
+			
+			e.printStackTrace();
+		}
 
 		return perfilPedidos(modelo);
 		

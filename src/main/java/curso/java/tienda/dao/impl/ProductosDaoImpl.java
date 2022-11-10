@@ -428,6 +428,20 @@ public class ProductosDaoImpl implements ProductosDao {
 
 	}
 
+	@Override
+	public ArrayList<Articulos_carrito> getProductosPorCantidad(int userId) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query query=session.createQuery("SELECT SUM(cantidad) from Articulos_carrito where id_usuario=:userId");
+		
+		query.setParameter("userId", userId);
+		
+		//int cantidad= 
+		
+		return null;
+	}
+
 
 
 

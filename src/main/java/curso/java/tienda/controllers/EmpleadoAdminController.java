@@ -334,8 +334,8 @@ public class EmpleadoAdminController {
 		return adminInicio(modelo);
 	}
 	
-	@GetMapping ("/importarProductos")
-	public String importarProductos(Model modelo) {
+	@PostMapping ("/importarProductos")
+	public String importarProductos(Model modelo, @RequestParam("file") MultipartFile multipartFile) throws IOException {
 		
 		System.out.println("Controlador importarProductos");
 		
@@ -343,8 +343,17 @@ public class EmpleadoAdminController {
 		
 		if (user == null) return "redirect:/login";
 		
-		excel.importarProductos();
-		return adminInicio(modelo);
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		
+		String uploadDir = "src/main/resources/ficheros";
+		
+		FileUpload.saveFile(uploadDir, fileName, multipartFile);
+		
+		excel.importarProductos(fileName);
+		
+		modelo.addAttribute("import", "Importación realizada con éxito");
+		
+		return adminProductos(modelo);
 	}
 	
 	@GetMapping ("/formCategoria")
@@ -356,13 +365,15 @@ public class EmpleadoAdminController {
 		
 		if (user == null) return "redirect:/login";
 		
-		modelo.addAttribute("categoria", new Categorias());
+		Categorias categoria = new Categorias();
+		
+		modelo.addAttribute("cat", categoria);
 		
 		return "empleados/formCategoria";
 	}
 	
 	@PostMapping("/crearCategoría")
-	public String crearCategoria(Model modelo, Categorias categoria) {
+	public String crearCategoria(Model modelo, Categorias cat, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 		
 		System.out.println("Controlador crearCategorias");
 		
@@ -370,7 +381,19 @@ public class EmpleadoAdminController {
 		
 		if (user == null) return "redirect:/login";
 		
-		categoriaService.insertarCategoria(categoria);
+		// Pasar el nombre del archivo al user
+		
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+						
+		cat.setImagen(fileName);
+				
+		// Cargar la imagen en el proyecto
+				
+		String uploadDir = "src/main/resources/static/img/categorias";
+						
+		FileUpload.saveFile(uploadDir, fileName, multipartFile);
+		
+		categoriaService.insertarCategoria(cat);
 		
 		return adminInicio(modelo);
 	}

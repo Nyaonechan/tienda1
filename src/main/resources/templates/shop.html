@@ -142,12 +142,23 @@
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a th:href="@{/detail(idProd=${producto.id}, idCat=${producto.categoria.id})}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a th:href="@{/añadirCarrito(idProd=${producto.id})}" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                <a th:href="@{/añadirCarrito(idProd=${producto.id})}" ><i class="fas fa-shopping-cart text-primary mr-1"><button type="button" class="btn btn-sm text-dark p-0"  data-toggle="modal" data-target="#exampleModal"></button></i>Add To Cart</a>
                             </div>
                         </div>
                     </div>
                     
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
 
+      <div class="modal-body">
+        Añadido al carrito
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
                     <div class="col-12 pb-1">

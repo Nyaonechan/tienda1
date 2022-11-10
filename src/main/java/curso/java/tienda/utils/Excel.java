@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import curso.java.tienda.dao.CategoriasDao;
 import curso.java.tienda.dao.ProductosDao;
 import curso.java.tienda.entities.Categorias;
 import curso.java.tienda.entities.Productos;
@@ -20,6 +21,8 @@ public class Excel {
 	
 	@Autowired
 	ProductosDao productoDao;
+	@Autowired
+	CategoriasDao categoriaDao;
 	
 	public void exportarCatalogo() {
 		
@@ -92,9 +95,9 @@ public class Excel {
 	}
 		
 	
-	public void importarProductos() {
+	public void importarProductos(String excel) {
 		
-		File fichero = new File("src/main/resources/ficheros/productosParaCatalogo.xls");
+		File fichero = new File("src/main/resources/ficheros/" + excel);
 		
         try {
         	Workbook w = Workbook.getWorkbook(fichero);
@@ -118,7 +121,9 @@ public class Excel {
 		for (int f=2; f<sheet.getRows(); f++) {
 			
 			producto = new Productos();
-    		producto.setCategoria(new Categorias((Integer.valueOf(sheet.getCell(0,f).getContents()))));
+			int idCat = Integer.valueOf(sheet.getCell(0,f).getContents());
+			Categorias cat = categoriaDao.getCategoriaById(idCat);
+    		producto.setCategoria(cat);
     		producto.setNombre(sheet.getCell(1,f).getContents()); 
     		producto.setDescripcion(sheet.getCell(2,f).getContents()); 
     		producto.setPrecio(Double.valueOf(sheet.getCell(3,f).getContents())); 
