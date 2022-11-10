@@ -118,14 +118,14 @@ public class PedidosServiceImpl implements PedidosService{
 			
 			for (Detalles_pedido e: detalles) {
 				if (e.getEstado().equals("P.E.")) {
-					detalle_pedidoDao.modificarEstadoAdminEnv(id);
+					detalle_pedidoDao.modificarEstadoAdminEnv(e.getId());
 				}
 			}
 			
 		}else {
 			pedidoDao.modificarEstadoAdminCancelado(id);
 			for (Detalles_pedido e: detalles) {
-				detalle_pedidoDao.modificarEstadoAdminEnv(id);
+				detalle_pedidoDao.modificarEstadoAdminEnv(e.getId());
 			}
 		}
 		

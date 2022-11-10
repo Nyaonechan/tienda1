@@ -1,5 +1,7 @@
 package curso.java.tienda.controllers;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,12 @@ public class IndexController {
 	CategoriasService categoriaService;
 	@Autowired
 	ProveedoresService proveedorService;
+	
+	@PostConstruct
+	public void postContruct() {
+		Thread thread = new Thread(hiloEstadoPedidos);
+		thread.start();
+	}
 	
 	@GetMapping("")
 	public String muestraIndex(Model modelo) {

@@ -57,7 +57,7 @@
 
                         <tr th:each="detalle : ${detalles}">
                         	<td class="align-middle" th:text=${detalle.id_pedido}></td>
-                        	<td class="align-middle" th:text=${detalle.id_producto}></td>
+                        	<td class="align-middle" th:text=${detalle.producto.id}></td>
                         	<td class="align-middle" th:text=${detalle.precio_unidad}></td>
                         	<td class="align-middle" th:text=${detalle.impuesto}></td>
                         	<td class="align-middle" th:text=${detalle.total}></td>

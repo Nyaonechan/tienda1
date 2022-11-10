@@ -84,6 +84,6 @@ public interface ProductosDao {
 	
 	public ArrayList<Productos> getMasValorados();
 	
-	public ArrayList<Articulos_carrito> getProductosPorCantidad(int userId);
+	public Long getProductosPorCantidad(int userId);
 
 }

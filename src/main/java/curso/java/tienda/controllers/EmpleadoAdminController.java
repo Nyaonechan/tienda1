@@ -157,9 +157,13 @@ public class EmpleadoAdminController {
 		Categorias categoria = categoriaService.getCategoriaById(id_categoria);
 		producto.setCategoria(categoria);
 		
-		// Pasar el nombre del archivo al user
+		// Pasar el nombre del archivo
 		
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		
+		System.out.println("Nombre del fichero: " +fileName);
+		
+		if (fileName.equals("")) fileName = "logoOtaku.jpg";
 				
 		producto.setImagen(fileName);
 		
@@ -331,7 +335,9 @@ public class EmpleadoAdminController {
 		
 		excel.exportarCatalogo();
 		
-		return adminInicio(modelo);
+		modelo.addAttribute("export", "Exportación realizada con éxito");
+		
+		return adminProductos(modelo);
 	}
 	
 	@PostMapping ("/importarProductos")

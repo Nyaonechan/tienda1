@@ -344,16 +344,22 @@ public class ProductosServiceIml implements ProductosService {
 			for (Productos e: carrito) {
 				cantidad+=e.getCantidad();
 			}
+			
+			modelo.addAttribute("cantidad", cantidad);
+			
+			
 		}else {
 			
-			ArrayList<Articulos_carrito> productos =productoDao.getProductosPorCantidad(user.getId());
+			Long suma =productoDao.getProductosPorCantidad(user.getId());
 			//cantidad= 
 			//for (Articulos_carrito e: productos) {
 			//	cantidad+=e.getCantidad();
 			//}
+			
+			modelo.addAttribute("cantidad", suma);
 		}
 		
-		modelo.addAttribute("cantidad", cantidad);
+		
 		
 	}
 	

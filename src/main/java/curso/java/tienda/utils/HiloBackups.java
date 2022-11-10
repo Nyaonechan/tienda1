@@ -35,7 +35,8 @@ public class HiloBackups extends Thread {
 				//Zips.backupBBDD();
 				Date fecha = new Date();
 				String fe = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(fecha);
-				Zips.zip("C:\\Users\\anixx\\OneDrive\\BackupsProyecto\\backup" + fe + ".zip");
+				Zips.zip("C:\\Users\\Formacion\\OneDrive\\BackupsProyecto\\backup" + fe + ".zip");
+				//Zips.zip("C:\\Users\\anixx\\OneDrive\\BackupsProyecto\\backup" + fe + ".zip");
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

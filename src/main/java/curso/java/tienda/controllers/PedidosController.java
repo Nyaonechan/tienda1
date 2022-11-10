@@ -18,7 +18,7 @@ import curso.java.tienda.service.Detalles_pedidoService;
 import curso.java.tienda.service.PedidosService;
 import curso.java.tienda.service.ProductosService;
 
-@SessionAttributes({"categorias", "user", "carrito", "cantidad", "descuentoNuevo"})
+@SessionAttributes({"categorias", "user", "carrito", "cantidad", "descuentoNuevo", "nombre", "direccion", "provincia", "ciudad"})
 @Controller
 public class PedidosController {
 	

@@ -429,7 +429,7 @@ public class ProductosDaoImpl implements ProductosDao {
 	}
 
 	@Override
-	public ArrayList<Articulos_carrito> getProductosPorCantidad(int userId) {
+	public Long getProductosPorCantidad(int userId) {
 		
 		Session session = entityManager.unwrap(Session.class);
 		
@@ -437,16 +437,11 @@ public class ProductosDaoImpl implements ProductosDao {
 		
 		query.setParameter("userId", userId);
 		
-		//int cantidad= 
+		Long suma = (Long) query.uniqueResult();
 		
-		return null;
+		System.out.println(suma);
+		
+		return suma;
 	}
-
-
-
-
-
-
-
 
 }
