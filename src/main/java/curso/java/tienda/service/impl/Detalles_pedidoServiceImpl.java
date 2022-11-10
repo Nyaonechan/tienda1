@@ -84,7 +84,8 @@ public class Detalles_pedidoServiceImpl implements Detalles_pedidoService {
 		productoDao.modificarStock(detalle.getProducto().getId(), detalle.getUnidades());
 		
 	}
-
+	
+	@Transactional
 	@Override
 	public boolean comprobarEstadoDetalle(int id_pedido) {
 		

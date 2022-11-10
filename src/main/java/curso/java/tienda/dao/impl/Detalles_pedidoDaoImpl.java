@@ -33,6 +33,7 @@ public class Detalles_pedidoDaoImpl implements Detalles_pedidoDao {
 		
 	}
 	
+	@Transactional
 	@Override
 	public ArrayList<Detalles_pedido> getDetallesByIdPedido(int id) {
 		

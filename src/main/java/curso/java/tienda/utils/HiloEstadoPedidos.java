@@ -3,6 +3,8 @@ package curso.java.tienda.utils;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import javax.transaction.Transactional;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,6 +32,7 @@ public class HiloEstadoPedidos implements Runnable {
 
 	@Override
 	public void run() {
+		System.out.println("Entrando en hilo estado pedidos");
 		boolean bandera = true;
 		do {
 			try {
@@ -45,6 +48,7 @@ public class HiloEstadoPedidos implements Runnable {
 		
 	}
 	
+	@Transactional
 	public void modificarEstadoPedidos() {
 		
 		ArrayList<Pedidos> pedidos = pedidoDao.getPedidos();

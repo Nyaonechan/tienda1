@@ -43,7 +43,7 @@ import curso.java.tienda.utils.Excel;
 import curso.java.tienda.utils.FileUpload;
 
 
-@SessionAttributes({"user", "idRol", "categorias"})
+@SessionAttributes({"user", "idRol"})
 @Controller
 public class EmpleadoAdminController {
 	
@@ -123,6 +123,8 @@ public class EmpleadoAdminController {
 		if (user == null) return "redirect:/login";
 		
 		modelo.addAttribute("producto",new Productos());
+		
+		categoriaService.cargarCategorias(modelo);
 
 		return "empleados/formProducto";
 	}
@@ -137,6 +139,8 @@ public class EmpleadoAdminController {
 		if (user == null) return "redirect:/login";
 		
 		productoService.getProductoById(idProd, modelo);
+		
+		categoriaService.cargarCategorias(modelo);
 
 		return "empleados/formProducto";
 	}
@@ -378,8 +382,8 @@ public class EmpleadoAdminController {
 		return "empleados/formCategoria";
 	}
 	
-	@PostMapping("/crearCategoría")
-	public String crearCategoria(Model modelo, Categorias cat, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+	@PostMapping("/crearCategoria")
+	public String crearCategoria(Model modelo, @ModelAttribute Categorias cat, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 		
 		System.out.println("Controlador crearCategorias");
 		
