@@ -653,6 +653,7 @@ public class EmpleadoAdminController {
 		ObjectNode raiz = mapper.createObjectNode();
 		
 		ArrayNode categorias = mapper.createArrayNode();
+		categoriaService.cargarCategorias(modelo);
 		ArrayList<Categorias> categoriasList = (ArrayList<Categorias>) modelo.getAttribute("categorias");
 		
 		ArrayNode cantidades = mapper.createArrayNode();

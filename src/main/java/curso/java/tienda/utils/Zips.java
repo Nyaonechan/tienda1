@@ -16,7 +16,7 @@ public class Zips {
 	
 	public static void zip(String destZipFile) throws FileNotFoundException, IOException {
     	//String[] files={"C:\\Users\\anixx\\Desktop\\Spring\\tienda"}; // cambiar la ruta de donde está el proyecto
-    	String[] files={"C:\\Users\\Formacion\\eclipse-workspace\\tienda1"};
+    	String[] files={"C:\\Users\\Formacion\\eclipse-workspace\\TIENDA_ANAMARIA_PEREZ_RODRIGUEZ"};
     	
         List<File> listFiles = new ArrayList<File>();
         for (int i = 0; i < files.length; i++) {
